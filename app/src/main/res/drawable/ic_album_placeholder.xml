@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Portada genérica: se muestra mientras carga la imagen o si no se puede cargar -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="160dp"
+    android:viewportWidth="160"
+    android:viewportHeight="160">
+    <path
+        android:fillColor="@color/cream_variant"
+        android:pathData="M0,0h160v160h-160z" />
+    <path
+        android:fillColor="@color/on_surface_variant"
+        android:pathData="M80,32a48,48 0,1 0,0.01 0z" />
+    <path
+        android:fillColor="@color/wine"
+        android:pathData="M80,62a18,18 0,1 0,0.01 0z" />
+    <path
+        android:fillColor="@color/cream_variant"
+        android:pathData="M80,76a4,4 0,1 0,0.01 0z" />
+</vector>
