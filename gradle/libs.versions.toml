@@ -1,0 +1,36 @@
+# Versiones fijadas para mantener minSdk 21 (Android 5.0 Lollipop).
+# Varias librerías AndroidX más recientes exigen minSdk 23; no subirlas sin revisar su minSdk.
+[versions]
+agp = "8.7.3"
+kotlin = "2.0.21"
+coreKtx = "1.13.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+constraintlayout = "2.2.0"
+lifecycle = "2.8.7"
+activityKtx = "1.9.3"
+fragmentKtx = "1.8.5"
+junit = "4.13.2"
+androidxJunit = "1.2.1"
+espresso = "3.6.1"
+testRunner = "1.6.2"
+testRules = "1.6.1"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "testRunner" }
+androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "testRules" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
