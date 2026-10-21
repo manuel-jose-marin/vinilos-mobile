@@ -1,3 +1,7 @@
+// URL base de BackVynils. Por defecto apunta al backend local visto desde el emulador (10.0.2.2 = localhost del equipo).
+// Para otro backend: ./gradlew assembleDebug -Pvinilos.baseUrl=http://<host>:3000/
+val backendBaseUrl = (project.findProperty("vinilos.baseUrl") as String?) ?: "http://10.0.2.2:3000/"
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -15,6 +19,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"$backendBaseUrl\"")
     }
 
     buildTypes {
@@ -38,6 +44,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -51,6 +58,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.volley)
+    implementation(libs.kotlinx.coroutines.android)
 
     testImplementation(libs.junit)
 
