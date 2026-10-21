@@ -44,6 +44,7 @@ androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testin
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+androidx-espresso-contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espresso" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "testRunner" }
 androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "testRules" }
 
