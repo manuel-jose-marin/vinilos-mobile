@@ -1,0 +1,47 @@
+name: Sincronizar wiki
+
+# Publica la carpeta docs/wiki en la wiki de GitHub. docs/wiki es la fuente de verdad.
+on:
+  push:
+    branches: [develop]
+    paths:
+      - "docs/wiki/**"
+      - ".github/workflows/wiki.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wiki
+  cancel-in-progress: false
+
+jobs:
+  wiki:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clonar la wiki
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}.wiki
+          path: wiki
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copiar las páginas
+        run: rsync -a --delete --exclude '.git' docs/wiki/ wiki/
+
+      - name: Publicar los cambios
+        working-directory: wiki
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "La wiki ya está al día."
+            exit 0
+          fi
+          git commit -m "docs: sincronizar wiki desde ${GITHUB_SHA::7}"
+          git push
