@@ -11,13 +11,13 @@
 
 ### Temas tratados
 
-1. **Estado del proyecto y código base:** revisión e integración de la estructura base del proyecto Android en Kotlin sobre la rama `develop`. Se verificó que el proyecto compila correctamente con la arquitectura MVVM, la pantalla del catálogo de álbumes y la integración con Glide.
+1. **Estado del proyecto y código base:** revisión e integración de la estructura base del proyecto Android en Kotlin sobre la rama `develop`. Se verificó que el proyecto compila correctamente con la estructura de paquetes MVVM y el layout del listado de álbumes.
 
 2. **Retrospectiva de Inception:** se dio por finalizada la actividad de retrospectiva de la fase de Inception en el tablero de Miro completado por Alejandro.
 
 3. **Tablero y gestión de issues:** Manuel configuró los issues de las tres iteraciones en el tablero de GitHub Projects, distribuyendo las tareas de manera equitativa entre los integrantes.
 
-4. **Sprint Planning (Iteración 1):** definición del alcance del Sprint 1, seleccionando las historias de usuario **HU01** (*Consultar catálogo de álbumes*) y **HU02** (*Consultar detalle de un álbum*). Se revisaron las tareas técnicas asociadas (UI, ViewModel, Repositorio/Service Adapter y Pruebas Espresso) vinculadas al Milestone del Sprint 1. Asimismo, se acordó una capacidad de **13 Story Points** para el Sprint.
+4. **Sprint Planning (Iteración 1):** definición del alcance del Sprint 1, seleccionando las historias de usuario **HU01** (*Consultar catálogo de álbumes*) y **HU02** (*Consultar detalle de un álbum*). Se revisaron las tareas técnicas asociadas (UI, ViewModel, Repositorio/Service Adapter y Pruebas Espresso) vinculadas al Milestone del Sprint 1. Asimismo, se acordó una capacidad de **8 Story Points** para el Sprint.
 
 5. **Documentación en la wiki:** asignación de los documentos técnicos requeridos para la wiki durante esta iteración (Diseño arquitectónico y Estrategia de pruebas).
 
@@ -36,7 +36,7 @@ Implementar y validar las funcionalidades de consulta del catálogo de álbumes 
 | Historia de Usuario | Descripción | Story Points | Responsable Principal |
 |----------|-------------|:-------------:|-------------|
 | HU01 | Consultar catálogo de álbumes | 5 SP | Manuel José Marín |
-| HU02 | Consultar detalle de un álbum | 8 SP | Felipe Rojas |
+| HU02 | Consultar detalle de un álbum | 3 SP | Felipe Rojas |
 
 ### Soporte transversal del Sprint
 
@@ -73,7 +73,7 @@ Una historia de usuario se considerará terminada cuando cumpla con todos los si
 
 - Se aprueba la planeación del Sprint 1 con el desarrollo de las historias HU01 y HU02.
 - Se establece como objetivo del Sprint la implementación de la consulta de catálogo y detalle de álbumes.
-- Se aprueba una capacidad planificada de 13 Story Points para la Iteración 1.
+- Se aprueba una capacidad planificada de 8 Story Points para la Iteración 1.
 - Se aprueba la distribución de tareas técnicas, de pruebas y de documentación para la Semana 3.
 - Se adoptan los criterios de Definition of Done definidos durante la sesión.
 - Se realizarán las coordinaciones de avances de manera asíncrona por el canal oficial.
@@ -97,4 +97,4 @@ Una historia de usuario se considerará terminada cuando cumpla con todos los si
 
 ### Resultado del Sprint Planning
 
-El equipo acordó desarrollar las historias de usuario HU01 y HU02 durante la Iteración 1, comprometiéndose con una capacidad total de 13 Story Points y alineándose con el Sprint Goal definido. Se establecieron responsables, criterios de terminación (Definition of Done) y actividades de documentación y aseguramiento de calidad para garantizar la entrega satisfactoria del incremento del producto.
+El equipo acordó desarrollar las historias de usuario HU01 y HU02 durante la Iteración 1, comprometiéndose con una capacidad total de 8 Story Points y alineándose con el Sprint Goal definido. Se establecieron responsables, criterios de terminación (Definition of Done) y actividades de documentación y aseguramiento de calidad para garantizar la entrega satisfactoria del incremento del producto.
