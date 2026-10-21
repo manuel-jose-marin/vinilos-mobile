@@ -2,6 +2,9 @@
 
 **Historias:** HU01 Consultar catálogo de álbumes, HU02 Consultar la información detallada de un álbum
 
+## Sprint Planning
+- [[Actas de reunión|Actas_Sprint-1]]: evidencia de las reuniones de las semanas 3 y 4
+
 ## Diseño arquitectónico
 _Pendiente._
 
