@@ -12,7 +12,7 @@ _Pendiente._
 _Pendiente._
 
 ## Artefactos de prueba
-- Inventario de pruebas: _pendiente_
+- [[Inventario de pruebas|Inventario-pruebas-Sprint-1]]
 - Scripts / casos de prueba en Espresso: _pendiente_
 - Reportes de defectos: _pendiente_
 
