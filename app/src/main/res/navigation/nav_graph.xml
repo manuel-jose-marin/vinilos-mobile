@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Grafo de navegación principal. Los destinos de primer nivel son los de la barra inferior (mismos ids que menu_bottom_nav). -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/albumListFragment">
+
+    <fragment
+        android:id="@+id/albumListFragment"
+        android:name="co.edu.uniandes.vinilos.ui.AlbumListFragment"
+        android:label="@string/nav_albums"
+        tools:layout="@layout/fragment_album_list" />
+
+    <fragment
+        android:id="@+id/artistListFragment"
+        android:name="co.edu.uniandes.vinilos.ui.ArtistListFragment"
+        android:label="@string/nav_artists"
+        tools:layout="@layout/fragment_artist_list" />
+
+    <fragment
+        android:id="@+id/collectorListFragment"
+        android:name="co.edu.uniandes.vinilos.ui.CollectorListFragment"
+        android:label="@string/nav_collectors"
+        tools:layout="@layout/fragment_collector_list" />
+
+</navigation>

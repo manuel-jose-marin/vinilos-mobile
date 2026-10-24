@@ -4,6 +4,12 @@
     <!-- Acciones comunes -->
     <string name="action_retry">Reintentar</string>
 
+    <!-- Navegación principal -->
+    <string name="nav_albums">Álbumes</string>
+    <string name="nav_artists">Artistas</string>
+    <string name="nav_collectors">Coleccionistas</string>
+    <string name="coming_soon">Próximamente</string>
+
     <!-- HU01 Listado de álbumes -->
     <string name="albums_title">Álbumes</string>
     <string name="albums_loading">Cargando álbumes</string>
