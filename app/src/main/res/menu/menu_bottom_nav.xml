@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Los ids deben coincidir con los destinos de nav_graph para que la barra navegue sola. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/albumListFragment"
+        android:icon="@drawable/ic_nav_albums"
+        android:title="@string/nav_albums" />
+    <item
+        android:id="@+id/artistListFragment"
+        android:icon="@drawable/ic_nav_artists"
+        android:title="@string/nav_artists" />
+    <item
+        android:id="@+id/collectorListFragment"
+        android:icon="@drawable/ic_nav_collectors"
+        android:title="@string/nav_collectors" />
+</menu>
