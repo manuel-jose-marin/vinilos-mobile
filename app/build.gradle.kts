@@ -66,6 +66,8 @@ dependencies {
     testImplementation(libs.junit)
     // En las pruebas unitarias org.json de Android es solo un stub; esta implementación real permite probar el parseo.
     testImplementation(libs.org.json)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.arch.core.testing)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -16,6 +16,7 @@ volley = "1.2.1"
 coroutines = "1.8.1"
 junit = "4.13.2"
 orgJson = "20240303"
+archCoreTesting = "2.2.0"
 androidxJunit = "1.2.1"
 espresso = "3.6.1"
 testRunner = "1.6.2"
@@ -36,6 +37,8 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 org-json = { group = "org.json", name = "json", version.ref = "orgJson" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "archCoreTesting" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
