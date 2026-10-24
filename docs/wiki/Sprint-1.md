@@ -6,7 +6,7 @@
 - [[Actas de reunión|Actas_Sprint-1]]: evidencia de las reuniones de las semanas 3 y 4
 
 ## Diseño arquitectónico
-_Pendiente._
+- [[Diseño arquitectónico del Sprint 1|Diseno-arquitectonico-Sprint-1]]: capas MVVM, Service Adapter, navegación y pruebas
 
 ## Estrategia de pruebas
 _Pendiente._
