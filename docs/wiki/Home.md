@@ -15,3 +15,6 @@ App nativa Android en Kotlin para Vinilos, construida en el curso MISW-4203 Inge
 - [[Sprint 1|Sprint-1]]
 - [[Sprint 2|Sprint-2]]
 - [[Sprint 3|Sprint-3]]
+
+## Guías
+- [[Backend BackVynils|Backend-BackVynils]]: cómo levantar el backend, cargar los datos de prueba y conectar la app
