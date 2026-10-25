@@ -9,7 +9,7 @@
 - [[Diseño arquitectónico del Sprint 1|Diseno-arquitectonico-Sprint-1]]: capas MVVM, Service Adapter, navegación y pruebas
 
 ## Estrategia de pruebas
-- [[Estrategia de pruebas del Sprint 1|Estrategia-pruebas-Sprint-1]]: niveles de prueba, ambiente y versiones de Android, criterios de salida y gestión de defectos
+_Pendiente._
 
 ## Artefactos de prueba
 - [[Inventario de pruebas|Inventario-pruebas-Sprint-1]]
