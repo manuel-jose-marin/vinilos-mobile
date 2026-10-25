@@ -12,6 +12,9 @@ class AlbumRepository(private val service: AlbumService) {
     /** Catálogo de álbumes. Si falla la red o el servidor, lanza la excepción para que el ViewModel la maneje. */
     suspend fun getAlbums(): List<Album> = service.getAlbums()
 
+    /** Un álbum con sus artistas, tracks y comentarios. Si falla la red, el servidor o el álbum no existe, lanza la excepción. */
+    suspend fun getAlbum(id: Int): Album = service.getAlbum(id)
+
     companion object {
         fun create(context: Context): AlbumRepository =
             AlbumRepository(NetworkAlbumService(NetworkServiceAdapter.getInstance(context)))
