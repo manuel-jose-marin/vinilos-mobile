@@ -3,6 +3,7 @@ package co.edu.uniandes.vinilos.viewmodels
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.network.AlbumService
+import co.edu.uniandes.vinilos.fakes.FakeCollectorService
 import co.edu.uniandes.vinilos.repositories.AlbumRepository
 import com.android.volley.VolleyError
 import kotlinx.coroutines.Dispatchers
@@ -45,7 +46,7 @@ class AlbumListViewModelTest {
 
     private fun album(id: Int) = Album(id, "Álbum $id", "", "1984-08-01T00:00:00.000Z", "", "Salsa", "Elektra", emptyList(), emptyList(), emptyList())
 
-    private fun viewModel(service: FakeAlbumService) = AlbumListViewModel(AlbumRepository(service))
+    private fun viewModel(service: FakeAlbumService) = AlbumListViewModel(AlbumRepository(service, FakeCollectorService()))
 
     @Test
     fun init_showsLoadingUntilTheRepositoryResponds() = runTest(dispatcher) {

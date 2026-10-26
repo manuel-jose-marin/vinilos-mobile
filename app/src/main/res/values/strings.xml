@@ -22,4 +22,12 @@
     <!-- HU02 Detalle de álbum -->
     <string name="album_detail_title">Detalle del álbum</string>
     <string name="action_back">Volver</string>
+    <string name="album_detail_loading">Cargando el álbum</string>
+    <string name="album_detail_error">No pudimos cargar el álbum</string>
+    <string name="album_tracks_header">Tracks · %1$d</string>
+    <string name="album_tracks_empty">Este álbum aún no tiene tracks</string>
+    <string name="album_comments_header">Comentarios · %1$d</string>
+    <string name="album_comments_empty">Este álbum aún no tiene comentarios</string>
+    <string name="album_comment_unknown_author">Coleccionista</string>
+    <string name="album_comment_rating">Calificación: %1$d de 5</string>
 </resources>

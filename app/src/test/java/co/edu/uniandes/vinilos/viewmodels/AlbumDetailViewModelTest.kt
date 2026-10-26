@@ -5,6 +5,7 @@ import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.Comment
 import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
+import co.edu.uniandes.vinilos.fakes.FakeCollectorService
 import co.edu.uniandes.vinilos.repositories.AlbumRepository
 import com.android.volley.VolleyError
 import kotlinx.coroutines.Dispatchers
@@ -50,7 +51,7 @@ class AlbumDetailViewModelTest {
         Album(id, "Álbum $id", "", "1984-08-01T00:00:00.000Z", "Descripción", "Salsa", "Elektra", emptyList(), tracks, comments)
 
     private fun viewModel(albumId: Int, service: FakeAlbumService) =
-        AlbumDetailViewModel(albumId, AlbumRepository(service))
+        AlbumDetailViewModel(albumId, AlbumRepository(service, FakeCollectorService()))
 
     @Test
     fun init_showsLoadingUntilTheRepositoryResponds() = runTest(dispatcher) {
