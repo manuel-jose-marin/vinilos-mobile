@@ -1,6 +1,7 @@
 <resources>
 
-    <style name="Theme.Vinilos" parent="Theme.Material3.Light.NoActionBar">
+    <!-- Tema base con la paleta del diseño UX/UI; las versiones de Android que lo necesiten lo ajustan en values-vXX. -->
+    <style name="Base.Theme.Vinilos" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/wine</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryContainer">@color/wine_container</item>
@@ -18,5 +19,7 @@
         <item name="android:colorBackground">@color/cream</item>
         <item name="android:statusBarColor">@color/wine</item>
     </style>
+
+    <style name="Theme.Vinilos" parent="Base.Theme.Vinilos" />
 
 </resources>
