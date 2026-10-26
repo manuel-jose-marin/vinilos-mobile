@@ -17,4 +17,9 @@
     <string name="albums_error">No pudimos cargar los álbumes</string>
     <string name="action_new_album">Nuevo álbum</string>
     <string name="album_cover_description">Portada del álbum</string>
+    <string name="album_unknown_artist">Artista desconocido</string>
+
+    <!-- HU02 Detalle de álbum -->
+    <string name="album_detail_title">Detalle del álbum</string>
+    <string name="action_back">Volver</string>
 </resources>

@@ -10,7 +10,30 @@
         android:id="@+id/albumListFragment"
         android:name="co.edu.uniandes.vinilos.ui.AlbumListFragment"
         android:label="@string/nav_albums"
-        tools:layout="@layout/fragment_album_list" />
+        tools:layout="@layout/fragment_album_list">
+
+        <action
+            android:id="@+id/action_albumListFragment_to_albumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
+    </fragment>
+
+    <!-- Detalle de un álbum (HU02): destino de segundo nivel, sin barra inferior. -->
+    <fragment
+        android:id="@+id/albumDetailFragment"
+        android:name="co.edu.uniandes.vinilos.ui.AlbumDetailFragment"
+        android:label="@string/album_detail_title"
+        tools:layout="@layout/fragment_album_detail">
+
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+
+        <argument
+            android:name="albumName"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/artistListFragment"
