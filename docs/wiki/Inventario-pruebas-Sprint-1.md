@@ -41,7 +41,7 @@ Casos de prueba de **HU01 Consultar catálogo de álbumes** y **HU02 Consultar l
 | ID | Criterio | Caso | Precondición | Pasos | Resultado esperado | Tipo |
 |---|---|---|---|---|---|---|
 | HU02-01 | 1 | Ver la ficha del álbum | El backend tiene álbumes | 1. En el catálogo, tocar un álbum | Se ven portada, nombre, artista, fecha de lanzamiento, género, sello y descripción del álbum tocado | Espresso |
-| HU02-02 | 2 | Ver los tracks | Álbum con tracks, uno de ellos con nombre largo ("Siembra") | 1. Abrir el detalle del álbum | Se ve "Tracks · N" y cada track muestra número, nombre y duración; el nombre largo aparece completo en dos líneas | Espresso |
+| HU02-02 | 2 | Ver los tracks | Álbum con tracks, uno de ellos con nombre largo ("Siembra") | 1. Abrir el detalle del álbum | Se ve "Tracks · N" y cada track muestra número, nombre y duración; el nombre largo aparece completo, sin cortarse (ocupa las líneas que necesite) | Espresso |
 | HU02-03 | 3 | Ver los comentarios | Álbum con comentarios ("Siembra") | 1. Abrir el detalle del álbum | Cada comentario muestra autor, calificación de 1 a 5 y texto; no hay opción para escribir comentarios | Espresso ⚠️ `GET /albums/{id}` no trae el autor del comentario; ver la [Estrategia de pruebas](Estrategia-pruebas-Sprint-1) |
 | HU02-04 | 4 | Secciones vacías | Álbum sin tracks ni comentarios ("Poeta del pueblo") | 1. Abrir el detalle del álbum | Las secciones de tracks y comentarios muestran el mensaje de lista vacía | Manual |
 | HU02-05 | 5 | Error sin conexión y reintento | Catálogo cargado; luego modo avión activado | 1. Tocar un álbum<br>2. Desactivar el modo avión<br>3. Tocar "Reintentar" | Paso 1: se ve el mensaje de error con "Reintentar". Paso 3: se carga el detalle | Manual |
@@ -53,7 +53,7 @@ Casos de prueba de **HU01 Consultar catálogo de álbumes** y **HU02 Consultar l
 | Clase Espresso | Casos | Issue | Estado |
 |---|---|---|---|
 | `AlbumListTest` | HU01-01, HU01-06, HU01-08 | [#17](https://github.com/manuel-jose-marin/vinilos-mobile/issues/17) | Escrita, en el borrador [#82](https://github.com/manuel-jose-marin/vinilos-mobile/pull/82); la vista del listado ya está en `develop`, así que puede ejecutarse |
-| `AlbumDetailTest` | HU02-01, HU02-02, HU02-03, HU02-07 | [#22](https://github.com/manuel-jose-marin/vinilos-mobile/issues/22) | Sin escribir; depende de la vista del detalle ([#21](https://github.com/manuel-jose-marin/vinilos-mobile/issues/21)) |
+| `AlbumDetailTest` | HU02-01, HU02-02, HU02-03, HU02-07 | [#22](https://github.com/manuel-jose-marin/vinilos-mobile/issues/22) | Sin escribir; la vista del detalle ([#21](https://github.com/manuel-jose-marin/vinilos-mobile/issues/21)) ya está en develop |
 
 Los casos de carga, error de red, lista vacía y portada inválida quedan como manuales porque dependen de condiciones de red o de datos del backend que las pruebas E2E contra BackVynils no controlan. La lógica detrás de esos estados sí está cubierta por pruebas unitarias (ver la tabla siguiente).
 
@@ -110,13 +110,13 @@ Pruebas automatizadas escritas para cada caso. Estado: ✅ en `develop`, 🔀 en
 | HU01-08 | Pasa | `AlbumListTest.lastAlbumIsVisibleAboveNewAlbumButton` pasó: el último álbum quedó completamente por encima de «Nuevo álbum» (`AlbumListTest-results.xml`). | — |
 | HU01-09 | No aplica (Sprint 3) | No ejecutado: crear un álbum y comprobar su incorporación requiere HU07, del Sprint 3. | — |
 | HU02-01 | Pasa (manual; automatización pendiente en #22) | «Buscando América» mostró portada, nombre, Rubén Blades Bellido de Luna, «1 de agosto de 1984», Salsa, Elektra y la descripción del backend (`HU02-01-ficha.png`). | — |
-| HU02-02 | Falla | «Tracks · 3» mostró números y duraciones, pero el nombre largo de Pedro Navaja terminó en «grabación d…» en la segunda línea y no se vio completo (`HU02-02-03-siembra.png`; el XML conserva el texto completo). | [#94](https://github.com/manuel-jose-marin/vinilos-mobile/issues/94) |
+| HU02-02 | Pasa | Re-ejecutado el 2026-10-26 tras la corrección del PR #96; el nombre largo se ve completo (`pr96-siembra.png`). | [#94](https://github.com/manuel-jose-marin/vinilos-mobile/issues/94), corregido en [PR #96](https://github.com/manuel-jose-marin/vinilos-mobile/pull/96) |
 | HU02-03 | Pasa (manual; automatización pendiente en #22) | «Siembra» mostró a Manolo Bellon, calificación 4/5 y «Un clásico de la salsa.», sin campo ni botón para escribir comentarios (`HU02-02-03-siembra.png` y `HU02-03-comentario-final.xml`). | — |
 | HU02-04 | Pasa | «Poeta del pueblo» mostró «Tracks · 0», «Comentarios · 0» y los dos mensajes de secciones vacías (`HU02-04-secciones-vacias.png`). | — |
 | HU02-05 | Pasa | Tras cargar el catálogo y activar modo avión, abrir un álbum mostró «No pudimos cargar el álbum» y «Reintentar»; al restablecer la red y tocarlo se cargó el detalle (`HU02-05-sin-conexion.png` y `HU02-05-reintento.png`). | — |
 | HU02-06 | No aplica (Sprint 3) | No ejecutado: el formulario Agregar track requiere HU08 y está fuera del Sprint 1. | — |
 | HU02-07 | Pasa (manual; automatización pendiente en #22) | La flecha desde «Buscando América» y `KEYCODE_BACK` desde otro detalle («Poeta del pueblo») regresaron al catálogo (`HU02-07-flecha.png` y `HU02-07-atras-sistema.png`). | — |
 
-**Resumen:** 16 casos registrados: **12 pasan, 1 falla y 3 no aplican (Sprint 3)**. Se ejecutaron los 13 casos aplicables: 3 con Espresso y 10 manualmente; ninguno quedó sin ejecutar por bloqueo. `./gradlew connectedDebugAndroidTest` terminó correctamente con las 3 pruebas de `AlbumListTest`, sin fallos, errores ni omisiones. Los cuatro casos previstos para `AlbumDetailTest` se ejecutaron manualmente porque su automatización sigue pendiente en [#22](https://github.com/manuel-jose-marin/vinilos-mobile/issues/22).
+**Resumen:** 16 casos registrados: **13 pasan, 0 fallan y 3 no aplican (Sprint 3)**. Se ejecutaron los 13 casos aplicables: 3 con Espresso y 10 manualmente; ninguno quedó sin ejecutar por bloqueo. `./gradlew connectedDebugAndroidTest` terminó correctamente con las 3 pruebas de `AlbumListTest`, sin fallos, errores ni omisiones. Los cuatro casos previstos para `AlbumDetailTest` se ejecutaron manualmente porque su automatización sigue pendiente en [#22](https://github.com/manuel-jose-marin/vinilos-mobile/issues/22).
 
 **Defecto reportado:** [#94 — HU02-02 trunca el nombre largo del track](https://github.com/manuel-jose-marin/vinilos-mobile/issues/94), severidad media, etiqueta `bug` y milestone **Sprint 1**. No se modificó código de la app. La ausencia de artista y la portada reutilizada de «Siembra» corresponden al script de datos y no se reportaron como defectos.
