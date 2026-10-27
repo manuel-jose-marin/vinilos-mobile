@@ -1,0 +1,12 @@
+<resources>
+
+    <!--
+        Android 15 (API 35) obliga a las apps con targetSdk 35 a dibujarse de borde a borde, y el
+        contenido queda debajo de la barra de estado (#90). Se desactiva esa imposición para que las
+        barras del sistema conserven su espacio, como en versiones anteriores.
+    -->
+    <style name="Theme.Vinilos" parent="Base.Theme.Vinilos">
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+    </style>
+
+</resources>
