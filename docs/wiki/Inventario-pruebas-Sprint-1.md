@@ -41,7 +41,7 @@ Casos de prueba de **HU01 Consultar catálogo de álbumes** y **HU02 Consultar l
 | ID | Criterio | Caso | Precondición | Pasos | Resultado esperado | Tipo |
 |---|---|---|---|---|---|---|
 | HU02-01 | 1 | Ver la ficha del álbum | El backend tiene álbumes | 1. En el catálogo, tocar un álbum | Se ven portada, nombre, artista, fecha de lanzamiento, género, sello y descripción del álbum tocado | Espresso |
-| HU02-02 | 2 | Ver los tracks | Álbum con tracks, uno de ellos con nombre largo ("Siembra") | 1. Abrir el detalle del álbum | Se ve "Tracks · N" y cada track muestra número, nombre y duración; el nombre largo aparece completo en dos líneas | Espresso |
+| HU02-02 | 2 | Ver los tracks | Álbum con tracks, uno de ellos con nombre largo ("Siembra") | 1. Abrir el detalle del álbum | Se ve "Tracks · N" y cada track muestra número, nombre y duración; el nombre largo aparece completo, sin cortarse (ocupa las líneas que necesite) | Espresso |
 | HU02-03 | 3 | Ver los comentarios | Álbum con comentarios ("Siembra") | 1. Abrir el detalle del álbum | Cada comentario muestra autor, calificación de 1 a 5 y texto; no hay opción para escribir comentarios | Espresso ⚠️ `GET /albums/{id}` no trae el autor del comentario; ver la [Estrategia de pruebas](Estrategia-pruebas-Sprint-1) |
 | HU02-04 | 4 | Secciones vacías | Álbum sin tracks ni comentarios ("Poeta del pueblo") | 1. Abrir el detalle del álbum | Las secciones de tracks y comentarios muestran el mensaje de lista vacía | Manual |
 | HU02-05 | 5 | Error sin conexión y reintento | Catálogo cargado; luego modo avión activado | 1. Tocar un álbum<br>2. Desactivar el modo avión<br>3. Tocar "Reintentar" | Paso 1: se ve el mensaje de error con "Reintentar". Paso 3: se carga el detalle | Manual |
@@ -53,7 +53,7 @@ Casos de prueba de **HU01 Consultar catálogo de álbumes** y **HU02 Consultar l
 | Clase Espresso | Casos | Issue | Estado |
 |---|---|---|---|
 | `AlbumListTest` | HU01-01, HU01-06, HU01-08 | [#17](https://github.com/manuel-jose-marin/vinilos-mobile/issues/17) | Escrita, en el borrador [#82](https://github.com/manuel-jose-marin/vinilos-mobile/pull/82); la vista del listado ya está en `develop`, así que puede ejecutarse |
-| `AlbumDetailTest` | HU02-01, HU02-02, HU02-03, HU02-07 | [#22](https://github.com/manuel-jose-marin/vinilos-mobile/issues/22) | Sin escribir; depende de la vista del detalle ([#21](https://github.com/manuel-jose-marin/vinilos-mobile/issues/21)) |
+| `AlbumDetailTest` | HU02-01, HU02-02, HU02-03, HU02-07 | [#22](https://github.com/manuel-jose-marin/vinilos-mobile/issues/22) | Sin escribir; la vista del detalle ([#21](https://github.com/manuel-jose-marin/vinilos-mobile/issues/21)) ya está en develop |
 
 Los casos de carga, error de red, lista vacía y portada inválida quedan como manuales porque dependen de condiciones de red o de datos del backend que las pruebas E2E contra BackVynils no controlan. La lógica detrás de esos estados sí está cubierta por pruebas unitarias (ver la tabla siguiente).
 
