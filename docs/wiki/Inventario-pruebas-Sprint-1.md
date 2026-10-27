@@ -86,4 +86,37 @@ Pruebas automatizadas escritas para cada caso. Estado: ✅ en `develop`, 🔀 en
 
 ## Resultados
 
-_Pendiente: se registran al ejecutar las pruebas al cierre del sprint. Los defectos encontrados se reportan como issues con la etiqueta `bug`._
+**Fecha de ejecución:** 26 de octubre de 2026 (America/Bogota, UTC−05:00).
+
+**Versión evaluada:** `develop`, commit `a8524068235106956ee02c3cffcf66330e6b0c90`, compilación debug.
+
+**Dispositivo:** emulador Pixel 7 (`Vinilos_Pixel_7_API_35`), Android 15 (API 35), x86_64, orientación vertical, 1080 × 2400 px, densidad 420 dpi y escala de fuente 1.0; las tres escalas de animación del sistema en 0.
+
+**Backend:** BackVynils local con Docker y PostgreSQL 15, preparado según [Backend BackVynils](Backend-BackVynils). Se confirmó que `http://localhost:3000/albums` devuelve 12 álbumes de la base inicial y el script de datos; la app usa `http://10.0.2.2:3000/`. Los 12 álbumes se conservaron al terminar.
+
+**Evidencia:** capturas PNG mediante `adb exec-out screencap -p`, dumps XML mediante `adb exec-out uiautomator dump /dev/tty`, respuestas del backend y reportes de pruebas en `pr-verification-sprint1/`, carpeta hermana del clon y fuera del repositorio. Los nombres citados en la tabla se refieren a esa carpeta; las capturas y los dumps se identifican por el ID del caso. Para la transición rápida de HU01-02 se usa la secuencia de capturas indicada. El reporte de Espresso se conserva en `AlbumListTest-report/index.html` y `AlbumListTest-results.xml`.
+
+**Condiciones controladas:** HU01-02 se ejecutó con `adb emu network delay gprs` y `adb emu network speed gsm`; se capturaron las tarjetas de carga y su reemplazo por el catálogo, y también se probó desactivar temporalmente Wi-Fi para usar la red móvil. Después se restauraron `delay none`, `speed full` y Wi-Fi. En HU01-03 y HU02-05 funcionaron `adb shell cmd connectivity airplane-mode enable` y `disable`, por lo que no se detuvo la API. Para HU01-04 se sirvió un archivo `albums` con `[]` mediante `python3 -m http.server 8000`, se instaló con `-Pvinilos.baseUrl=http://10.0.2.2:8000/` y luego se reinstaló sin esa propiedad para volver al backend real; no se borraron datos.
+
+| ID | Resultado | Evidencia: observación | Issue del defecto |
+|---|---|---|---|
+| HU01-01 | Pasa | `AlbumListTest.catalogShowsAlbumCardsInTwoColumns` pasó: cuadrícula de 2 columnas con portada, nombre, artista, año y género (`AlbumListTest-results.xml`, `HU01-01-catalogo.png`). | — |
+| HU01-02 | Pasa | Se observaron cuatro tarjetas de carga y después su reemplazo por los álbumes (`HU01-02-secuencia-1.png` y `HU01-02-secuencia-2.png`). | — |
+| HU01-03 | Pasa | Con modo avión apareció «No pudimos cargar los álbumes» y «Reintentar»; al restablecer la red y tocarlo se cargó el catálogo (`HU01-03-sin-conexion.png` y `HU01-03-reintento.png`). | — |
+| HU01-04 | Pasa | La respuesta `[]` del servidor temporal mostró «Aún no hay álbumes en el catálogo» (`HU01-04-vacio.png`). | — |
+| HU01-05 | Pasa | La tarjeta «Portada rota», cuya URL es inválida, mostró la imagen genérica de un disco (`HU01-05-portada-rota.png`). | — |
+| HU01-06 | Pasa | `AlbumListTest.tappingAlbumOpensItsDetail` pasó: tocar una tarjeta abrió el detalle del álbum seleccionado (`AlbumListTest-results.xml`). | — |
+| HU01-07 | No aplica (Sprint 3) | No ejecutado: el formulario Crear álbum requiere HU07 y está fuera del Sprint 1. | — |
+| HU01-08 | Pasa | `AlbumListTest.lastAlbumIsVisibleAboveNewAlbumButton` pasó: el último álbum quedó completamente por encima de «Nuevo álbum» (`AlbumListTest-results.xml`). | — |
+| HU01-09 | No aplica (Sprint 3) | No ejecutado: crear un álbum y comprobar su incorporación requiere HU07, del Sprint 3. | — |
+| HU02-01 | Pasa (manual; automatización pendiente en #22) | «Buscando América» mostró portada, nombre, Rubén Blades Bellido de Luna, «1 de agosto de 1984», Salsa, Elektra y la descripción del backend (`HU02-01-ficha.png`). | — |
+| HU02-02 | Falla | «Tracks · 3» mostró números y duraciones, pero el nombre largo de Pedro Navaja terminó en «grabación d…» en la segunda línea y no se vio completo (`HU02-02-03-siembra.png`; el XML conserva el texto completo). | [#94](https://github.com/manuel-jose-marin/vinilos-mobile/issues/94) |
+| HU02-03 | Pasa (manual; automatización pendiente en #22) | «Siembra» mostró a Manolo Bellon, calificación 4/5 y «Un clásico de la salsa.», sin campo ni botón para escribir comentarios (`HU02-02-03-siembra.png` y `HU02-03-comentario-final.xml`). | — |
+| HU02-04 | Pasa | «Poeta del pueblo» mostró «Tracks · 0», «Comentarios · 0» y los dos mensajes de secciones vacías (`HU02-04-secciones-vacias.png`). | — |
+| HU02-05 | Pasa | Tras cargar el catálogo y activar modo avión, abrir un álbum mostró «No pudimos cargar el álbum» y «Reintentar»; al restablecer la red y tocarlo se cargó el detalle (`HU02-05-sin-conexion.png` y `HU02-05-reintento.png`). | — |
+| HU02-06 | No aplica (Sprint 3) | No ejecutado: el formulario Agregar track requiere HU08 y está fuera del Sprint 1. | — |
+| HU02-07 | Pasa (manual; automatización pendiente en #22) | La flecha desde «Buscando América» y `KEYCODE_BACK` desde otro detalle («Poeta del pueblo») regresaron al catálogo (`HU02-07-flecha.png` y `HU02-07-atras-sistema.png`). | — |
+
+**Resumen:** 16 casos registrados: **12 pasan, 1 falla y 3 no aplican (Sprint 3)**. Se ejecutaron los 13 casos aplicables: 3 con Espresso y 10 manualmente; ninguno quedó sin ejecutar por bloqueo. `./gradlew connectedDebugAndroidTest` terminó correctamente con las 3 pruebas de `AlbumListTest`, sin fallos, errores ni omisiones. Los cuatro casos previstos para `AlbumDetailTest` se ejecutaron manualmente porque su automatización sigue pendiente en [#22](https://github.com/manuel-jose-marin/vinilos-mobile/issues/22).
+
+**Defecto reportado:** [#94 — HU02-02 trunca el nombre largo del track](https://github.com/manuel-jose-marin/vinilos-mobile/issues/94), severidad media, etiqueta `bug` y milestone **Sprint 1**. No se modificó código de la app. La ausencia de artista y la portada reutilizada de «Siembra» corresponden al script de datos y no se reportaron como defectos.
