@@ -120,3 +120,37 @@ Pruebas automatizadas escritas para cada caso. Estado: ✅ en `develop`, 🔀 en
 **Resumen:** 16 casos registrados: **13 pasan, 0 fallan y 3 no aplican (Sprint 3)**. Se ejecutaron los 13 casos aplicables: 3 con Espresso y 10 manualmente; ninguno quedó sin ejecutar por bloqueo. `./gradlew connectedDebugAndroidTest` terminó correctamente con las 3 pruebas de `AlbumListTest`, sin fallos, errores ni omisiones. Los cuatro casos previstos para `AlbumDetailTest` se ejecutaron manualmente porque su automatización sigue pendiente en [#22](https://github.com/manuel-jose-marin/vinilos-mobile/issues/22).
 
 **Defecto reportado:** [#94 — HU02-02 trunca el nombre largo del track](https://github.com/manuel-jose-marin/vinilos-mobile/issues/94), severidad media, etiqueta `bug` y milestone **Sprint 1**. No se modificó código de la app. La ausencia de artista y la portada reutilizada de «Siembra» corresponden al script de datos y no se reportaron como defectos.
+
+### Compatibilidad con la versión mínima
+
+**Fecha de ejecución:** 28 de octubre de 2026 (America/Bogota, UTC−05:00).
+
+**Versión evaluada:** `develop`, commit `a417dc5e124543f7510c0320ab5c1019ae36b8e3`, compilación debug instalada con `./gradlew installDebug`. No se modificó código de la app.
+
+**Dispositivo:** emulador Pixel, AVD `Vinilos_Pixel_API_21`, **Android 5.0.2 (API 21)**, x86_64, orientación vertical, 1080 × 1920 px y densidad 420 dpi. El equipo es Intel (`uname -m`: `x86_64`); se instaló la imagen nativa `system-images;android-21;google_apis;x86_64`, revisión 32. No fue necesario usar una API superior. Se confirmó `sys.boot_completed=1` y `ro.build.version.sdk=21`; las tres escalas de animación estaban en 0.
+
+**Backend y condiciones:** BackVynils se levantó con Docker y la configuración documentada; `/albums` devolvió los 12 álbumes y los datos requeridos, ya sembrados, por lo que no se repitió el seed. Para HU01-02 se usaron `network delay gprs` y `network speed gsm`, y una pausa breve del contenedor de la API durante la captura para mantener pendiente la respuesta; al reanudarlo, las tarjetas de carga se reemplazaron por el catálogo. Después se restauraron `delay none` y `speed full`. Como `cmd connectivity` no existe en API 21, para HU01-03 y HU02-05 se detuvo únicamente `backvynils-web-1`, se comprobó el error, se arrancó de nuevo y se tocó «Reintentar». Para HU01-04 se sirvió `[]` en el puerto 8000 con `python3 -m http.server`, instalando con `-Pvinilos.baseUrl=http://10.0.2.2:8000/`. Al terminar se cerró ese servidor y se reinstaló la app con la URL predeterminada; BackVynils quedó arriba con los mismos 12 álbumes.
+
+**Evidencia:** `pr-verification-sprint1/android-5/`, fuera del repositorio, junto a la ejecución anterior. Contiene capturas PNG, dumps XML, respuestas del backend, logs y `manual-results.json`. Las capturas se obtuvieron con `adb exec-out screencap -p`. En esta imagen, `adb exec-out uiautomator dump /dev/tty` no entrega el XML; se guardó con `adb shell uiautomator dump /data/local/tmp/vinilos-window.xml` y se recuperó con `adb exec-out cat`. El dumper sustituye algunos caracteres acentuados por `?`; se cotejaron con las capturas, donde se muestran correctamente. Cada nombre de evidencia de la tabla tiene archivos `.png` y `.xml`.
+
+| Caso | Resultado manual | Observación y evidencia |
+|---|---|---|
+| HU01-01 | Pasa | Cuadrícula de dos columnas con portada, nombre, artista, año y género (`HU01-01-catalogo`). |
+| HU01-02 | Pasa | Cuatro tarjetas de carga, reemplazadas por los álbumes al llegar la respuesta (`HU01-02-cargando`, `HU01-02-catalogo`). |
+| HU01-03 | Pasa | Error del catálogo y recuperación al tocar «Reintentar» (`HU01-03-sin-conexion`, `HU01-03-reintento`). |
+| HU01-04 | Pasa | «Aún no hay álbumes en el catálogo» ante la respuesta `[]` (`HU01-04-vacio`). |
+| HU01-05 | Pasa | «Portada rota» muestra la imagen genérica del disco (`HU01-05-portada-rota`). |
+| HU01-06 | Pasa | Tocar «Buscando América» abre su detalle (`HU01-06-HU02-01-ficha`). |
+| HU01-08 | Pasa | La última tarjeta termina en y=1332, por encima de «Nuevo álbum», que empieza en y=1395 (`HU01-08-ultimo-album`). |
+| HU02-01 | Pasa | La ficha muestra portada, nombre, artista, fecha, género, sello y descripción de «Buscando América» (`HU01-06-HU02-01-ficha`). |
+| HU02-02 | Pasa | «Tracks · 3», números, nombres y duraciones; el nombre largo de «Pedro Navaja» se ve completo en tres líneas (`HU02-02-03-siembra`). |
+| HU02-03 | Pasa | Manolo Bellon, calificación 4/5 y «Un clásico de la salsa.», sin opción para escribir comentarios (`HU02-02-03-siembra`). |
+| HU02-04 | Pasa | «Poeta del pueblo» muestra los dos contadores en 0 y los mensajes de tracks y comentarios vacíos (`HU02-04-secciones-vacias`). |
+| HU02-05 | Pasa | Error del detalle y recuperación al tocar «Reintentar» (`HU02-05-sin-conexion`, `HU02-05-reintento`). |
+| HU02-07 | Pasa | La flecha desde «Buscando América» y Atrás desde «Poeta del pueblo» vuelven al catálogo (`HU02-07-flecha`, `HU02-07-atras-sistema`). |
+
+**Resultado manual:** **13 pasan, 0 fallan y 0 bloqueados**. HU01-07, HU01-09 y HU02-06 no se ejecutaron porque no aplican al Sprint 1. Los 13 casos aplicables se verificaron manualmente; tres de ellos también se ejecutaron con Espresso.
+
+**Espresso:** `./gradlew connectedDebugAndroidTest` terminó con `BUILD SUCCESSFUL`: **3 pruebas de `AlbumListTest`, 0 fallos, 0 errores y 0 omisiones**, en Android 5.0.2. Pasaron `catalogShowsAlbumCardsInTwoColumns`, `tappingAlbumOpensItsDetail` y `lastAlbumIsVisibleAboveNewAlbumButton`. El reporte está en `Espresso-report/index.html`, el XML en `Espresso-results/` y la salida de Gradle en `Espresso-gradle.log`. Los cuatro casos de detalle cuya automatización sigue pendiente en #22 se comprobaron manualmente.
+
+**Logcat y defectos:** se limpió logcat antes de instalar y se revisaron la captura continua y `adb logcat -d` al finalizar (`logcat-complete.txt`, `logcat-final.txt`, `logcat-app-errors.txt` y `logcat-review.json`). **No hubo crashes de la app ni `FATAL EXCEPTION`**. Se observaron mensajes gráficos `eglCodecCommon` del emulador y un `NoSuchMethodError` capturado en `AndroidXTracer.enableTracing` durante Espresso, al buscar `androidx.tracing.Trace.forceEnableAppTracing()`; este último afecta al trazado de la instrumentación, sin abortar ninguna prueba. No se encontraron casos funcionales fallidos. **Issues creados: ninguno**.
