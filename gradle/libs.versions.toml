@@ -19,7 +19,7 @@ junit = "4.13.2"
 orgJson = "20240303"
 archCoreTesting = "2.2.0"
 androidxJunit = "1.2.1"
-espresso = "3.6.1"
+espresso = "3.7.0"
 testRunner = "1.6.2"
 testRules = "1.6.1"
 
