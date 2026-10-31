@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paleta del sistema de diseño (wiki: Diseño UX/UI) -->
+<resources>
+    <color name="wine">#7A1F35</color>
+    <color name="wine_container">#FFD9DE</color>
+    <color name="on_wine_container">#3E0013</color>
+    <color name="amber">#C8892B</color>
+    <color name="amber_container">#FFDDB3</color>
+    <color name="on_amber_container">#2A1800</color>
+    <color name="cream">#FFF8F3</color>
+    <color name="cream_variant">#F3E7DF</color>
+    <color name="on_surface">#221A16</color>
+    <color name="on_surface_variant">#52443C</color>
+    <color name="outline">#85736B</color>
+    <color name="error">#BA1A1A</color>
+    <color name="placeholder">#E8DCD4</color>
+    <color name="white">#FFFFFF</color>
+</resources>
