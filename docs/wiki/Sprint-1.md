@@ -14,8 +14,11 @@
 ## Artefactos de prueba
 - [[Inventario de pruebas|Inventario-pruebas-Sprint-1]]: consolidado de los 16 casos de prueba (13 aplicables ejecutados con 100% de éxito y 3 fuera del alcance), verificados en Android 15 (API 35) y Android 5 (API 21).
 - **Scripts y casos de prueba automatizados en Espresso:**
-  - `AlbumListTest.kt` ([`app/src/androidTest/.../AlbumListTest.kt`](file:///C:/MISO/Moviles/Proyecto/vinilos-mobile/app/src/androidTest/java/co/edu/uniandes/vinilos/AlbumListTest.kt)): automatiza los casos E2E del catálogo (`HU01-01` cuadrícula y contenido, `HU01-06` apertura del detalle y `HU01-08` visibilidad del último álbum).
-  - `AlbumDetailTest.kt` ([`app/src/androidTest/.../AlbumDetailTest.kt`](file:///C:/MISO/Moviles/Proyecto/vinilos-mobile/app/src/androidTest/java/co/edu/uniandes/vinilos/AlbumDetailTest.kt)): automatiza los casos E2E del detalle (`HU02-01` ficha técnica del álbum, `HU02-02` lista de tracks y duraciones, `HU02-03` comentarios y `HU02-07` navegación de regreso).
+- ## Artefactos de prueba
+- [[Inventario de pruebas|Inventario-pruebas-Sprint-1]]: consolidado de los 16 casos de prueba (13 aplicables ejecutados con 100% de éxito y 3 fuera del alcance), verificados en Android 15 (API 35) y Android 5 (API 21).
+- **Scripts y casos de prueba automatizados en Espresso:**
+  - [`AlbumListTest.kt`](https://github.com/manuel-jose-marin/vinilos-mobile/blob/develop/app/src/androidTest/java/co/edu/uniandes/vinilos/AlbumListTest.kt): automatiza los casos E2E del catálogo (`HU01-01` cuadrícula y contenido, `HU01-06` apertura del detalle y `HU01-08` visibilidad del último álbum).
+  - [`AlbumDetailTest.kt`](https://github.com/manuel-jose-marin/vinilos-mobile/blob/develop/app/src/androidTest/java/co/edu/uniandes/vinilos/AlbumDetailTest.kt): automatiza los casos E2E del detalle (`HU02-01` ficha técnica del álbum, `HU02-02` lista de tracks y duraciones, `HU02-03` comentarios y `HU02-07` navegación de regreso).
 - **Reporte de defectos:**
   - [Defecto #94 — HU02-02 trunca el nombre largo del track](https://github.com/manuel-jose-marin/vinilos-mobile/issues/94): Severidad media. Al consultar el detalle de un álbum, los nombres largos de los tracks se truncaban. Corregido y validado mediante el [PR #96](https://github.com/manuel-jose-marin/vinilos-mobile/pull/96).
 
