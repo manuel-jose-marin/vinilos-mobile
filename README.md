@@ -1,6 +1,6 @@
 # Vinilos Mobile
 
-App nativa Android en Kotlin para **Vinilos**, una tienda de discos de vinilo. Proyecto del curso MISW-4203 Ingeniería de Software para Aplicaciones Móviles (MISO, Uniandes), grupo 15. Consume la API REST de [BackVynils](https://github.com/TheSoftwareDesignLab/BackVynils).
+App nativa Android en Kotlin para **Vinilos**, una tienda de discos de vinilo. Proyecto del curso MISW-4203 Ingeniería de Software para Aplicaciones Móviles (MISO, Uniandes), grupo 5. Consume la API REST de [BackVynils](https://github.com/TheSoftwareDesignLab/BackVynils).
 
 ## Estado
 
