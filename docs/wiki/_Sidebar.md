@@ -7,6 +7,7 @@
   - [[Diseño UX/UI|Diseno-UX-UI]]
   - [[Retrospectiva]]
 - [[Sprint 1|Sprint-1]]
+  - [[Retrospectiva del Sprint 1|Retrospectiva-Sprint-1]]
   - [[Actas de reunión|Actas_Sprint-1]]
 - [[Sprint 2|Sprint-2]]
 - [[Sprint 3|Sprint-3]]

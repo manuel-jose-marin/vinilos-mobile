@@ -20,4 +20,4 @@
 _Pendiente._
 
 ## Retrospectiva
-_Pendiente._
+- [[Retrospectiva del Sprint 1|Retrospectiva-Sprint-1]]: estrella de mar en Miro, seguimiento de las acciones del Inception y acciones de mejora para el Sprint 2
