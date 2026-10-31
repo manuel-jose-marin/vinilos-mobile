@@ -101,7 +101,7 @@ Pruebas automatizadas escritas para cada caso. Estado: ✅ en `develop`, 🔀 en
 | ID | Resultado | Evidencia: observación | Issue del defecto |
 |---|---|---|---|
 | HU01-01 | Pasa | `AlbumListTest.catalogShowsAlbumCardsInTwoColumns` pasó: cuadrícula de 2 columnas con portada, nombre, artista, año y género (`AlbumListTest-results.xml`, `HU01-01-catalogo.png`). | — |
-| HU01-02 | Pasa | Se observaron cuatro tarjetas de carga y después su reemplazo por los álbumes (`HU01-02-secuencia-1.png` y `HU01-02-secuencia-2.png`). | — |
+| HU01-02 | Pasa | Se observaron cuatro tarjetas de carga y después su reemplazo por los álbumes (`HU01-02-secuencia-1.png` y `HU01-02-secuencia-2.png`). En una revisión posterior, el 2026-10-31, se vio que las tarjetas de carga quedaban pegadas entre sí. | [#105](https://github.com/manuel-jose-marin/vinilos-mobile/issues/105), severidad baja |
 | HU01-03 | Pasa | Con modo avión apareció «No pudimos cargar los álbumes» y «Reintentar»; al restablecer la red y tocarlo se cargó el catálogo (`HU01-03-sin-conexion.png` y `HU01-03-reintento.png`). | — |
 | HU01-04 | Pasa | La respuesta `[]` del servidor temporal mostró «Aún no hay álbumes en el catálogo» (`HU01-04-vacio.png`). | — |
 | HU01-05 | Pasa | La tarjeta «Portada rota», cuya URL es inválida, mostró la imagen genérica de un disco (`HU01-05-portada-rota.png`). | — |
@@ -119,7 +119,9 @@ Pruebas automatizadas escritas para cada caso. Estado: ✅ en `develop`, 🔀 en
 
 **Resumen:** 16 casos registrados: **13 pasan, 0 fallan y 3 no aplican (Sprint 3)**. Se ejecutaron los 13 casos aplicables: 3 con Espresso y 10 manualmente; ninguno quedó sin ejecutar por bloqueo. `./gradlew connectedDebugAndroidTest` terminó correctamente con las 3 pruebas de `AlbumListTest`, sin fallos, errores ni omisiones. Los cuatro casos previstos para `AlbumDetailTest` se ejecutaron manualmente porque su automatización sigue pendiente en [#22](https://github.com/manuel-jose-marin/vinilos-mobile/issues/22).
 
-**Defecto reportado:** [#94 — HU02-02 trunca el nombre largo del track](https://github.com/manuel-jose-marin/vinilos-mobile/issues/94), severidad media, etiqueta `bug` y milestone **Sprint 1**. No se modificó código de la app. La ausencia de artista y la portada reutilizada de «Siembra» corresponden al script de datos y no se reportaron como defectos.
+**Defecto reportado:** [#94 — HU02-02 trunca el nombre largo del track](https://github.com/manuel-jose-marin/vinilos-mobile/issues/94), severidad media, etiqueta `bug` y milestone **Sprint 1**. No se modificó código de la app.
+
+**Defecto reportado después de la ejecución:** [#105 — HU01-02 las tarjetas de carga del listado quedan pegadas](https://github.com/manuel-jose-marin/vinilos-mobile/issues/105), severidad baja, etiquetas `bug` y `HU01` y milestone **Sprint 1**. Se encontró el 2026-10-31 al probar el APK contra la API de Render. El criterio se cumple porque las tarjetas de carga sí aparecen, pero no tienen la separación de la cuadrícula: los `<include>` reemplazan el margen de la tarjeta. La ausencia de artista y la portada reutilizada de «Siembra» corresponden al script de datos y no se reportaron como defectos.
 
 ### Compatibilidad con la versión mínima
 
