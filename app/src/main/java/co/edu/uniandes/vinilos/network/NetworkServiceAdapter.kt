@@ -2,6 +2,7 @@ package co.edu.uniandes.vinilos.network
 
 import android.content.Context
 import co.edu.uniandes.vinilos.BuildConfig
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -50,11 +51,19 @@ class NetworkServiceAdapter private constructor(context: Context) {
             { response -> continuation.resume(response) },
             { error -> continuation.resumeWithException(error) }
         )
+        request.retryPolicy = DefaultRetryPolicy(TIMEOUT_MS, MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
         requestQueue.add(request)
         continuation.invokeOnCancellation { request.cancel() }
     }
 
     companion object {
+        /**
+         * La API desplegada en Render se duerme sin tráfico y tarda hasta un minuto en despertar;
+         * con el timeout por defecto de Volley (2,5 s) la primera carga fallaría.
+         */
+        private const val TIMEOUT_MS = 30_000
+        private const val MAX_RETRIES = 1
+
         @Volatile
         private var instance: NetworkServiceAdapter? = null
 
