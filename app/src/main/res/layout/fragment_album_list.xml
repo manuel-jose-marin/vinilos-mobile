@@ -47,7 +47,7 @@
             tools:listitem="@layout/item_album"
             tools:visibility="visible" />
 
-        <!-- Cargando: tarjetas de carga -->
+        <!-- Cargando: tarjetas de carga. Los include reemplazan los layout_* de la tarjeta, así que el margen va aquí. -->
         <LinearLayout
             android:id="@+id/layout_loading"
             android:layout_width="match_parent"
@@ -66,12 +66,14 @@
                     layout="@layout/item_album_placeholder"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/card_margin"
                     android:layout_weight="1" />
 
                 <include
                     layout="@layout/item_album_placeholder"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/card_margin"
                     android:layout_weight="1" />
             </LinearLayout>
 
@@ -84,12 +86,14 @@
                     layout="@layout/item_album_placeholder"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/card_margin"
                     android:layout_weight="1" />
 
                 <include
                     layout="@layout/item_album_placeholder"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/card_margin"
                     android:layout_weight="1" />
             </LinearLayout>
         </LinearLayout>
