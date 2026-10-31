@@ -98,3 +98,66 @@ Una historia de usuario se considerará terminada cuando cumpla con todos los si
 ### Resultado del Sprint Planning
 
 El equipo acordó desarrollar las historias de usuario HU01 y HU02 durante la Iteración 1, comprometiéndose con una capacidad total de 8 Story Points y alineándose con el Sprint Goal definido. Se establecieron responsables, criterios de terminación (Definition of Done) y actividades de documentación y aseguramiento de calidad para garantizar la entrega satisfactoria del incremento del producto.
+
+## Semana 4: Reunión de seguimiento y cierre del Sprint 1
+
+**Fecha:** 2026-10-26  
+**Hora:** 20:00 p. m. a 21:00 p. m. (hora Colombia)  
+**Medio:** Google Meet / reunión de equipo  
+**Facilitador:** Manuel José Marín
+
+**Asistentes:** Manuel José Marín, Miguel Rincón, Felipe Rojas, Alejandro Pulido
+
+### Evidencia
+
+<img width="738" height="414" alt="reunion_equipo_semana4" src="./img/Reunion_equipo_W4.png" />
+
+- Registro de la reunión del equipo.
+- Comprobación del estado de tareas y cierre del Sprint 1.
+- Confirmación de responsabilidades para la entrega final.
+
+### Temas tratados
+
+1. **Estado del proyecto y alcance del Sprint 1:** revisión del avance del equipo respecto a las historias de usuario HU01 y HU02, así como de las tareas técnicas asociadas a la iteración.
+
+2. **Cierre de actividades pendientes:** se analizó el estado de las tareas abiertas del equipo y se verificó que faltaban labores de entrega, documentación y revisión final antes de la fecha límite del sprint.
+
+3. **Cronograma de entrega:** se confirmó que la entrega final del sprint estaba programada para el sábado a medianoche, y no para el domingo, según el estado observado por el equipo.
+
+4. **Asignación de responsabilidades finales:** se distribuyeron y confirmaron las tareas pendientes para cerrar la iteración de manera organizada y con menor riesgo de retrasos.
+
+5. **Documentación del sprint:** se revisó la necesidad de completar la acta de la reunión semanal, la retrospectiva del Sprint 1, la actualización del README y la generación del APK y release.
+
+6. **Novedades del equipo:** se confirmó que Alejandro ya había cerrado sus tareas pendientes; además, Miguel indicó que tenía actividades de documentación y entrega por completar, y Felipe manifestó que se encargaría de tareas de pruebas.
+
+---
+
+## Sprint Goal
+
+Cerrar de manera organizada las actividades pendientes del Sprint 1, validando el avance de las historias HU01 y HU02, asegurando la calidad del producto, dejando lista la documentación exigida por la entrega y finalizando con la entrega del sprint en tiempo.
+
+---
+
+## Acuerdos y asignaciones
+
+| Área / actividad | Responsable |
+|------------------|-------------|
+| Pruebas Espresso del detalle de álbum | Felipe Rojas |
+| Retrospectiva del Sprint 1 | Felipe Rojas |
+| Revisión y cierre del servicio de álbumes | Miguel Rincón |
+| APK, README y release del Sprint 1 | Miguel Rincón |
+| Acta de la reunión de la semana 4 | Miguel Rincón |
+| Cierre de tareas pendientes | Alejandro Pulido |
+| Coordinación general del cierre del sprint | Manuel José Marín |
+
+### Observaciones relevantes
+- La entrega del APK debía compilarse apuntando a la API desplegada del curso:
+    - `https://backvynils-q6yc.onrender.com/`
+- No se debía apuntar al backend local para la generación del APK final, para asegurar funcionamiento en un dispositivo móvil.
+- La retrospectiva y la acta se consideraron entregables del cierre del sprint, junto con el release y la documentación.
+
+---
+
+## Cierre de la reunión
+
+Se concluyó que el equipo tenía definido el plan de cierre del Sprint 1 y que cada integrante tenía una responsabilidad clara para asegurar la entrega del proyecto en tiempo. Se priorizó completar la documentación y la preparación de la entrega antes de la fecha límite marcada para el sábado.
