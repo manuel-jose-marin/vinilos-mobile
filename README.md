@@ -67,15 +67,17 @@ Con el backend corriendo, compilar sin parámetros extra funciona en el emulador
 | Dispositivo físico en la misma red Wi-Fi | `./gradlew assembleDebug -Pvinilos.baseUrl=http://<IP del equipo>:3000/` |
 | Dispositivo físico por USB | `adb reverse tcp:3000 tcp:3000` y `./gradlew assembleDebug -Pvinilos.baseUrl=http://localhost:3000/` |
 
-### Opción 2: API desplegada del curso
+### Opción 2: API desplegada del equipo
 
-Para probar en un dispositivo sin montar el backend, apuntar la app a la API desplegada que indica el curso:
+Para probar en un dispositivo sin montar el backend, apuntar la app a la API que desplegó el equipo:
 
 ```bash
-./gradlew installDebug -Pvinilos.baseUrl=https://backvynils-q6yc.onrender.com/
+./gradlew installDebug -Pvinilos.baseUrl=https://backvynils-grupo5.onrender.com/
 ```
 
-Es la URL que se acordó para el APK de entrega del sprint. Si la respuesta tarda, esperar unos segundos y reintentar desde la app.
+Es la URL del APK de entrega. Corre en Render (plan gratuito, con un [fork de BackVynils](https://github.com/FelipeRojas5913/BackVynils) sin cambios) con PostgreSQL en Neon, y tiene cargados los datos de `scripts/seed-backvynils.sh`. La API del curso (`https://backvynils-q6yc.onrender.com/`) dejó de responder el 31 de octubre de 2026.
+
+El servicio se duerme tras 15 minutos sin uso y tarda cerca de un minuto en despertar; la app espera hasta 90 segundos, así que la primera carga puede demorar.
 
 ## Pruebas
 
