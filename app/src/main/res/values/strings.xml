@@ -25,6 +25,7 @@
     <string name="album_detail_loading">Cargando el álbum</string>
     <string name="album_detail_error">No pudimos cargar el álbum</string>
     <string name="album_tracks_header">Tracks · %1$d</string>
+    <string name="album_track_number">%1$d</string>
     <string name="album_tracks_empty">Este álbum aún no tiene tracks</string>
     <string name="album_comments_header">Comentarios · %1$d</string>
     <string name="album_comments_empty">Este álbum aún no tiene comentarios</string>
