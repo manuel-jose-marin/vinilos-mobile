@@ -30,4 +30,18 @@
     <string name="album_comments_empty">Este álbum aún no tiene comentarios</string>
     <string name="album_comment_unknown_author">Coleccionista</string>
     <string name="album_comment_rating">Calificación: %1$d de 5</string>
+
+    <!-- HU04 Detalle de artista -->
+    <string name="artist_detail_title">Detalle del artista</string>
+    <string name="artist_detail_loading">Cargando el artista</string>
+    <string name="artist_detail_error">No pudimos cargar el artista</string>
+    <string name="artist_image_description">Foto del artista</string>
+    <string name="artist_description_header">Descripción</string>
+    <string name="artist_read_more">Leer más</string>
+    <string name="artist_albums_header">Álbumes</string>
+    <string name="artist_albums_empty">Este artista aún no tiene álbumes</string>
+    <string name="artist_prizes_header">Premios</string>
+    <string name="artist_prizes_empty">Este artista aún no tiene premios</string>
+    <string name="artist_members_header">Integrantes</string>
+    <string name="artist_members_empty">Esta banda aún no tiene integrantes</string>
 </resources>

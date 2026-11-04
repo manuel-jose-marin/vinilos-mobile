@@ -7,4 +7,8 @@
     <!-- Alto del botón flotante extendido (56dp) + margen (16dp) + holgura (16dp) -->
     <dimen name="list_bottom_padding_fab">88dp</dimen>
     <dimen name="detail_cover_size">200dp</dimen>
+    <dimen name="artist_image_size">120dp</dimen>
+    <dimen name="artist_album_width">156dp</dimen>
+    <!-- Ancho del álbum (156dp) menos su padding a cada lado (8dp), para que la portada sea cuadrada -->
+    <dimen name="artist_album_cover_height">140dp</dimen>
 </resources>
