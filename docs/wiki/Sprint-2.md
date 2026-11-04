@@ -3,7 +3,7 @@
 **Historias:** HU03 Consultar el listado de artistas, HU04 Consultar la información detallada de un artista, HU05 Consultar listado de coleccionistas
 
 ## Diseño arquitectónico
-_Pendiente._
+- [[Diseño arquitectónico del Sprint 2|Diseno-arquitectonico-Sprint-2]]: diagramas de paquetes, componentes y clases de HU01 a HU05, endpoints, flujo de datos y desempeño
 
 ## Estrategia de pruebas
 _Pendiente._
