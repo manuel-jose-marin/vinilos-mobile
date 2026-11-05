@@ -1,7 +1,6 @@
 package co.edu.uniandes.vinilos.network
 
 import co.edu.uniandes.vinilos.models.Album
-import co.edu.uniandes.vinilos.models.Performer
 import co.edu.uniandes.vinilos.models.Track
 import org.json.JSONArray
 import org.json.JSONObject
@@ -32,16 +31,9 @@ class NetworkAlbumService(private val network: NetworkServiceAdapter) : AlbumSer
             description = json.optString("description"),
             genre = json.optString("genre"),
             recordLabel = json.optString("recordLabel"),
-            performers = json.optJSONArray("performers").mapObjects { parsePerformer(it) },
+            performers = json.optJSONArray("performers").mapObjects { JsonParsing.parsePerformer(it) },
             tracks = json.optJSONArray("tracks").mapObjects { parseTrack(it) },
             comments = json.optJSONArray("comments").mapObjects { JsonParsing.parseComment(it) }
-        )
-
-        private fun parsePerformer(json: JSONObject) = Performer(
-            id = json.getInt("id"),
-            name = json.getString("name"),
-            image = json.optString("image"),
-            description = json.optString("description")
         )
 
         private fun parseTrack(json: JSONObject) = Track(
