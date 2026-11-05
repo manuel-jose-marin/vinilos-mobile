@@ -55,7 +55,7 @@ Los puntos tampoco miden todo el esfuerzo. De los 27 issues del milestone, 15 no
 - **Registrar como issue el trabajo no planeado,** para que se vea aunque no tenga puntos.
 
 ## Diseño arquitectónico
-_Pendiente._
+- [[Diseño arquitectónico del Sprint 2|Diseno-arquitectonico-Sprint-2]]: diagramas de paquetes, componentes y clases de HU01 a HU05, endpoints, flujo de datos y desempeño
 
 ## Estrategia de pruebas
 _Pendiente._
