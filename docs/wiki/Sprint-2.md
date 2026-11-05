@@ -45,8 +45,8 @@ Los puntos tampoco miden todo el esfuerzo. De los 27 issues del milestone, 15 no
 ### Comportamiento del equipo
 
 - **Cumplió el compromiso,** aunque el avance se concentró a mitad de sprint y no fue constante.
-- **El tablero no reflejó el avance real.** Las tareas se cerraron en lotes, y 5 de los 7 cierres del 31 de octubre (#14, #26, #75, #1 y #2) ocurrieron en menos de tres minutos. Coincide con lo que señaló la [[retrospectiva|Retrospectiva-Sprint-1]].
-- **Las historias se cerraron al final,** aunque sus tareas ya llevaban días cerradas.
+- **El tablero no reflejó el avance real.** Las tareas se cerraron en lotes, y 5 de los 7 cierres del 31 de octubre (#14, #26, #75, #1 y #2) ocurrieron en poco más de tres minutos. Coincide con lo que señaló la [[retrospectiva|Retrospectiva-Sprint-1]].
+- **Las historias se cerraron al final,** aunque casi todas sus tareas ya llevaban días cerradas.
 
 ### Qué implica para el Sprint 2
 
