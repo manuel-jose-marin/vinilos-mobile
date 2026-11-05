@@ -6,7 +6,7 @@ import org.json.JSONObject
 
 /** Acceso a los coleccionistas de BackVynils. Los errores de red o del servidor se propagan como excepción. */
 interface CollectorService {
-    /** `GET /collectors`: coleccionistas con sus comentarios. */
+    /** `GET /collectors`: coleccionistas con sus comentarios y el número de álbumes de su colección. */
     suspend fun getCollectors(): List<Collector>
 }
 
@@ -22,7 +22,8 @@ class NetworkCollectorService(private val network: NetworkServiceAdapter) : Coll
             name = json.getString("name"),
             telephone = json.optString("telephone"),
             email = json.optString("email"),
-            comments = json.optJSONArray("comments").mapObjects { JsonParsing.parseComment(it) }
+            comments = json.optJSONArray("comments").mapObjects { JsonParsing.parseComment(it) },
+            albumCount = json.optJSONArray("collectorAlbums")?.length() ?: 0
         )
     }
 }
