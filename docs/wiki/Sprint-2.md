@@ -68,6 +68,9 @@ _Pendiente._
 ## Análisis de desempeño
 _Pendiente._
 
+## Micro-optimizaciones
+- [[Micro-optimizaciones del Sprint 2|Micro-optimizaciones-Sprint-2]]: hallazgos de Android Lint corregidos, antes y después
+
 ## APK y release
 _Pendiente._
 
