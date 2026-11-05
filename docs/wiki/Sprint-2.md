@@ -2,6 +2,9 @@
 
 **Historias:** HU03 Consultar el listado de artistas, HU04 Consultar la información detallada de un artista, HU05 Consultar listado de coleccionistas
 
+## Sprint Planning
+- [[Actas de reunión|Actas_Sprint-2]]: evidencia de las reuniones de las semanas 5 y 6
+
 ## Velocidad del Sprint 1
 
 <img width="900" alt="Burndown del Sprint 1: puntos restantes por día, planeados y reales" src="./img/Burndown_Sprint-1.png" />
