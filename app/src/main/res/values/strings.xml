@@ -8,7 +8,6 @@
     <string name="nav_albums">Álbumes</string>
     <string name="nav_artists">Artistas</string>
     <string name="nav_collectors">Coleccionistas</string>
-    <string name="coming_soon">Próximamente</string>
 
     <!-- HU01 Listado de álbumes -->
     <string name="albums_title">Álbumes</string>
@@ -58,4 +57,18 @@
     <string name="artist_type_band">Banda</string>
     <string name="artist_albums_count">%1$d álbumes</string>
     <string name="artist_albums_count_single">1 álbum</string>
+
+    <!-- HU05 Listado de coleccionistas -->
+    <string name="collectors_title">Coleccionistas</string>
+    <string name="collectors_loading">Cargando coleccionistas</string>
+    <string name="collectors_empty">Aún no hay coleccionistas registrados</string>
+    <string name="collectors_error">No pudimos cargar los coleccionistas</string>
+    <plurals name="collectors_count">
+        <item quantity="one">%1$d coleccionista</item>
+        <item quantity="other">%1$d coleccionistas</item>
+    </plurals>
+    <plurals name="collector_albums_count">
+        <item quantity="one">%1$d álbum</item>
+        <item quantity="other">%1$d álbumes</item>
+    </plurals>
 </resources>

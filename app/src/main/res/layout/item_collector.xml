@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    HU05 - Fila del listado de coleccionistas: iniciales, nombre, correo y número de álbumes.
+    Toda la tarjeta es tocable y abre el detalle del coleccionista (HU06).
+-->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_collector"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/screen_margin"
+    android:layout_marginVertical="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="2dp"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="72dp"
+        android:padding="16dp">
+
+        <!-- Iniciales: el lector de pantalla ya lee el nombre, así que se omiten. -->
+        <TextView
+            android:id="@+id/tv_collector_initials"
+            android:layout_width="@dimen/collector_avatar_size"
+            android:layout_height="@dimen/collector_avatar_size"
+            android:background="@drawable/bg_collector_initials"
+            android:gravity="center"
+            android:importantForAccessibility="no"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="?attr/colorOnPrimaryContainer"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="MB" />
+
+        <TextView
+            android:id="@+id/tv_collector_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="?attr/colorOnSurface"
+            app:layout_constraintBottom_toTopOf="@+id/tv_collector_email"
+            app:layout_constraintEnd_toStartOf="@+id/iv_collector_chevron"
+            app:layout_constraintStart_toEndOf="@+id/tv_collector_initials"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Manolo Bellon" />
+
+        <TextView
+            android:id="@+id/tv_collector_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBottom_toTopOf="@+id/tv_collector_albums_count"
+            app:layout_constraintEnd_toEndOf="@+id/tv_collector_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_collector_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_collector_name"
+            tools:text="manollo@caracol.com.co" />
+
+        <TextView
+            android:id="@+id/tv_collector_albums_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_collector_albums_count"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
+            android:textColor="?attr/colorOnSecondaryContainer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_collector_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_collector_email"
+            tools:text="2 álbumes" />
+
+        <ImageView
+            android:id="@+id/iv_collector_chevron"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_chevron_right" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

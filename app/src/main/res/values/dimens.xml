@@ -11,4 +11,5 @@
     <dimen name="artist_album_width">156dp</dimen>
     <!-- Ancho del álbum (156dp) menos su padding a cada lado (8dp), para que la portada sea cuadrada -->
     <dimen name="artist_album_cover_height">140dp</dimen>
+    <dimen name="collector_avatar_size">56dp</dimen>
 </resources>
