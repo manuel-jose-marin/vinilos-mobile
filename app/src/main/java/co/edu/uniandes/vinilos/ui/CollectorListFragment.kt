@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import co.edu.uniandes.vinilos.databinding.FragmentCollectorListBinding
 
-/** Pantalla "Coleccionistas" (HU05). Es un marcador de posición hasta implementar la historia. */
+/** Pantalla "Coleccionistas" (HU05). El layout ya está listo; el ViewModel y el adaptador se conectan en #40 y #41. */
 class CollectorListFragment : Fragment() {
 
     private var _binding: FragmentCollectorListBinding? = null
