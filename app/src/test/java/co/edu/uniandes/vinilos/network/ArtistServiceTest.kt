@@ -4,6 +4,7 @@ import co.edu.uniandes.vinilos.models.ArtistType
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -112,5 +113,52 @@ class ArtistServiceTest {
     @Test
     fun parseMusicians_emptyArray_returnsEmptyList() {
         assertTrue(NetworkArtistService.parseMusicians(JSONArray()).isEmpty())
+    }
+
+    @Test
+    fun parseMusicianDetail_readsPrizesWithIdAndDateOnly() {
+        val artist = NetworkArtistService.parseMusician(JSONObject(fullMusician))
+
+        val prize = artist.prizes.single()
+        assertEquals(100, prize.id)
+        assertEquals("1978-12-10T00:00:00.000Z", prize.premiationDate)
+        assertNull(prize.name)
+        assertNull(prize.organization)
+    }
+
+    @Test
+    fun parseBandDetail_readsTheBandWithItsAlbumsAndNoPrizes() {
+        val artist = NetworkArtistService.parseBand(JSONObject(fullBand))
+
+        assertEquals(ArtistType.BAND, artist.type)
+        assertEquals("Banda británica de rock", artist.description)
+        assertEquals("https://example.com/queen.jpg", artist.image)
+        assertEquals(listOf(102), artist.albums.map { it.id })
+        assertTrue(artist.prizes.isEmpty())
+    }
+
+    @Test
+    fun parseBandMembers_readsEachMusicianOfTheBand() {
+        val band = JSONObject(fullBand).put(
+            "musicians",
+            JSONArray(
+                """[{"id": 200, "name": "Freddie Mercury", "image": "https://example.com/freddie.jpg"},
+                    {"id": 201, "name": "Brian May"}]"""
+            )
+        )
+
+        val members = NetworkArtistService.parseBand(band).members
+
+        assertEquals(listOf(200, 201), members.map { it.id })
+        assertEquals(listOf("Freddie Mercury", "Brian May"), members.map { it.name })
+        assertEquals("https://example.com/freddie.jpg", members[0].image)
+        assertEquals("", members[1].image)
+    }
+
+    @Test
+    fun parseMusicianDetail_withoutPrizes_returnsEmptyList() {
+        val artist = NetworkArtistService.parseMusician(JSONObject("""{"id": 7, "name": "Sin premios"}"""))
+
+        assertTrue(artist.prizes.isEmpty())
     }
 }

@@ -14,5 +14,7 @@ data class Artist(
     val date: String,
     val albums: List<Album>,
     /** Integrantes de una banda; vacío para los músicos. */
-    val members: List<Performer>
+    val members: List<Performer>,
+    /** Premios del artista; vacío si no tiene. */
+    val prizes: List<ArtistPrize> = emptyList()
 )
