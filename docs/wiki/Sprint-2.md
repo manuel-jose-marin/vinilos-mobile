@@ -61,10 +61,10 @@ Los puntos tampoco miden todo el esfuerzo. De los 27 issues del milestone, 15 no
 - [[Diseño arquitectónico del Sprint 2|Diseno-arquitectonico-Sprint-2]]: diagramas de paquetes, componentes y clases de HU01 a HU05, endpoints, flujo de datos y desempeño
 
 ## Estrategia de pruebas
-_Pendiente._
+- [[Estrategia de pruebas del Sprint 2|Estrategia-pruebas-Sprint-2]]: aplicación bajo pruebas, objetivos, presupuesto, pirámide de pruebas, distribución por HU, cronograma y gestión de riesgos
 
 ## Artefactos de prueba
-- Inventario de pruebas: _pendiente_
+- [[Inventario de pruebas|Inventario-pruebas-Sprint-2]]
 - Scripts / casos de prueba en Espresso: _pendiente_
 - Reportes de defectos: _pendiente_
 
