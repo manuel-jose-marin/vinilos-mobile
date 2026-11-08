@@ -15,5 +15,7 @@
 - [[Sprint 2|Sprint-2]]
   - [[Actas del Sprint 2|Actas_Sprint-2]]
   - [[Diseño arquitectónico|Diseno-arquitectonico-Sprint-2]]
+  - [[Estrategia de pruebas|Estrategia-pruebas-Sprint-2]]
+  - [[Inventario de pruebas|Inventario-pruebas-Sprint-2]]
 - [[Sprint 3|Sprint-3]]
 - [[Backend BackVynils|Backend-BackVynils]]
