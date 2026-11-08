@@ -45,4 +45,17 @@
     <string name="artist_prizes_empty">Este artista aún no tiene premios</string>
     <string name="artist_members_header">Integrantes</string>
     <string name="artist_members_empty">Esta banda aún no tiene integrantes</string>
+
+    <!-- HU03 Listado de artistas -->
+    <string name="artists_title">Artistas</string>
+    <string name="artists_loading">Cargando artistas</string>
+    <string name="artists_empty">Aún no hay artistas registrados</string>
+    <string name="artists_error">No pudimos cargar los artistas</string>
+    <string name="artist_filter_all">Todos</string>
+    <string name="artist_filter_musicians">Músicos</string>
+    <string name="artist_filter_bands">Bandas</string>
+    <string name="artist_type_musician">Músico</string>
+    <string name="artist_type_band">Banda</string>
+    <string name="artist_albums_count">%1$d álbumes</string>
+    <string name="artist_albums_count_single">1 álbum</string>
 </resources>
