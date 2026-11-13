@@ -43,4 +43,34 @@ Lint se ejecutó sobre `develop` con HU01 y HU02 integradas, antes de integrar H
 
 ## Segunda pasada (HU03, HU04 y HU05)
 
-_Pendiente: se ejecuta cuando HU03, HU04 y HU05 estén integradas en `develop`._
+Lint se ejecutó sobre `develop` con los servicios, repositorios y ViewModels de HU03, HU04 y HU05, la vista del listado de artistas y los layouts de las tres pantallas.
+
+| | Errores | Advertencias | De código y recursos | De versiones de dependencias |
+|---|---|---|---|---|
+| Antes | 0 | 55 | 10 | 45 |
+| Después | 0 | 52 | 7 | 45 |
+
+### Hallazgos corregidos
+
+| Regla de Lint | Archivo | Problema | Cambio aplicado |
+|---|---|---|---|
+| `Overdraw` (rendimiento) | `fragment_artist_list.xml` | La raíz repintaba con `?attr/colorSurface` el fondo que el tema ya pinta en la ventana | Se quitó `android:background` de la raíz |
+| `Overdraw` (rendimiento) | `fragment_artist_detail.xml` | Igual que el anterior | Se quitó `android:background` de la raíz |
+| `UnusedResources` | `strings.xml` | `artists_title` no se usa: la barra del listado usa `nav_artists` | Se eliminó el texto |
+| `PluralsCandidate` | `strings.xml`, `ArtistAdapter.kt` | "N álbumes" se armaba con dos textos y un `when` | Recurso `plurals` `artist_albums_count` con `getQuantityString` (se corrigió al implementar la vista del listado de artistas, #31) |
+
+El `Overdraw` de `fragment_collector_list.xml` de la primera pasada ya no aparece: el layout definitivo de HU05 (#38) no pinta fondo en la raíz.
+
+### Hallazgos no corregidos
+
+| Regla de Lint | Cantidad | Motivo |
+|---|---|---|
+| `GradleDependency`, `AndroidGradlePluginVersion` | 45 | Igual que en la primera pasada: versiones fijadas para mantener `minSdk 21` |
+| `UnusedResources` | 5 | `item_artist_prize.xml`, `item_artist_member.xml`, `ic_prize.xml`, `bg_prize_icon.xml` y el plural `collector_albums_count` son de las vistas del detalle de artista (#36) y del listado de coleccionistas (#41), que los usan al integrarse |
+| `Overdraw` en `item_artist_album.xml` | 1 | Falso positivo: `?attr/selectableItemBackground` solo pinta el efecto al tocar. Pasarlo a `android:foreground` exige API 23 en un `LinearLayout` y la app soporta desde API 21 |
+| `MissingApplicationIcon` | 1 | No afecta el desempeño; queda pendiente el ícono de la app |
+
+### Verificación
+
+- `./gradlew testDebugUnitTest lintDebug assembleDebug assembleDebugAndroidTest` termina sin errores.
+- Antes del release se vuelve a ejecutar Lint con las vistas del detalle de artista y del listado de coleccionistas integradas.
