@@ -113,7 +113,7 @@ Una historia de usuario se considerará terminada cuando cumpla con todos los si
 
 | Tarea / Issue | Responsable | Fecha límite |
 |---|---|---|
-| Completar los 4 formularios de coevaluación en Coursera | Todos | 2026-11-05 |
+| Completar los 4 formularios de coevaluación en Coursera | Todos | 2026-11-05 (Miércoles) |
 | `#111` Sprint planning de la iteración 2 | Miguel Rincón | 2026-11-05 |
 | `#112` Acta de semanas 5 y 6 | Miguel Rincón | 2026-11-05 |
 | `#43` Diseño arquitectónico del Sprint 2 | Manuel José Marín | 2026-11-08 |
@@ -133,3 +133,65 @@ Una historia de usuario se considerará terminada cuando cumpla con todos los si
 ### Resultado del Sprint Planning
 
 El equipo acordó desarrollar las historias de usuario HU03, HU04 y HU05 durante la Iteración 2, comprometiéndose con una capacidad total de 10 Story Points. Se asignaron los issues correspondientes a cada integrante con sus dependencias explícitas y se estableció el compromiso de realizar la coevaluación antes del miércoles.
+
+---
+
+## Semana 6: Reunión de seguimiento y cierre del Sprint 2
+
+**Fecha:** 2026-11-10 · **Hora:** 8:00 p. m. a 9:00 p. m. (hora Colombia) · **Medio:** Google Meet  
+**Facilitador:** Miguel Rincón
+
+**Asistentes:** Manuel José Marín, Miguel Rincón, Felipe Rojas, Alejandro Pulido
+
+### Evidencia
+
+<img width="738" height="414" alt="reunion_equipo_semana6" src="./img/Reunion_equipo_W6.png" />
+
+- Registro de la reunión de seguimiento y asignaciones de cierre del Sprint 2.
+
+### Temas tratados
+
+1. **Estado de avances y revisión de Pull Requests de Manuel José Marín:**
+   - Manuel tiene en revisión los PRs del listado ([PR #127](https://github.com/manuel-jose-marin/vinilos-mobile/pull/127) para `#31`) y del detalle de artista ([PR #126](https://github.com/manuel-jose-marin/vinilos-mobile/pull/126) para `#35`), pendientes de aprobación final.
+   - Ejecutará la segunda pasada del analizador Android Lint (`#113`) cuando se encuentren integradas las 5 historias de usuario (HU01 a HU05).
+   - Generará el APK final, actualizará el README, realizará la integración a la rama `main` y creará el release `v2.0.0` (`#47`).
+
+2. **Avances y compromisos de Miguel Rincón:**
+   - Desarrolló e integró el Repositorio y ViewModel del listado de coleccionistas (`#40`), desglosado como desbloqueador clave para la vista.
+   - Desarrollará la vista del detalle de artista (`#36`) tras la aprobación de los PRs dependientes.
+   - Ejecutará y automatizará las pruebas E2E con Espresso para el listado de artistas (`#32`).
+   - Redacción y consolidación del acta oficial de la Semana 6 (`#112`).
+
+3. **Avances y compromisos de Felipe Rojas:**
+   - Desarrollará la vista del listado de coleccionistas (`#41`), una vez desbloqueado por `#40`.
+   - Automatizará las pruebas E2E con Espresso del detalle de artista (`#37`), dependiente de `#36`.
+   - Consolidará el reporte final de resultados de pruebas y la documentación de defectos como issues (`#45`).
+
+4. **Avances y compromisos de Alejandro Pulido:**
+   - Implementará el análisis de rendimiento de Corrutinas/ANR y uso de memoria RAM en las 5 historias de usuario, documentando los hallazgos en la wiki (`#114`).
+   - Realizará el perfilamiento de rendimiento en 3 celulares físicos y generará su reporte detallado en la wiki (`#46`). Iniciará el jueves evaluando HU01 a HU03 y sumará HU04 y HU05 apenas se integren.
+
+---
+
+## Acuerdos y asignaciones de cierre del Sprint 2
+
+| Área / Actividad | Responsable | Issue | Dependencia / Nota |
+|------------------|-------------|:-----:|-------------------|
+| Aprobación de PRs de listado (#127) y detalle de artista (#126) | Manuel José Marín | #31, #35 | Pendientes de aprobación |
+| Segunda pasada de Android Lint en las 5 HUs | Manuel José Marín | #113 | Al integrar las 5 HUs |
+| APK final, README, merge a `main` y Release v2.0.0 | Manuel José Marín | #47 | Programado para el domingo |
+| Repo y ViewModel del listado de coleccionistas | Miguel Rincón | #40 | Completado, desbloquea #41 |
+| Vista del detalle de artista | Miguel Rincón | #36 | Tras aprobación de PRs |
+| Pruebas Espresso del listado de artistas | Miguel Rincón | #32 | Tras PRs del listado |
+| Consolidación del acta de la semana 6 | Miguel Rincón | #112 | En proceso de cierre |
+| Vista del listado de coleccionistas | Felipe Rojas | #41 | Desbloqueado tras #40 |
+| Pruebas Espresso del detalle de artista | Felipe Rojas | #37 | Tras #36 |
+| Reporte de resultados de pruebas y defectos en issues | Felipe Rojas | #45 | Cierre del sprint |
+| Análisis de Corrutinas, ANR y memoria en 5 HUs (Wiki) | Alejandro Pulido | #114 | Documentación en la wiki |
+| Perfilamiento en 3 celulares físicos y reporte en Wiki | Alejandro Pulido | #46 | Inicia jueves con HU01-HU03, suma HU04-HU05 |
+
+---
+
+## Cierre de la reunión
+
+El equipo definió la hoja de ruta clara para el cierre del Sprint 2. Se dio prioridad al destrabe de dependencias (aprobar PRs `#126` y `#127`, e implementar `#40` para habilitar `#41` y `#37`), garantizando que la ejecución de pruebas E2E, perfilamiento en celulares físicos y generación del release `v2.0.0` queden completadas satisfactoriamente antes del domingo.
