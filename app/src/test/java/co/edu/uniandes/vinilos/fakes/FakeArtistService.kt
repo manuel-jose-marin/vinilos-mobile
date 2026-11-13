@@ -6,7 +6,8 @@ import co.edu.uniandes.vinilos.network.ArtistService
 
 /**
  * Servicio de artistas para pruebas: devuelve lo que indiquen [musicians] y [bands] (por defecto, ninguno)
- * y cuenta cuántas veces se pidió el listado. El detalle busca el artista por id en esas mismas listas.
+ * y cuenta cuántas veces se pidió el listado. El detalle busca el artista por id en esas mismas listas
+ * y queda registrado en [detailRequests].
  */
 class FakeArtistService(
     var musicians: suspend () -> List<Artist> = { emptyList() },
@@ -16,6 +17,9 @@ class FakeArtistService(
         private set
     var bandCalls = 0
         private set
+
+    /** Detalles pedidos, en orden: tipo de artista e id. */
+    val detailRequests = mutableListOf<Pair<ArtistType, Int>>()
 
     override suspend fun getMusicians(): List<Artist> {
         musicianCalls++
@@ -27,9 +31,15 @@ class FakeArtistService(
         return bands()
     }
 
-    override suspend fun getMusician(id: Int): Artist = musicians().first { it.id == id }
+    override suspend fun getMusician(id: Int): Artist {
+        detailRequests += ArtistType.MUSICIAN to id
+        return musicians().first { it.id == id }
+    }
 
-    override suspend fun getBand(id: Int): Artist = bands().first { it.id == id }
+    override suspend fun getBand(id: Int): Artist {
+        detailRequests += ArtistType.BAND to id
+        return bands().first { it.id == id }
+    }
 
     companion object {
         fun artist(id: Int, name: String, type: ArtistType) =

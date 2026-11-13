@@ -3,6 +3,7 @@ package co.edu.uniandes.vinilos.viewmodels
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import co.edu.uniandes.vinilos.fakes.FakeArtistService
 import co.edu.uniandes.vinilos.fakes.FakeArtistService.Companion.artist
+import co.edu.uniandes.vinilos.fakes.FakePrizeService
 import co.edu.uniandes.vinilos.models.ArtistType.BAND
 import co.edu.uniandes.vinilos.models.ArtistType.MUSICIAN
 import co.edu.uniandes.vinilos.repositories.ArtistRepository
@@ -40,7 +41,7 @@ class ArtistListViewModelTest {
 
     private fun service() = FakeArtistService(musicians = { listOf(ruben) }, bands = { listOf(queen) })
 
-    private fun viewModel(service: FakeArtistService) = ArtistListViewModel(ArtistRepository(service))
+    private fun viewModel(service: FakeArtistService) = ArtistListViewModel(ArtistRepository(service, FakePrizeService()))
 
     private fun ArtistListViewModel.content() = state.value as ArtistListState.Content
 
