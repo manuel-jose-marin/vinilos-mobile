@@ -39,7 +39,35 @@
         android:id="@+id/artistListFragment"
         android:name="co.edu.uniandes.vinilos.ui.ArtistListFragment"
         android:label="@string/nav_artists"
-        tools:layout="@layout/fragment_artist_list" />
+        tools:layout="@layout/fragment_artist_list">
+
+        <action
+            android:id="@+id/action_artistListFragment_to_artistDetailFragment"
+            app:destination="@id/artistDetailFragment" />
+    </fragment>
+
+    <!-- Detalle de un músico o una banda (HU04): destino de segundo nivel, sin barra inferior. -->
+    <fragment
+        android:id="@+id/artistDetailFragment"
+        android:name="co.edu.uniandes.vinilos.ui.ArtistDetailFragment"
+        android:label="@string/artist_detail_title"
+        tools:layout="@layout/fragment_artist_detail">
+
+        <argument
+            android:name="artistId"
+            app:argType="integer" />
+
+        <!-- MUSICIAN o BAND (ArtistType.name): cada tipo tiene su endpoint en BackVynils. -->
+        <argument
+            android:name="artistType"
+            app:argType="string" />
+
+        <argument
+            android:name="artistName"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/collectorListFragment"
