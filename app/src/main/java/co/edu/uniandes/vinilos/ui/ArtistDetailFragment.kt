@@ -186,7 +186,8 @@ class ArtistDetailFragment : Fragment() {
             fun bind(album: Album) {
                 binding.tvArtistAlbumName.text = album.name
                 val year = ArtistDetailText.year(album.releaseDate)
-                binding.tvArtistAlbumYearLabel.text = "$year · ${album.recordLabel}"
+                binding.tvArtistAlbumYearLabel.text =
+                    binding.root.context.getString(R.string.artist_album_year_label, year, album.recordLabel)
 
                 Glide.with(binding.ivArtistAlbumCover)
                     .load(album.cover.ifBlank { null })
