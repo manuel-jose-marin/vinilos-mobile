@@ -27,7 +27,7 @@ Casos de prueba de **HU03 Consultar el listado de artistas**, **HU04 Consultar l
 
 | ID | Criterio | Caso | Precondición | Pasos | Resultado esperado | Tipo |
 |---|---|---|---|---|---|---|
-| HU03-01 | 1 | Ver el listado unificado de artistas | El backend tiene músicos y bandas | 1. Abrir la app en la sección Artistas | Se ve una sola lista de músicos y bandas en orden alfabético; cada tarjeta muestra foto, nombre, tipo ("Músico" o "Banda") y número de álbumes, y se ve el total de artistas mostrados | Espresso (el orden y el total se verifican manualmente) |
+| HU03-01 | 1 | Ver el listado unificado de artistas | El backend tiene músicos y bandas | 1. Abrir la app en la sección Artistas | Se ve una sola lista de músicos y bandas en orden alfabético; cada tarjeta muestra foto, nombre, tipo ("Músico" o "Banda") y número de álbumes, y se ve el total de artistas mostrados | Espresso (el orden se verifica manualmente) |
 | HU03-02 | 2, 3 y 4 | Filtrar artistas por categoría | Pantalla de Artistas cargada | 1. Tocar "Músicos"<br>2. Tocar "Bandas"<br>3. Tocar "Todos" | Se ven solo músicos, solo bandas y de nuevo todos, con el filtro tocado marcado como seleccionado, sin nuevas peticiones al servidor | Espresso (la ausencia de peticiones se verifica manualmente) |
 | HU03-03 | — | Ver el estado de carga | Respuesta lenta del backend | 1. Abrir la sección Artistas | Mientras llega la respuesta se ve el indicador "Cargando artistas"; al llegar los datos se reemplaza por los artistas | Manual |
 | HU03-04 | 5 | Error sin conexión y reintento | Modo avión activado | 1. Abrir la sección Artistas<br>2. Desactivar el modo avión<br>3. Tocar "Reintentar" | Paso 1: se ve el mensaje de error y el botón "Reintentar". Paso 3: se carga el listado de artistas | Manual |
@@ -76,7 +76,7 @@ Todas las pruebas de la tabla están en `develop`.
 
 | Caso | Prueba Espresso | Pruebas unitarias |
 |---|---|---|
-| HU03-01 | `ArtistListTest.listShowsMusiciansAndBands` | `ArtistServiceTest.parseMusicians_assignsMusicianTypeAndKeepsServerOrder`, `ArtistServiceTest.parseBands_assignsBandTypeAndKeepsServerOrder`, `ArtistRepositoryTest.getArtists_joinsMusiciansAndBandsSortedByName`, `ArtistRepositoryTest.sortByName_ignoresCaseAndAccents`, `ArtistRepositoryTest.getArtists_requestsMusiciansAndBandsInParallel`, `ArtistListViewModelTest.loadArtists_showsMusiciansAndBandsSortedWithAllFilter` |
+| HU03-01 | `ArtistListTest.listShowsMusiciansAndBands`, `ArtistListTest.listShowsTheTotalNumberOfArtists` | `ArtistServiceTest.parseMusicians_assignsMusicianTypeAndKeepsServerOrder`, `ArtistServiceTest.parseBands_assignsBandTypeAndKeepsServerOrder`, `ArtistRepositoryTest.getArtists_joinsMusiciansAndBandsSortedByName`, `ArtistRepositoryTest.sortByName_ignoresCaseAndAccents`, `ArtistRepositoryTest.getArtists_requestsMusiciansAndBandsInParallel`, `ArtistListViewModelTest.loadArtists_showsMusiciansAndBandsSortedWithAllFilter` |
 | HU03-02 | `ArtistListTest.filteringByMusiciansOrBands` | `ArtistListViewModelTest.setFilter_filtersInMemory`, `ArtistListViewModelTest.setFilter_withNoArtistsOfThatType_showsEmptyContentNotEmptyState`, `ArtistListViewModelTest.setFilter_whileLoading_isAppliedWhenTheArtistsArrive` |
 | HU03-03 | | `ArtistListViewModelTest.init_showsLoadingUntilTheRepositoryResponds` |
 | HU03-04 | | `ArtistListViewModelTest.loadArtists_error_whenARequestFails`, `ArtistListViewModelTest.retry_loadsAgainAfterAnError`, `ArtistListViewModelTest.retry_keepsTheSelectedFilter`, `ArtistRepositoryTest.getArtists_whenBandsFail_throws` |
@@ -100,7 +100,7 @@ Todas las pruebas de la tabla están en `develop`.
 | Tipo | Del Sprint 2 | Total en `develop` |
 |---|---|---|
 | Unitarias | 56 (`ArtistServiceTest`, `PrizeServiceTest`, `CollectorServiceTest`, `ArtistRepositoryTest`, `CollectorRepositoryTest`, `ArtistListViewModelTest`, `ArtistDetailViewModelTest`, `CollectorListViewModelTest` y `CollectorTextTest`) | 80 |
-| Espresso | 13 (`ArtistListTest`, `ArtistDetailTest` y `CollectorListTest`) | 20 (incluye las 7 del Sprint 1 como regresión) |
+| Espresso | 14 (`ArtistListTest`, `ArtistDetailTest` y `CollectorListTest`) | 21 (incluye las 7 del Sprint 1 como regresión) |
 
 ## Resultados
 
@@ -118,7 +118,7 @@ Todas las pruebas de la tabla están en `develop`.
 
 | ID | Resultado | Evidencia: observación | Issue del defecto |
 |---|---|---|---|
-| HU03-01 | **Falla** | `ArtistListTest.listShowsMusiciansAndBands` pasó. La lista une músicos y bandas en orden alfabético (Freddie Mercury, Queen, Rubén Blades Bellido de Luna) con foto, nombre, tipo y número de álbumes, pero **no se muestra el total de artistas** que pide el criterio 1 (`HU03-01-listado.png`). Queen y Rubén Blades muestran la imagen genérica porque sus URLs de imagen en la base inicial ya no responden; la app se comporta como se espera ante una imagen que no carga. | [#134](https://github.com/manuel-jose-marin/vinilos-mobile/issues/134), severidad baja |
+| HU03-01 | Pasa (tras corregir #134) | Primera ejecución: **falla**. `ArtistListTest.listShowsMusiciansAndBands` pasó y la lista une músicos y bandas en orden alfabético (Freddie Mercury, Queen, Rubén Blades Bellido de Luna) con foto, nombre, tipo y número de álbumes, pero no se mostraba el total de artistas que pide el criterio 1 (`HU03-01-listado.png`). Re-ejecutado el 2026-11-15 tras la corrección: se ve «3 artistas», y con los filtros «2 artistas» (Músicos) y «1 artista» (Bandas) (`HU03-01-corregido.png`, `HU03-01-corregido-musicos.png`, `HU03-01-corregido-bandas.png`); la nueva prueba `ArtistListTest.listShowsTheTotalNumberOfArtists` pasó. Queen y Rubén Blades muestran la imagen genérica porque sus URLs de imagen en la base inicial ya no responden; la app se comporta como se espera ante una imagen que no carga. | [#134](https://github.com/manuel-jose-marin/vinilos-mobile/issues/134), severidad baja, corregido en [PR #135](https://github.com/manuel-jose-marin/vinilos-mobile/pull/135) |
 | HU03-02 | Pasa | `ArtistListTest.filteringByMusiciansOrBands` pasó. "Músicos" dejó a Freddie Mercury y Rubén Blades, "Bandas" dejó a Queen y "Todos" volvió a mostrar los tres; en cada paso solo el botón tocado quedó con `checked=true` (`HU03-02-musicos`, `HU03-02-bandas`, `HU03-02-todos`). El servidor local registró un solo `GET /musicians` y un solo `GET /bands` al abrir la sección, y ninguna petición al cambiar de filtro (`HU03-02-peticiones.log`). | — |
 | HU03-03 | Pasa | Con la respuesta demorada se vio "Cargando artistas" con el indicador circular, y después la lista (`HU03-03-cargando.png`, `HU03-03-cargado.png`). | — |
 | HU03-04 | Pasa | Con modo avión apareció «No pudimos cargar los artistas» y «Reintentar»; al restablecer la red y tocarlo se cargó la lista (`HU03-04-sin-conexion.png`, `HU03-04-reintento.png`). | — |
@@ -141,15 +141,19 @@ Todas las pruebas de la tabla están en `develop`.
 | HU05-06 | Pasa | `CollectorListTest.collectorRowShowsTheServerData` pasó. Los avatares muestran «MB» y «JM» (`HU05-01-listado.png`). | — |
 | HU05-07 | No aplica (Sprint 3) | No ejecutado: el detalle del coleccionista llega con HU06. Hoy tocar una fila no hace nada (`HU05-07-toque-coleccionista.png`); la flecha de la fila anticipa esa navegación. | — |
 
-**Resumen:** 22 casos registrados: **19 pasan, 1 falla y 2 no aplican** (HU05-05 por limitación del API y HU05-07 porque depende de HU06 del Sprint 3). Se ejecutaron los 20 casos aplicables: 12 con Espresso, que además se revisaron en pantalla, y 8 manualmente.
+**Resumen:** 22 casos registrados: **20 pasan, 0 fallan y 2 no aplican** (HU05-05 por limitación del API y HU05-07 porque depende de HU06 del Sprint 3). Se ejecutaron los 20 casos aplicables: 12 con Espresso, que además se revisaron en pantalla, y 8 manualmente. HU03-01 falló en la primera ejecución y pasa después de corregir [#134](https://github.com/manuel-jose-marin/vinilos-mobile/issues/134).
 
-**Espresso:** `./gradlew connectedDebugAndroidTest -Pvinilos.baseUrl=https://backvynils-grupo5.onrender.com/` terminó con `BUILD SUCCESSFUL`: **20 pruebas, 0 fallos, 0 errores y 0 omisiones**. Son las 13 de `ArtistListTest`, `ArtistDetailTest` y `CollectorListTest`, más las 7 de `AlbumListTest` y `AlbumDetailTest` del Sprint 1, que pasaron como regresión. El reporte está en `Espresso-report/index.html` y el XML en `Espresso-results/`.
+**Espresso:** `./gradlew connectedDebugAndroidTest -Pvinilos.baseUrl=https://backvynils-grupo5.onrender.com/` terminó con `BUILD SUCCESSFUL`: **21 pruebas, 0 fallos, 0 errores y 0 omisiones**, ya con la corrección de #134. Son las 14 de `ArtistListTest`, `ArtistDetailTest` y `CollectorListTest`, más las 7 de `AlbumListTest` y `AlbumDetailTest` del Sprint 1, que pasaron como regresión. En la primera ejecución, antes de la corrección, fueron 20 de 20, porque aún no existía la prueba del total. El reporte está en `Espresso-report/index.html` y el XML en `Espresso-results/`.
 
 **Pruebas unitarias:** `./gradlew testDebugUnitTest` terminó con **80 pruebas, 0 fallos y 0 errores** (`unit-results/`).
 
 **Logcat:** no hubo crashes de la app ni `FATAL EXCEPTION` durante la ejecución (`logcat-crashes.txt` vacío). Glide registró advertencias de carga de imágenes, que corresponden a las URLs rotas descritas en HU03-01.
 
-**Defecto reportado:** [#134 — HU03-01 el listado de artistas no muestra el total](https://github.com/manuel-jose-marin/vinilos-mobile/issues/134), severidad baja, etiquetas `bug` y `HU03` y milestone **Sprint 2**. No se modificó código de la app.
+**Defecto reportado y corregido:** [#134 — HU03-01 el listado de artistas no muestra el total](https://github.com/manuel-jose-marin/vinilos-mobile/issues/134), severidad baja, etiquetas `bug` y `HU03` y milestone **Sprint 2**. Se corrigió en el mismo [PR #135](https://github.com/manuel-jose-marin/vinilos-mobile/pull/135): `fragment_artist_list.xml` agrega `tv_artists_count` debajo de los filtros y `ArtistListFragment` muestra el total de los artistas visibles con el filtro activo, con el plural `artists_count`.
+
+| Antes | Después de la corrección |
+|---|---|
+| <img width="300" alt="Listado de artistas sin total" src="./img/Defecto-HU03-01_antes.png" /> | <img width="300" alt="Listado de artistas con el total" src="./img/Defecto-HU03-01_despues.png" /> |
 
 **Observaciones que no se reportaron como defectos:**
 

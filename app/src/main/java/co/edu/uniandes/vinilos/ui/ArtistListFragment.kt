@@ -52,6 +52,7 @@ class ArtistListFragment : Fragment() {
             val filteredEmpty = state is ArtistListState.Content && state.artists.isEmpty()
             binding.layoutLoading.isVisible = state is ArtistListState.Loading
             binding.rvArtists.isVisible = state is ArtistListState.Content && !filteredEmpty
+            binding.tvArtistsCount.isVisible = state is ArtistListState.Content && !filteredEmpty
             binding.tvEmpty.isVisible = state is ArtistListState.Empty || filteredEmpty
             binding.layoutError.isVisible = state is ArtistListState.Error
             // El filtro solo tiene sentido cuando hay artistas para filtrar.
@@ -60,6 +61,10 @@ class ArtistListFragment : Fragment() {
             when (state) {
                 is ArtistListState.Content -> {
                     binding.tvEmpty.setText(R.string.artists_filter_empty)
+                    // El total corresponde a los artistas visibles con el filtro activo.
+                    val total = state.artists.size
+                    binding.tvArtistsCount.text =
+                        resources.getQuantityString(R.plurals.artists_count, total, total)
                     adapter.submitList(state.artists)
                 }
                 ArtistListState.Empty -> binding.tvEmpty.setText(R.string.artists_empty)
