@@ -24,7 +24,7 @@ class AlbumRepositoryTest {
         comments = listOf(Comment(100, "El más relevante", 5), Comment(200, "Sin autor conocido", 3))
     )
 
-    private val manolo = Collector(100, "Manolo Bellon", "", "", listOf(Comment(100, "El más relevante", 5)))
+    private val manolo = Collector(100, "Manolo Bellon", "", "", listOf(Comment(100, "El más relevante", 5)), 0)
 
     @Test
     fun getAlbum_addsTheCollectorNameAsCommentAuthor() = runTest {
@@ -48,7 +48,7 @@ class AlbumRepositoryTest {
 
     @Test
     fun commentAuthors_mapsEachCommentIdToItsCollector() {
-        val jaime = Collector(101, "Jaime Monsalve", "", "", listOf(Comment(101, "", 5), Comment(102, "", 4)))
+        val jaime = Collector(101, "Jaime Monsalve", "", "", listOf(Comment(101, "", 5), Comment(102, "", 4)), 0)
 
         val authors = AlbumRepository.commentAuthors(listOf(manolo, jaime))
 

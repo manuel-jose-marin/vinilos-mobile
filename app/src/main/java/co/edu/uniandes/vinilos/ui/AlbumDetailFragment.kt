@@ -84,7 +84,7 @@ class AlbumDetailFragment : Fragment() {
         binding.layoutTracks.removeAllViews()
         tracks.forEachIndexed { index, track ->
             val item = ItemTrackBinding.inflate(layoutInflater, binding.layoutTracks, true)
-            item.tvTrackNumber.text = (index + 1).toString()
+            item.tvTrackNumber.text = getString(R.string.album_track_number, index + 1)
             item.tvTrackName.text = track.name
             item.tvTrackDuration.text = track.duration
         }

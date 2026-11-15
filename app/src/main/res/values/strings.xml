@@ -8,7 +8,6 @@
     <string name="nav_albums">Álbumes</string>
     <string name="nav_artists">Artistas</string>
     <string name="nav_collectors">Coleccionistas</string>
-    <string name="coming_soon">Próximamente</string>
 
     <!-- HU01 Listado de álbumes -->
     <string name="albums_title">Álbumes</string>
@@ -25,9 +24,58 @@
     <string name="album_detail_loading">Cargando el álbum</string>
     <string name="album_detail_error">No pudimos cargar el álbum</string>
     <string name="album_tracks_header">Tracks · %1$d</string>
+    <string name="album_track_number">%1$d</string>
     <string name="album_tracks_empty">Este álbum aún no tiene tracks</string>
     <string name="album_comments_header">Comentarios · %1$d</string>
     <string name="album_comments_empty">Este álbum aún no tiene comentarios</string>
     <string name="album_comment_unknown_author">Coleccionista</string>
     <string name="album_comment_rating">Calificación: %1$d de 5</string>
+
+    <!-- HU04 Detalle de artista -->
+    <string name="artist_detail_title">Detalle del artista</string>
+    <string name="artist_detail_loading">Cargando el artista</string>
+    <string name="artist_detail_error">No pudimos cargar el artista</string>
+    <string name="artist_image_description">Foto del artista</string>
+    <string name="artist_description_header">Descripción</string>
+    <string name="artist_read_more">Leer más</string>
+    <string name="artist_albums_header">Álbumes</string>
+    <string name="artist_albums_empty">Este artista aún no tiene álbumes</string>
+    <string name="artist_prizes_header">Premios</string>
+    <string name="artist_prizes_empty">Este artista aún no tiene premios</string>
+    <string name="artist_members_header">Integrantes</string>
+    <string name="artist_members_empty">Esta banda aún no tiene integrantes</string>
+
+    <!-- HU03 Listado de artistas -->
+    <string name="artists_loading">Cargando artistas</string>
+    <string name="artists_empty">Aún no hay artistas registrados</string>
+    <string name="artists_filter_empty">No hay artistas en esta categoría</string>
+    <string name="artists_error">No pudimos cargar los artistas</string>
+    <string name="artist_album_year_label">%1$s · %2$s</string>
+    <plurals name="artists_count">
+        <item quantity="one">%1$d artista</item>
+        <item quantity="other">%1$d artistas</item>
+    </plurals>
+    <string name="artist_filter_all">Todos</string>
+    <string name="artist_filter_musicians">Músicos</string>
+    <string name="artist_filter_bands">Bandas</string>
+    <string name="artist_type_musician">Músico</string>
+    <string name="artist_type_band">Banda</string>
+    <plurals name="artist_albums_count">
+        <item quantity="one">%1$d álbum</item>
+        <item quantity="other">%1$d álbumes</item>
+    </plurals>
+
+    <!-- HU05 Listado de coleccionistas -->
+    <string name="collectors_title">Coleccionistas</string>
+    <string name="collectors_loading">Cargando coleccionistas</string>
+    <string name="collectors_empty">Aún no hay coleccionistas registrados</string>
+    <string name="collectors_error">No pudimos cargar los coleccionistas</string>
+    <plurals name="collectors_count">
+        <item quantity="one">%1$d coleccionista</item>
+        <item quantity="other">%1$d coleccionistas</item>
+    </plurals>
+    <plurals name="collector_albums_count">
+        <item quantity="one">%1$d álbum</item>
+        <item quantity="other">%1$d álbumes</item>
+    </plurals>
 </resources>

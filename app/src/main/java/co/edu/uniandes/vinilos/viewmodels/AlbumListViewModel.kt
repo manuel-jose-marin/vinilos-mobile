@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.repositories.AlbumRepository
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 /** Estados de la pantalla del listado de álbumes; la vista muestra solo uno a la vez. */
@@ -23,14 +24,20 @@ class AlbumListViewModel(private val repository: AlbumRepository) : ViewModel() 
     private val _state = MutableLiveData<AlbumListState>()
     val state: LiveData<AlbumListState> = _state
 
+    /** Carga en curso; se cancela si se pide otra antes de que termine. */
+    private var loadJob: Job? = null
+
     init {
         loadAlbums()
     }
 
     /** Pide el catálogo al repositorio; también se usa para "Reintentar" tras un error. */
     fun loadAlbums() {
+        // Un reintento cancela la carga anterior: así no quedan dos peticiones a la vez ni una respuesta
+        // vieja que reemplace a la nueva.
+        loadJob?.cancel()
         _state.value = AlbumListState.Loading
-        viewModelScope.launch {
+        loadJob = viewModelScope.launch {
             _state.value = try {
                 val albums = repository.getAlbums()
                 if (albums.isEmpty()) AlbumListState.Empty else AlbumListState.Content(albums)
