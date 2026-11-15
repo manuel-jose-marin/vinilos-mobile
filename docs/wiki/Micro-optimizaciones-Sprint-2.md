@@ -73,4 +73,22 @@ El `Overdraw` de `fragment_collector_list.xml` de la primera pasada ya no aparec
 ### Verificación
 
 - `./gradlew testDebugUnitTest lintDebug assembleDebug assembleDebugAndroidTest` termina sin errores.
-- Antes del release se vuelve a ejecutar Lint con las vistas del detalle de artista y del listado de coleccionistas integradas.
+
+## Pasada final (cinco historias integradas)
+
+Lint se ejecutó sobre `develop` con las cinco historias completas, antes del release del Sprint 2.
+
+| | Errores | Advertencias | De código y recursos | De versiones de dependencias |
+|---|---|---|---|---|
+| Antes | 0 | 48 | 3 | 45 |
+| Después | 0 | 47 | 2 | 45 |
+
+| Regla de Lint | Archivo | Problema | Cambio aplicado |
+|---|---|---|---|
+| `SetTextI18n` | `ArtistDetailFragment.kt` | El texto "año · sello" de cada álbum del carrusel se armaba concatenando cadenas | Recurso `artist_album_year_label` con `getString` |
+
+Los 5 `UnusedResources` de la segunda pasada desaparecieron: las vistas del detalle de artista y del listado de coleccionistas ya usan esos recursos. Quedan solo el falso positivo de `Overdraw` en `item_artist_album.xml`, el ícono de la app y las versiones de dependencias fijadas por `minSdk 21`, explicados arriba.
+
+### Verificación
+
+- `./gradlew testDebugUnitTest lintDebug assembleDebug` termina sin errores.
