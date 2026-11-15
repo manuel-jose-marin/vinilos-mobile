@@ -36,6 +36,8 @@ class CollectorListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CollectorAdapter(::openCollectorDetail)
+        // El tamaño de la lista no depende de su contenido: así un cambio de datos no vuelve a medir la pantalla.
+        binding.rvCollectors.setHasFixedSize(true)
         binding.rvCollectors.adapter = adapter
         binding.btnRetry.setOnClickListener { viewModel.loadCollectors() }
 

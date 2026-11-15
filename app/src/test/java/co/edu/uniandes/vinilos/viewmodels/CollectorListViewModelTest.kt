@@ -5,11 +5,13 @@ import co.edu.uniandes.vinilos.fakes.FakeCollectorService
 import co.edu.uniandes.vinilos.models.Collector
 import co.edu.uniandes.vinilos.repositories.CollectorRepository
 import com.android.volley.VolleyError
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
@@ -84,5 +86,22 @@ class CollectorListViewModelTest {
         advanceUntilIdle()
 
         assertTrue(vm.state.value is CollectorListState.Content)
+    }
+
+    /** Si el usuario reintenta mientras carga, la respuesta tardía de la primera petición no reemplaza a la nueva. */
+    @Test
+    fun retry_whileLoading_cancelsThePreviousRequest() = runTest(dispatcher) {
+        val slowAnswer = CompletableDeferred<List<Collector>>()
+        val service = FakeCollectorService { slowAnswer.await() }
+        val vm = viewModel(service)
+        runCurrent()
+
+        service.result = { listOf(collector(2)) }
+        vm.loadCollectors()
+        advanceUntilIdle()
+        slowAnswer.complete(emptyList())
+        advanceUntilIdle()
+
+        assertEquals(listOf(2), (vm.state.value as CollectorListState.Content).collectors.map { it.id })
     }
 }

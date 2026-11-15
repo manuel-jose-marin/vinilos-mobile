@@ -23,13 +23,17 @@ interface ArtistService {
 
 class NetworkArtistService(private val network: NetworkServiceAdapter) : ArtistService {
 
-    override suspend fun getMusicians(): List<Artist> = parseMusicians(network.getArray("musicians"))
+    override suspend fun getMusicians(): List<Artist> =
+        parseOffMainThread(network.getArray("musicians")) { parseMusicians(it) }
 
-    override suspend fun getBands(): List<Artist> = parseBands(network.getArray("bands"))
+    override suspend fun getBands(): List<Artist> =
+        parseOffMainThread(network.getArray("bands")) { parseBands(it) }
 
-    override suspend fun getMusician(id: Int): Artist = parseMusician(network.getObject("musicians/$id"))
+    override suspend fun getMusician(id: Int): Artist =
+        parseOffMainThread(network.getObject("musicians/$id")) { parseMusician(it) }
 
-    override suspend fun getBand(id: Int): Artist = parseBand(network.getObject("bands/$id"))
+    override suspend fun getBand(id: Int): Artist =
+        parseOffMainThread(network.getObject("bands/$id")) { parseBand(it) }
 
     companion object {
         fun parseMusicians(json: JSONArray): List<Artist> = json.mapObjects { parseMusician(it) }

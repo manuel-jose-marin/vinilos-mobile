@@ -12,7 +12,8 @@ interface CollectorService {
 
 class NetworkCollectorService(private val network: NetworkServiceAdapter) : CollectorService {
 
-    override suspend fun getCollectors(): List<Collector> = parseCollectors(network.getArray("collectors"))
+    override suspend fun getCollectors(): List<Collector> =
+        parseOffMainThread(network.getArray("collectors")) { parseCollectors(it) }
 
     companion object {
         fun parseCollectors(json: JSONArray): List<Collector> = json.mapObjects { parseCollector(it) }

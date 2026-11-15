@@ -9,6 +9,7 @@ import co.edu.uniandes.vinilos.models.Artist
 import co.edu.uniandes.vinilos.models.ArtistType
 import co.edu.uniandes.vinilos.repositories.ArtistRepository
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 /**
@@ -31,14 +32,20 @@ class ArtistDetailViewModel(
     private val _state = MutableLiveData<ArtistDetailState>()
     val state: LiveData<ArtistDetailState> = _state
 
+    /** Carga en curso; se cancela si se pide otra antes de que termine. */
+    private var loadJob: Job? = null
+
     init {
         loadArtist()
     }
 
     /** Pide el artista al repositorio; también se usa para "Reintentar" tras un error. */
     fun loadArtist() {
+        // Un reintento cancela la carga anterior: así no quedan dos peticiones a la vez ni una respuesta
+        // vieja que reemplace a la nueva.
+        loadJob?.cancel()
         _state.value = ArtistDetailState.Loading
-        viewModelScope.launch {
+        loadJob = viewModelScope.launch {
             _state.value = try {
                 ArtistDetailState.Content(repository.getArtist(artistId, artistType))
             } catch (e: CancellationException) {

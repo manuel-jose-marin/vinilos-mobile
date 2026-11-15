@@ -1,18 +1,20 @@
 package co.edu.uniandes.vinilos.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import co.edu.uniandes.vinilos.fakes.FakeCollectorService
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.Comment
 import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
-import co.edu.uniandes.vinilos.fakes.FakeCollectorService
 import co.edu.uniandes.vinilos.repositories.AlbumRepository
 import com.android.volley.VolleyError
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
@@ -36,7 +38,7 @@ class AlbumDetailViewModelTest {
     @After
     fun tearDown() = Dispatchers.resetMain()
 
-    private class FakeAlbumService(var result: (Int) -> Album) : AlbumService {
+    private class FakeAlbumService(var result: suspend (Int) -> Album) : AlbumService {
         val requestedIds = mutableListOf<Int>()
 
         override suspend fun getAlbums(): List<Album> = error("No se usa en el detalle")
@@ -109,5 +111,22 @@ class AlbumDetailViewModelTest {
 
         assertTrue(vm.state.value is AlbumDetailState.Content)
         assertEquals(listOf(100, 100), service.requestedIds)
+    }
+
+    /** Si el usuario reintenta mientras carga, la respuesta tardía de la primera petición no reemplaza a la nueva. */
+    @Test
+    fun retry_whileLoading_cancelsThePreviousRequest() = runTest(dispatcher) {
+        val slowAnswer = CompletableDeferred<Album>()
+        val service = FakeAlbumService { slowAnswer.await() }
+        val vm = viewModel(100, service)
+        runCurrent()
+
+        service.result = { album(it) }
+        vm.loadAlbum()
+        advanceUntilIdle()
+        slowAnswer.complete(album(999))
+        advanceUntilIdle()
+
+        assertEquals(100, (vm.state.value as AlbumDetailState.Content).album.id)
     }
 }
