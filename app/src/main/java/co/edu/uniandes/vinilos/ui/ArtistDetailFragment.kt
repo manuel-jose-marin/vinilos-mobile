@@ -173,7 +173,16 @@ class ArtistDetailFragment : Fragment() {
             holder.bind(getItem(position))
         }
 
+        /** Libera la imagen de la fila reciclada para que Glide devuelva su bitmap al pool. */
+        override fun onViewRecycled(holder: ViewHolder) {
+            super.onViewRecycled(holder)
+            holder.clearImage()
+        }
+
         inner class ViewHolder(private val binding: ItemArtistAlbumBinding) : RecyclerView.ViewHolder(binding.root) {
+
+            fun clearImage() = Glide.with(binding.ivArtistAlbumCover).clear(binding.ivArtistAlbumCover)
+
             fun bind(album: Album) {
                 binding.tvArtistAlbumName.text = album.name
                 val year = ArtistDetailText.year(album.releaseDate)
