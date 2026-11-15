@@ -3,9 +3,6 @@ package co.edu.uniandes.vinilos.network
 import co.edu.uniandes.vinilos.models.Artist
 import co.edu.uniandes.vinilos.models.ArtistPrize
 import co.edu.uniandes.vinilos.models.ArtistType
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -24,24 +21,15 @@ interface ArtistService {
     suspend fun getBand(id: Int): Artist
 }
 
-/**
- * Implementación sobre la API REST. La petición la hace Volley en su propio hilo y la conversión de JSON a
- * modelos corre en [parsing] (por defecto `Dispatchers.Default`), nunca en el hilo principal.
- */
-class NetworkArtistService(
-    private val network: NetworkServiceAdapter,
-    private val parsing: CoroutineDispatcher = Dispatchers.Default
-) : ArtistService {
+class NetworkArtistService(private val network: NetworkServiceAdapter) : ArtistService {
 
-    override suspend fun getMusicians(): List<Artist> =
-        withContext(parsing) { parseMusicians(network.getArray("musicians")) }
+    override suspend fun getMusicians(): List<Artist> = parseMusicians(network.getArray("musicians"))
 
-    override suspend fun getBands(): List<Artist> = withContext(parsing) { parseBands(network.getArray("bands")) }
+    override suspend fun getBands(): List<Artist> = parseBands(network.getArray("bands"))
 
-    override suspend fun getMusician(id: Int): Artist =
-        withContext(parsing) { parseMusician(network.getObject("musicians/$id")) }
+    override suspend fun getMusician(id: Int): Artist = parseMusician(network.getObject("musicians/$id"))
 
-    override suspend fun getBand(id: Int): Artist = withContext(parsing) { parseBand(network.getObject("bands/$id")) }
+    override suspend fun getBand(id: Int): Artist = parseBand(network.getObject("bands/$id"))
 
     companion object {
         fun parseMusicians(json: JSONArray): List<Artist> = json.mapObjects { parseMusician(it) }

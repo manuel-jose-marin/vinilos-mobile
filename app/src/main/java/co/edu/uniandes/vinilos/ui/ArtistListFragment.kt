@@ -39,7 +39,6 @@ class ArtistListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = ArtistAdapter(::openArtistDetail)
-        binding.rvArtists.setHasFixedSize(true)
         binding.rvArtists.adapter = adapter
         binding.btnRetry.setOnClickListener { viewModel.loadArtists() }
 

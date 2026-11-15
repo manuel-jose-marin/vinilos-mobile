@@ -2,9 +2,6 @@ package co.edu.uniandes.vinilos.network
 
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.Track
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -17,18 +14,11 @@ interface AlbumService {
     suspend fun getAlbum(id: Int): Album
 }
 
-/**
- * Implementación sobre la API REST. La petición la hace Volley en su propio hilo y la conversión de JSON a
- * modelos corre en [parsing] (por defecto `Dispatchers.Default`), nunca en el hilo principal.
- */
-class NetworkAlbumService(
-    private val network: NetworkServiceAdapter,
-    private val parsing: CoroutineDispatcher = Dispatchers.Default
-) : AlbumService {
+class NetworkAlbumService(private val network: NetworkServiceAdapter) : AlbumService {
 
-    override suspend fun getAlbums(): List<Album> = withContext(parsing) { parseAlbums(network.getArray("albums")) }
+    override suspend fun getAlbums(): List<Album> = parseAlbums(network.getArray("albums"))
 
-    override suspend fun getAlbum(id: Int): Album = withContext(parsing) { parseAlbum(network.getObject("albums/$id")) }
+    override suspend fun getAlbum(id: Int): Album = parseAlbum(network.getObject("albums/$id"))
 
     companion object {
         fun parseAlbums(json: JSONArray): List<Album> = json.mapObjects { parseAlbum(it) }
