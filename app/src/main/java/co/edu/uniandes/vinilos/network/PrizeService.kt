@@ -1,9 +1,6 @@
 package co.edu.uniandes.vinilos.network
 
 import co.edu.uniandes.vinilos.models.Prize
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -13,16 +10,9 @@ interface PrizeService {
     suspend fun getPrizes(): List<Prize>
 }
 
-/**
- * Implementación sobre la API REST. La petición la hace Volley en su propio hilo y la conversión de JSON a
- * modelos corre en [parsing] (por defecto `Dispatchers.Default`), nunca en el hilo principal.
- */
-class NetworkPrizeService(
-    private val network: NetworkServiceAdapter,
-    private val parsing: CoroutineDispatcher = Dispatchers.Default
-) : PrizeService {
+class NetworkPrizeService(private val network: NetworkServiceAdapter) : PrizeService {
 
-    override suspend fun getPrizes(): List<Prize> = withContext(parsing) { parsePrizes(network.getArray("prizes")) }
+    override suspend fun getPrizes(): List<Prize> = parsePrizes(network.getArray("prizes"))
 
     companion object {
         fun parsePrizes(json: JSONArray): List<Prize> = json.mapObjects { parsePrize(it) }

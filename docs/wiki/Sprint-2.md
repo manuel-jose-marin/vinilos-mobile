@@ -71,9 +71,6 @@ Los puntos tampoco miden todo el esfuerzo. De los 27 issues del milestone, 15 no
 ## Análisis de desempeño
 _Pendiente._
 
-## Buenas prácticas de ANR y memoria
-- [[ANR y memoria del Sprint 2|ANR-y-memoria-Sprint-2]]: corrutinas e hilos para evitar ANR y prácticas para reducir el consumo de memoria en HU01 a HU05
-
 ## Micro-optimizaciones
 - [[Micro-optimizaciones del Sprint 2|Micro-optimizaciones-Sprint-2]]: hallazgos de Android Lint corregidos, antes y después
 

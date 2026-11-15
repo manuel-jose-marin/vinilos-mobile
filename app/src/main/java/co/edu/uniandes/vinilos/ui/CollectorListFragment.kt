@@ -36,7 +36,6 @@ class CollectorListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CollectorAdapter(::openCollectorDetail)
-        binding.rvCollectors.setHasFixedSize(true)
         binding.rvCollectors.adapter = adapter
         binding.btnRetry.setOnClickListener { viewModel.loadCollectors() }
 

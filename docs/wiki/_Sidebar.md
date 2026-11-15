@@ -17,7 +17,5 @@
   - [[Diseño arquitectónico|Diseno-arquitectonico-Sprint-2]]
   - [[Estrategia de pruebas|Estrategia-pruebas-Sprint-2]]
   - [[Inventario de pruebas|Inventario-pruebas-Sprint-2]]
-  - [[ANR y memoria|ANR-y-memoria-Sprint-2]]
-  - [[Micro-optimizaciones|Micro-optimizaciones-Sprint-2]]
 - [[Sprint 3|Sprint-3]]
 - [[Backend BackVynils|Backend-BackVynils]]

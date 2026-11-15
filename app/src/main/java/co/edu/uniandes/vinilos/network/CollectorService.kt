@@ -1,9 +1,6 @@
 package co.edu.uniandes.vinilos.network
 
 import co.edu.uniandes.vinilos.models.Collector
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -13,17 +10,9 @@ interface CollectorService {
     suspend fun getCollectors(): List<Collector>
 }
 
-/**
- * Implementación sobre la API REST. La petición la hace Volley en su propio hilo y la conversión de JSON a
- * modelos corre en [parsing] (por defecto `Dispatchers.Default`), nunca en el hilo principal.
- */
-class NetworkCollectorService(
-    private val network: NetworkServiceAdapter,
-    private val parsing: CoroutineDispatcher = Dispatchers.Default
-) : CollectorService {
+class NetworkCollectorService(private val network: NetworkServiceAdapter) : CollectorService {
 
-    override suspend fun getCollectors(): List<Collector> =
-        withContext(parsing) { parseCollectors(network.getArray("collectors")) }
+    override suspend fun getCollectors(): List<Collector> = parseCollectors(network.getArray("collectors"))
 
     companion object {
         fun parseCollectors(json: JSONArray): List<Collector> = json.mapObjects { parseCollector(it) }
