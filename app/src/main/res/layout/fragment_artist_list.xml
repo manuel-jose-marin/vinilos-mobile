@@ -60,6 +60,19 @@
 
         </HorizontalScrollView>
 
+        <!-- Total de artistas mostrados con el filtro activo (criterio 1 de HU03) -->
+        <TextView
+            android:id="@+id/tv_artists_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/screen_margin"
+            android:paddingBottom="4dp"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:visibility="gone"
+            tools:text="3 artistas"
+            tools:visibility="visible" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Estado Contenido: Lista de Artistas -->

@@ -12,9 +12,11 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import co.edu.uniandes.vinilos.ui.MainActivity
 import co.edu.uniandes.vinilos.utils.hasItems
 import co.edu.uniandes.vinilos.utils.itemAtPosition
+import co.edu.uniandes.vinilos.utils.itemCount
 import co.edu.uniandes.vinilos.utils.textAtPosition
 import co.edu.uniandes.vinilos.utils.waitUntilDisplayed
 import org.hamcrest.Matchers.allOf
@@ -55,6 +57,16 @@ class ArtistListTest {
                 )
             )
         )
+    }
+
+    /** HU03-01: se muestra el total de artistas y coincide con las tarjetas de la lista. */
+    @Test
+    fun listShowsTheTotalNumberOfArtists() {
+        val total = itemCount(R.id.rv_artists)
+        val expected = InstrumentationRegistry.getInstrumentation().targetContext.resources
+            .getQuantityString(R.plurals.artists_count, total, total)
+
+        onView(withId(R.id.tv_artists_count)).check(matches(allOf(isDisplayed(), withText(expected))))
     }
 
     /** HU03-02: los botones de filtro (Todos, Músicos, Bandas) filtran la lista en memoria. */
