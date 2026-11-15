@@ -1,0 +1,35 @@
+[
+  {
+    "sequence": 24,
+    "sourceScreenId": "1",
+    "destinationScreenId": "9",
+    "startTimeSeconds": 123.464,
+    "endTimeSeconds": 124.847,
+    "executionResult": "SUCCESS",
+    "system": {
+      "type": "BACK"
+    }
+  },
+  {
+    "sequence": 31,
+    "sourceScreenId": "1",
+    "destinationScreenId": "11",
+    "startTimeSeconds": 151.131,
+    "endTimeSeconds": 152.372,
+    "executionResult": "SUCCESS",
+    "system": {
+      "type": "BACK"
+    }
+  },
+  {
+    "sequence": 51,
+    "sourceScreenId": "1",
+    "destinationScreenId": "11",
+    "startTimeSeconds": 237.861,
+    "endTimeSeconds": 239.127,
+    "executionResult": "SUCCESS",
+    "system": {
+      "type": "BACK"
+    }
+  }
+]

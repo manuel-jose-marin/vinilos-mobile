@@ -1,0 +1,13 @@
+[
+  {
+    "sequence": 29,
+    "sourceScreenId": "1",
+    "destinationScreenId": "0",
+    "startTimeSeconds": 93.296,
+    "endTimeSeconds": 94.669,
+    "executionResult": "SUCCESS",
+    "system": {
+      "type": "BACK"
+    }
+  }
+]

@@ -69,7 +69,7 @@ Los puntos tampoco miden todo el esfuerzo. De los 27 issues del milestone, 15 no
 - Reportes de defectos: _pendiente_
 
 ## Análisis de desempeño
-_Pendiente._
+- [[Análisis de desempeño del Sprint 2|Analisis-desempeno-Sprint-2]]: perfilamiento de HU01 a HU05 con Firebase Test Lab en tres dispositivos físicos, métricas, capturas y defectos
 
 ## Buenas prácticas de ANR y memoria
 - [[ANR y memoria del Sprint 2|ANR-y-memoria-Sprint-2]]: corrutinas e hilos para evitar ANR y prácticas para reducir el consumo de memoria en HU01 a HU05

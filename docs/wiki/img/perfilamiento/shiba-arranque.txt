@@ -1,0 +1,1 @@
+11-15 11:44:05.531  1570  1659 I ActivityTaskManager: Displayed co.edu.uniandes.vinilos/.ui.MainActivity for user 0: +567ms

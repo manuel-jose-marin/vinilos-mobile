@@ -1,0 +1,109 @@
+{
+  "shiba": {
+    "arranque_s": 0.567,
+    "crashes": 1,
+    "anr": 0,
+    "series": {
+      "cpuTotal": {
+        "muestras": 1578,
+        "disponible": true,
+        "promedio": 3.2151364097335198,
+        "maximo": 18.71345029239766,
+        "duracion_muestras_s": 325.574379153,
+        "intervalo_mediano_s": 0.20034314000000109
+      },
+      "memoryTotal": {
+        "muestras": 634,
+        "disponible": true,
+        "promedio": 200539.6119873817,
+        "maximo": 294660.0,
+        "duracion_muestras_s": 325.558820966,
+        "intervalo_mediano_s": 0.5004573570000019
+      },
+      "networkReceived": {
+        "muestras": 1,
+        "disponible": false,
+        "motivo": "Solo un marcador inicial sin intervalo medible; no representa tráfico cero."
+      },
+      "networkSent": {
+        "muestras": 1,
+        "disponible": false,
+        "motivo": "Solo un marcador inicial sin intervalo medible; no representa tráfico cero."
+      }
+    }
+  },
+  "java": {
+    "arranque_s": 1.629,
+    "crashes": 1,
+    "anr": 0,
+    "series": {
+      "cpuTotal": {
+        "muestras": 1566,
+        "disponible": true,
+        "promedio": 2.6052591957074145,
+        "maximo": 35.6687898089172,
+        "duracion_muestras_s": 324.189708226,
+        "intervalo_mediano_s": 0.20012800000000652
+      },
+      "memoryTotal": {
+        "muestras": 626,
+        "disponible": true,
+        "promedio": 105493.82428115016,
+        "maximo": 168222.0,
+        "duracion_muestras_s": 324.159344264,
+        "intervalo_mediano_s": 0.4999992310000039
+      },
+      "networkReceived": {
+        "muestras": 1,
+        "disponible": false,
+        "motivo": "Solo un marcador inicial sin intervalo medible; no representa tráfico cero."
+      },
+      "networkSent": {
+        "muestras": 1,
+        "disponible": false,
+        "motivo": "Solo un marcador inicial sin intervalo medible; no representa tráfico cero."
+      }
+    }
+  },
+  "F01L": {
+    "arranque_s": 2.719,
+    "crashes": 3,
+    "anr": 0,
+    "series": {
+      "cpuTotal": {
+        "muestras": 1558,
+        "disponible": true,
+        "promedio": 4.012647284150125,
+        "maximo": 36.0,
+        "duracion_muestras_s": 339.02676287,
+        "intervalo_mediano_s": 0.200221407000015
+      },
+      "memoryTotal": {
+        "muestras": 624,
+        "disponible": true,
+        "promedio": 73349.9439102564,
+        "maximo": 113557.0,
+        "duracion_muestras_s": 338.995225891,
+        "intervalo_mediano_s": 0.49988250000001244
+      },
+      "networkReceived": {
+        "muestras": 624,
+        "disponible": true,
+        "promedio": 32616.272435897437,
+        "maximo": 5342459.0,
+        "duracion_muestras_s": 338.834415214,
+        "intervalo_mediano_s": 0.5002185929999996,
+        "bytes_estimados_integral_trapecios": 10179132.21023861
+      },
+      "networkSent": {
+        "muestras": 624,
+        "disponible": true,
+        "promedio": 943.3108974358975,
+        "maximo": 109312.0,
+        "duracion_muestras_s": 338.834398652,
+        "intervalo_mediano_s": 0.5002254169999958,
+        "bytes_estimados_integral_trapecios": 294427.29064484616
+      }
+    }
+  }
+}

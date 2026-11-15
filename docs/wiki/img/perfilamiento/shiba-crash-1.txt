@@ -1,0 +1,73 @@
+2026-11-15 11:47:49 data_app_crash (text, 5569 bytes)
+SystemUptimeMs: 4809204
+Process: co.edu.uniandes.vinilos
+PID: 25074
+UID: 10291
+Frozen: false
+Flags: 0x38e8be46
+Package: co.edu.uniandes.vinilos v1 (1.0)
+Foreground: No
+Process-Runtime: 224021
+Build: google/shiba/shiba:14/AP2A.240605.024/11860263:user/release-keys
+Crash-Handler: com.android.internal.os.RuntimeInit$KillApplicationHandler
+Loading-Progress: 1.0
+Dropped-Count: 0
+
+java.lang.RuntimeException: Unable to destroy activity {co.edu.uniandes.vinilos/co.edu.uniandes.vinilos.ui.MainActivity}: java.lang.IllegalArgumentException: You cannot start a load for a destroyed activity
+	at android.app.ActivityThread.performDestroyActivity(ActivityThread.java:5901)
+	at android.app.ActivityThread.handleDestroyActivity(ActivityThread.java:5933)
+	at android.app.servertransaction.DestroyActivityItem.execute(DestroyActivityItem.java:47)
+	at android.app.servertransaction.ActivityTransactionItem.execute(ActivityTransactionItem.java:60)
+	at android.app.servertransaction.TransactionExecutor.executeLifecycleItem(TransactionExecutor.java:282)
+	at android.app.servertransaction.TransactionExecutor.executeTransactionItems(TransactionExecutor.java:150)
+	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:93)
+	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2595)
+	at android.os.Handler.dispatchMessage(Handler.java:107)
+	at android.os.Looper.loopOnce(Looper.java:232)
+	at android.os.Looper.loop(Looper.java:317)
+	at android.app.ActivityThread.main(ActivityThread.java:8592)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:878)
+Caused by: java.lang.IllegalArgumentException: You cannot start a load for a destroyed activity
+	at com.bumptech.glide.manager.RequestManagerRetriever.assertNotDestroyed(RequestManagerRetriever.java:236)
+	at com.bumptech.glide.manager.RequestManagerRetriever.get(RequestManagerRetriever.java:110)
+	at com.bumptech.glide.manager.RequestManagerRetriever.get(RequestManagerRetriever.java:176)
+	at com.bumptech.glide.Glide.with(Glide.java:634)
+	at co.edu.uniandes.vinilos.ui.AlbumAdapter$AlbumViewHolder.clearImage(AlbumAdapter.kt:35)
+	at co.edu.uniandes.vinilos.ui.AlbumAdapter.onViewRecycled(AlbumAdapter.kt:30)
+	at co.edu.uniandes.vinilos.ui.AlbumAdapter.onViewRecycled(AlbumAdapter.kt:14)
+	at androidx.recyclerview.widget.RecyclerView$Recycler.dispatchViewRecycled(RecyclerView.java:7415)
+	at androidx.recyclerview.widget.RecyclerView$Recycler.addViewHolderToRecycledViewPool(RecyclerView.java:7177)
+	at androidx.recyclerview.widget.RecyclerView$Recycler.recycleCachedViewAt(RecyclerView.java:7057)
+	at androidx.recyclerview.widget.RecyclerView$Recycler.recycleViewHolderInternal(RecyclerView.java:7105)
+	at androidx.recyclerview.widget.RecyclerView$Recycler.recycleView(RecyclerView.java:7007)
+	at androidx.recyclerview.widget.RecyclerView$LayoutManager.removeAndRecycleViewAt(RecyclerView.java:9741)
+	at androidx.recyclerview.widget.RecyclerView$LayoutManager.removeAndRecycleAllViews(RecyclerView.java:11154)
+	at androidx.recyclerview.widget.RecyclerView.removeAndRecycleViews(RecyclerView.java:1284)
+	at androidx.recyclerview.widget.RecyclerView.setAdapterInternal(RecyclerView.java:1308)
+	at androidx.recyclerview.widget.RecyclerView.setAdapter(RecyclerView.java:1266)
+	at co.edu.uniandes.vinilos.ui.AlbumListFragment.onDestroyView(AlbumListFragment.kt:70)
+	at androidx.fragment.app.Fragment.performDestroyView(Fragment.java:3362)
+	at androidx.fragment.app.FragmentStateManager.destroyFragmentView(FragmentStateManager.java:796)
+	at androidx.fragment.app.FragmentStateManager.moveToExpectedState(FragmentStateManager.java:352)
+	at androidx.fragment.app.SpecialEffectsController$FragmentStateManagerOperation.complete$fragment_release(SpecialEffectsController.kt:823)
+	at androidx.fragment.app.SpecialEffectsController$Operation.cancel(SpecialEffectsController.kt:669)
+	at androidx.fragment.app.SpecialEffectsController.forceCompleteAllOperations(SpecialEffectsController.kt:383)
+	at androidx.fragment.app.FragmentManager.dispatchStateChange(FragmentManager.java:3322)
+	at androidx.fragment.app.FragmentManager.dispatchDestroyView(FragmentManager.java:3265)
+	at androidx.fragment.app.Fragment.performDestroyView(Fragment.java:3355)
+	at androidx.fragment.app.FragmentStateManager.destroyFragmentView(FragmentStateManager.java:796)
+	at androidx.fragment.app.FragmentStateManager.moveToExpectedState(FragmentStateManager.java:352)
+	at androidx.fragment.app.SpecialEffectsController$FragmentStateManagerOperation.complete$fragment_release(SpecialEffectsController.kt:823)
+	at androidx.fragment.app.SpecialEffectsController$Operation.cancel(SpecialEffectsController.kt:669)
+	at androidx.fragment.app.SpecialEffectsController.forceCompleteAllOperations(SpecialEffectsController.kt:383)
+	at androidx.fragment.app.FragmentManager.dispatchStateChange(FragmentManager.java:3322)
+	at androidx.fragment.app.FragmentManager.dispatchDestroy(FragmentManager.java:3273)
+	at androidx.fragment.app.FragmentController.dispatchDestroy(FragmentController.java:346)
+	at androidx.fragment.app.FragmentActivity.onDestroy(FragmentActivity.java:258)
+	at androidx.appcompat.app.AppCompatActivity.onDestroy(AppCompatActivity.java:283)
+	at android.app.Activity.performDestroy(Activity.java:9251)
+	at android.app.Instrumentation.callActivityOnDestroy(Instrumentation.java:1561)
+	at android.app.ActivityThread.performDestroyActivity(ActivityThread.java:5888)
+	... 14 more

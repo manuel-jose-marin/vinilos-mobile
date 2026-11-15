@@ -1,0 +1,537 @@
+{
+  "testMatrixId": "matrix-2p9yjmuxasdpd",
+  "projectId": "vinilos-sprint-2",
+  "timestamp": "2026-11-15T19:42:54.630994Z",
+  "resultStorage": {
+    "googleCloudStorage": {
+      "gcsPath": "gs://test-lab-yxdbwp2fcd3wm-wh292qdzxvftz/2026-11-15_14:42:47.267001_Wbrc/"
+    },
+    "toolResultsHistory": {
+      "projectId": "vinilos-sprint-2",
+      "historyId": "bh.83dd699809fc8f23"
+    },
+    "toolResultsExecution": {
+      "projectId": "vinilos-sprint-2",
+      "historyId": "bh.83dd699809fc8f23",
+      "executionId": "5886111069452124945"
+    },
+    "resultsUrl": "https://console.firebase.google.com/project/vinilos-sprint-2/testlab/histories/bh.83dd699809fc8f23/matrices/5886111069452124945"
+  },
+  "selectedDevices": [
+    {
+      "model": {
+        "brand": "google",
+        "codename": "shiba",
+        "form": "PHYSICAL",
+        "formFactor": "PHONE",
+        "id": "shiba",
+        "manufacturer": "Google",
+        "name": "Pixel 8",
+        "perVersionInfo": [
+          {
+            "deviceCapacity": "DEVICE_CAPACITY_HIGH",
+            "versionId": "35"
+          },
+          {
+            "deviceCapacity": "DEVICE_CAPACITY_HIGH",
+            "directAccessVersionInfo": {
+              "directAccessSupported": true
+            },
+            "interactiveDeviceAvailabilityEstimate": "30s",
+            "versionId": "34"
+          },
+          {
+            "deviceCapacity": "DEVICE_CAPACITY_MEDIUM",
+            "directAccessVersionInfo": {
+              "directAccessSupported": true
+            },
+            "interactiveDeviceAvailabilityEstimate": "30s",
+            "versionId": "36"
+          }
+        ],
+        "screenDensity": 420,
+        "screenX": 1080,
+        "screenY": 2400,
+        "supportedAbis": [
+          "arm64-v8a"
+        ],
+        "supportedVersionIds": [
+          "35",
+          "34",
+          "36"
+        ],
+        "thumbnailUrl": "https://lh3.googleusercontent.com/y3CK3aSh9wV7Dmrti0ogN_C0r5j1M5-Vmdu_-trvcCF-BQDJsUxKQcRuxx05H1a0CvteCOL9umU"
+      },
+      "androidVersion": {
+        "apiLevel": 34,
+        "codeName": "UpsideDownCake",
+        "id": "34",
+        "releaseDate": {
+          "day": 13,
+          "month": 5,
+          "year": 2023
+        },
+        "versionString": "14"
+      },
+      "selectedVersion": "34",
+      "locale": "es",
+      "orientation": "portrait"
+    },
+    {
+      "model": {
+        "brand": "motorola",
+        "codename": "java",
+        "form": "PHYSICAL",
+        "formFactor": "PHONE",
+        "id": "java",
+        "manufacturer": "Motorola",
+        "name": "Motorola G20",
+        "perVersionInfo": [
+          {
+            "deviceCapacity": "DEVICE_CAPACITY_HIGH",
+            "directAccessVersionInfo": {
+              "directAccessSupported": true
+            },
+            "interactiveDeviceAvailabilityEstimate": "30s",
+            "versionId": "30"
+          }
+        ],
+        "screenDensity": 280,
+        "screenX": 720,
+        "screenY": 1600,
+        "supportedAbis": [
+          "arm64-v8a",
+          "armeabi",
+          "armeabi-v7a"
+        ],
+        "supportedVersionIds": [
+          "30"
+        ],
+        "thumbnailUrl": "https://lh3.googleusercontent.com/flkXlWApp9btdx5Q6IaRiH7tdC0uXeJ3mrHjq6SRULPwg647evkNrlqqK849ciN3L2frFSuMAoM"
+      },
+      "androidVersion": {
+        "apiLevel": 30,
+        "codeName": "R",
+        "id": "30",
+        "releaseDate": {
+          "day": 3,
+          "month": 9,
+          "year": 2020
+        },
+        "tags": [
+          "default"
+        ],
+        "versionString": "11"
+      },
+      "selectedVersion": "30",
+      "locale": "es",
+      "orientation": "portrait"
+    },
+    {
+      "model": {
+        "brand": "DOCOMO",
+        "codename": "F01L",
+        "form": "PHYSICAL",
+        "formFactor": "PHONE",
+        "id": "F01L",
+        "manufacturer": "FUJITSU",
+        "name": "F-01L",
+        "perVersionInfo": [
+          {
+            "deviceCapacity": "DEVICE_CAPACITY_HIGH",
+            "directAccessVersionInfo": {
+              "directAccessSupported": true
+            },
+            "interactiveDeviceAvailabilityEstimate": "30s",
+            "versionId": "27"
+          }
+        ],
+        "screenDensity": 360,
+        "screenX": 720,
+        "screenY": 1280,
+        "supportedAbis": [
+          "arm64-v8a",
+          "armeabi",
+          "armeabi-v7a"
+        ],
+        "supportedVersionIds": [
+          "27"
+        ],
+        "thumbnailUrl": "https://lh3.googleusercontent.com/42SDlSVVJ2jXKlHp4P4iHDP4Alsrc4FIF5gW2N5t8RkEFcUVNgd_47K1qUilHdvPd86R9XCxXq1n"
+      },
+      "androidVersion": {
+        "apiLevel": 27,
+        "codeName": "Oreo MR1",
+        "id": "27",
+        "releaseDate": {
+          "day": 4,
+          "month": 12,
+          "year": 2017
+        },
+        "versionString": "8.1.x"
+      },
+      "selectedVersion": "27",
+      "locale": "es",
+      "orientation": "portrait"
+    }
+  ],
+  "build": {
+    "builtAt": "2026-11-15T19:14:34.573474+00:00",
+    "compiledCommit": "e1db6977f348f416db3565e26390d012fbfaf29d",
+    "developCommit": "41e70aa109422b7bbb9b3a24d298706212e3ecd7",
+    "pr136Commit": "12d1c20960b9c0a75b6430c95ac8722841e95d5d",
+    "pr137Commit": "18a1b92871424a998b81de111b8a9d5ac993bd30",
+    "command": "./gradlew assembleDebug -Pvinilos.baseUrl=https://backvynils-grupo5.onrender.com/",
+    "sha256": "c4cc9bb959008052de0eb1cae8035799b38f77a1b5d6b7844772bc5e7b6a55fb"
+  },
+  "backendPretest": [
+    {
+      "attempt": 1,
+      "at": "2026-11-15T19:42:34.823512+00:00",
+      "result": "200 22.388531",
+      "error": ""
+    }
+  ],
+  "integratedDevelopCommit": "933d2b8fe1b2b0c64f59a93673d63fe7e8e17e3b",
+  "treeMatchesIntegratedDevelop": true,
+  "tool": {
+    "name": "Google Cloud CLI",
+    "version": "593.0.0",
+    "timeoutSeconds": 300,
+    "locale": "es",
+    "orientation": "portrait",
+    "performanceMetrics": true,
+    "recordVideo": true,
+    "attemptsPerDevice": 1
+  },
+  "devices": [
+    {
+      "id": "shiba",
+      "name": "Google Pixel 8",
+      "bucketDirectory": "shiba-34-es-portrait",
+      "startupSeconds": 0.567,
+      "startupSource": "logcat",
+      "perfSummary": {
+        "projectId": "vinilos-sprint-2",
+        "historyId": "bh.83dd699809fc8f23",
+        "executionId": "5886111069452124945",
+        "stepId": "bs.d9c8e6715ed8dd68",
+        "perfMetrics": [
+          "memory",
+          "network",
+          "cpu"
+        ],
+        "perfEnvironment": {
+          "cpuInfo": {
+            "cpuProcessor": "aarch64",
+            "cpuSpeedInGhz": 1.704,
+            "numberOfCores": 9
+          },
+          "memoryInfo": {
+            "memoryTotalInKibibyte": "7781512",
+            "memoryCapInKibibyte": "262144"
+          }
+        },
+        "appStartTime": {
+          "initialDisplayTime": {},
+          "fullyDrawnTime": {}
+        },
+        "graphicsStats": {}
+      },
+      "outcome": {
+        "summary": "failure",
+        "failureDetail": {
+          "crashed": true
+        }
+      },
+      "screenshots": [
+        {
+          "hu": "HU01",
+          "source": "shiba-34-es-portrait/artifacts/1.png",
+          "file": "shiba-hu01.png",
+          "sha256": "ef7990cc281f973f4c4d2c6ef57faffd2afddded35b91561ec15323be6abcc15"
+        },
+        {
+          "hu": "HU02",
+          "source": "shiba-34-es-portrait/artifacts/12.png",
+          "file": "shiba-hu02.png",
+          "sha256": "067a1c984053f2fb064799b3bd4351e5b3f18f94cab5debd18834291896b4408"
+        },
+        {
+          "hu": "HU03",
+          "source": "shiba-34-es-portrait/artifacts/4.png",
+          "file": "shiba-hu03.png",
+          "sha256": "36b5067e3262953767c0a87f208e113007a07e738295125f785aff09b71571cb"
+        },
+        {
+          "hu": "HU04",
+          "source": "shiba-34-es-portrait/artifacts/11.png",
+          "file": "shiba-hu04.png",
+          "sha256": "928d04df69ca11c080d4d7f5c0f4cecee3f633d32e910e225a705020de0f5954"
+        },
+        {
+          "hu": "HU05",
+          "source": "shiba-34-es-portrait/artifacts/3.png",
+          "file": "shiba-hu05.png",
+          "sha256": "d53327e8d1113ae9d1e68095d981eba3d60f47b562a93a7c85066e0271fe82dd"
+        }
+      ],
+      "issues": [
+        {
+          "key": "shiba-0",
+          "device": "shiba",
+          "occurrence": 0,
+          "sequence": 76,
+          "url": "https://github.com/manuel-jose-marin/vinilos-mobile/issues/138",
+          "title": "bug: crash al salir del catálogo en Google Pixel 8 (API 34, ocurrencia 1)",
+          "crashFile": "data_app_crash_0_co_edu_uniandes_vinilos.txt",
+          "action": {
+            "sequence": 76,
+            "sourceScreenId": "1",
+            "destinationScreenId": "0",
+            "startTimeSeconds": 231.816,
+            "endTimeSeconds": 233.134,
+            "executionResult": "SUCCESS",
+            "system": {
+              "type": "BACK"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "java",
+      "name": "Motorola G20",
+      "bucketDirectory": "java-30-es-portrait",
+      "startupSeconds": 1.629,
+      "startupSource": "Tool Results appStartTime.initialDisplayTime, contrastado con logcat",
+      "perfSummary": {
+        "projectId": "vinilos-sprint-2",
+        "historyId": "bh.83dd699809fc8f23",
+        "executionId": "5886111069452124945",
+        "stepId": "bs.e54d2010598036bb",
+        "perfMetrics": [
+          "cpu",
+          "memory",
+          "network"
+        ],
+        "perfEnvironment": {
+          "cpuInfo": {
+            "cpuProcessor": "aarch64",
+            "cpuSpeedInGhz": 1.82,
+            "numberOfCores": 8
+          },
+          "memoryInfo": {
+            "memoryTotalInKibibyte": "3570364",
+            "memoryCapInKibibyte": "196608"
+          }
+        },
+        "appStartTime": {
+          "initialDisplayTime": {
+            "seconds": "1",
+            "nanos": 629000000
+          },
+          "fullyDrawnTime": {}
+        },
+        "graphicsStats": {}
+      },
+      "outcome": {
+        "summary": "failure",
+        "failureDetail": {
+          "crashed": true
+        }
+      },
+      "screenshots": [
+        {
+          "hu": "HU01",
+          "source": "java-30-es-portrait/artifacts/1.png",
+          "file": "java-hu01.png",
+          "sha256": "36d96bdfd9f65f5d158b67ec62dc0accb1a0e1d6bc56990525bb96eb9f005b9c"
+        },
+        {
+          "hu": "HU02",
+          "source": "java-30-es-portrait/artifacts/8.png",
+          "file": "java-hu02.png",
+          "sha256": "9a1106f46c7a1d94b23772d3b5a413f5260b681636fa28c49ce5a1a7451fb629"
+        },
+        {
+          "hu": "HU03",
+          "source": "java-30-es-portrait/artifacts/6.png",
+          "file": "java-hu03.png",
+          "sha256": "c4e59d89bdd3351dbca2c4d8ae2b6aae02208a2cb35ae4d1dde5130704cbe515"
+        },
+        {
+          "hu": "HU04",
+          "source": "java-30-es-portrait/artifacts/7.png",
+          "file": "java-hu04.png",
+          "sha256": "66db657bdd630e371f87af3fef4f2627ce68a7d993fe1ece59458ac16dc32fab"
+        },
+        {
+          "hu": "HU05",
+          "source": "java-30-es-portrait/artifacts/4.png",
+          "file": "java-hu05.png",
+          "sha256": "68f827e35786aa71f812c1bf9e1b9369ed45a986150c2e86530e1a8833aa9cd7"
+        }
+      ],
+      "issues": [
+        {
+          "key": "java-0",
+          "device": "java",
+          "occurrence": 0,
+          "sequence": 29,
+          "url": "https://github.com/manuel-jose-marin/vinilos-mobile/issues/139",
+          "title": "bug: crash al salir del catálogo en Motorola G20 (API 30, ocurrencia 1)",
+          "crashFile": "data_app_crash_0_co_edu_uniandes_vinilos.txt",
+          "action": {
+            "sequence": 29,
+            "sourceScreenId": "1",
+            "destinationScreenId": "0",
+            "startTimeSeconds": 93.296,
+            "endTimeSeconds": 94.669,
+            "executionResult": "SUCCESS",
+            "system": {
+              "type": "BACK"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "F01L",
+      "name": "FUJITSU F-01L",
+      "bucketDirectory": "F01L-27-es-portrait",
+      "startupSeconds": 2.719,
+      "startupSource": "Tool Results appStartTime.initialDisplayTime, contrastado con logcat",
+      "perfSummary": {
+        "projectId": "vinilos-sprint-2",
+        "historyId": "bh.83dd699809fc8f23",
+        "executionId": "5886111069452124945",
+        "stepId": "bs.bed7c723fcea79f9",
+        "perfMetrics": [
+          "cpu",
+          "network",
+          "memory"
+        ],
+        "perfEnvironment": {
+          "cpuInfo": {
+            "cpuProcessor": "aarch64",
+            "cpuSpeedInGhz": 1.8048,
+            "numberOfCores": 8
+          },
+          "memoryInfo": {
+            "memoryTotalInKibibyte": "2912820",
+            "memoryCapInKibibyte": "262144"
+          }
+        },
+        "appStartTime": {
+          "initialDisplayTime": {
+            "seconds": "2",
+            "nanos": 719000000
+          },
+          "fullyDrawnTime": {}
+        },
+        "graphicsStats": {}
+      },
+      "outcome": {
+        "summary": "failure",
+        "failureDetail": {
+          "crashed": true
+        }
+      },
+      "screenshots": [
+        {
+          "hu": "HU01",
+          "source": "F01L-27-es-portrait/artifacts/1.png",
+          "file": "F01L-hu01.png",
+          "sha256": "c59b57c685a742e89db7cf467710e500d2040f374344a4dc3fde91c8a82dbf62"
+        },
+        {
+          "hu": "HU02",
+          "source": "F01L-27-es-portrait/artifacts/19.png",
+          "file": "F01L-hu02.png",
+          "sha256": "e8ecad44a5a4463c3484e32f05f6c6321f3903befe17e669bd7537a9aa87e5d8"
+        },
+        {
+          "hu": "HU03",
+          "source": "F01L-27-es-portrait/artifacts/3.png",
+          "file": "F01L-hu03.png",
+          "sha256": "87f5be9d1aaecc9b43d6c0810b159ee28a5ab2743f1e1e2f2fed70465f81e1e0"
+        },
+        {
+          "hu": "HU04",
+          "source": "F01L-27-es-portrait/artifacts/16.png",
+          "file": "F01L-hu04.png",
+          "sha256": "47dae3f348f450e5664b578512008ee5a3f78c3a85409add3cf05673c6ed6324"
+        },
+        {
+          "hu": "HU05",
+          "source": "F01L-27-es-portrait/artifacts/2.png",
+          "file": "F01L-hu05.png",
+          "sha256": "2fbd64b8da9cc0d6a0d02f446c498ce4dbf658f45114aa2e411f987c22d9de4b"
+        }
+      ],
+      "issues": [
+        {
+          "key": "F01L-0",
+          "device": "F01L",
+          "occurrence": 0,
+          "sequence": 24,
+          "url": "https://github.com/manuel-jose-marin/vinilos-mobile/issues/140",
+          "title": "bug: crash al salir del catálogo en FUJITSU F-01L (API 27, ocurrencia 1)",
+          "crashFile": "data_app_crash_0_co_edu_uniandes_vinilos.txt",
+          "action": {
+            "sequence": 24,
+            "sourceScreenId": "1",
+            "destinationScreenId": "9",
+            "startTimeSeconds": 123.464,
+            "endTimeSeconds": 124.847,
+            "executionResult": "SUCCESS",
+            "system": {
+              "type": "BACK"
+            }
+          }
+        },
+        {
+          "key": "F01L-1",
+          "device": "F01L",
+          "occurrence": 1,
+          "sequence": 31,
+          "url": "https://github.com/manuel-jose-marin/vinilos-mobile/issues/141",
+          "title": "bug: crash al salir del catálogo en FUJITSU F-01L (API 27, ocurrencia 2)",
+          "crashFile": "data_app_crash_1_co_edu_uniandes_vinilos.txt",
+          "action": {
+            "sequence": 31,
+            "sourceScreenId": "1",
+            "destinationScreenId": "11",
+            "startTimeSeconds": 151.131,
+            "endTimeSeconds": 152.372,
+            "executionResult": "SUCCESS",
+            "system": {
+              "type": "BACK"
+            }
+          }
+        },
+        {
+          "key": "F01L-2",
+          "device": "F01L",
+          "occurrence": 2,
+          "sequence": 51,
+          "url": "https://github.com/manuel-jose-marin/vinilos-mobile/issues/142",
+          "title": "bug: crash al salir del catálogo en FUJITSU F-01L (API 27, ocurrencia 3)",
+          "crashFile": "data_app_crash_2_co_edu_uniandes_vinilos.txt",
+          "action": {
+            "sequence": 51,
+            "sourceScreenId": "1",
+            "destinationScreenId": "11",
+            "startTimeSeconds": 237.861,
+            "endTimeSeconds": 239.127,
+            "executionResult": "SUCCESS",
+            "system": {
+              "type": "BACK"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
