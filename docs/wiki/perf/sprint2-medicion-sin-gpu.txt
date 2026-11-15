@@ -1,0 +1,18 @@
+# Medición sin aceleración gráfica · develop con la configuración original del AVD (hw.gpu.enabled = no), 5 corridas
+# Salida de: python3 scripts/perf/measure.py --runs 5 --label "develop (antes de #114)"
+# Versión anterior del script: sin métricas ui_* y con la columna graphics_mb, que el emulador reporta en 0.
+EXIT=0
+
+develop (antes de #114) — mediana de 5 corridas (sdk_gphone64_arm64 · API 35)
+  startup: total_ms=4249
+  albums_scroll: frames=46, janky_pct=97.7, p50_ms=200, p90_ms=300, p99_ms=400, cpu_ms=4310, cpu_pct=63.8
+  albums_memory: pss_mb=73.3, java_mb=13.8, native_mb=23.1, graphics_mb=0, views=141, activities=1
+  album_detail: frames=45, janky_pct=80.4, p50_ms=32, p90_ms=77, p99_ms=125, cpu_ms=1700, cpu_pct=5.1
+  album_detail_memory: pss_mb=85.6, java_mb=15.9, native_mb=24.6, graphics_mb=0, views=105, activities=1
+  artists_scroll: frames=72, janky_pct=74, p50_ms=85, p90_ms=250, p99_ms=450, cpu_ms=3900, cpu_pct=61
+  artists_memory: pss_mb=87.2, java_mb=16.3, native_mb=24.7, graphics_mb=0, views=124, activities=1
+  artist_detail: frames=55, janky_pct=77.8, p50_ms=34, p90_ms=61, p99_ms=105, cpu_ms=1620, cpu_pct=4
+  artist_detail_memory: pss_mb=88.8, java_mb=16.2, native_mb=26.3, graphics_mb=0, views=100, activities=1
+  collectors_scroll: frames=106, janky_pct=49.1, p50_ms=36, p90_ms=200, p99_ms=300, cpu_ms=2700, cpu_pct=45.7
+  collectors_memory: pss_mb=87, java_mb=16.4, native_mb=24, graphics_mb=0, views=127, activities=1
+

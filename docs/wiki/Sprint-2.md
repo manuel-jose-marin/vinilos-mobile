@@ -69,7 +69,7 @@ Los puntos tampoco miden todo el esfuerzo. De los 27 issues del milestone, 15 no
 - Reportes de defectos: _pendiente_
 
 ## Análisis de desempeño
-_Pendiente._
+- [[Análisis de desempeño del Sprint 2|Analisis-desempeno-Sprint-2]]: arranque, fluidez, CPU y memoria de HU01 a HU05, antes y después de #114
 
 ## Micro-optimizaciones
 - [[Micro-optimizaciones del Sprint 2|Micro-optimizaciones-Sprint-2]]: hallazgos de Android Lint corregidos, antes y después
