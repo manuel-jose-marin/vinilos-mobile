@@ -25,7 +25,15 @@ class ArtistAdapter(
         holder.bind(getItem(position))
     }
 
+    /** Libera la imagen de la fila reciclada para que Glide devuelva su bitmap al pool. */
+    override fun onViewRecycled(holder: ArtistViewHolder) {
+        super.onViewRecycled(holder)
+        holder.clearImage()
+    }
+
     inner class ArtistViewHolder(private val binding: ItemArtistBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun clearImage() = Glide.with(binding.ivArtistImage).clear(binding.ivArtistImage)
 
         fun bind(artist: Artist) {
             val context = binding.root.context
