@@ -9,6 +9,7 @@ import co.edu.uniandes.vinilos.models.Artist
 import co.edu.uniandes.vinilos.models.ArtistType
 import co.edu.uniandes.vinilos.repositories.ArtistRepository
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 /** Filtro del listado de artistas (botón segmentado Todos / Músicos / Bandas). */
@@ -40,6 +41,9 @@ class ArtistListViewModel(private val repository: ArtistRepository) : ViewModel(
     private val _state = MutableLiveData<ArtistListState>()
     val state: LiveData<ArtistListState> = _state
 
+    /** Carga en curso; se cancela si se pide otra antes de que termine. */
+    private var loadJob: Job? = null
+
     /** Lista completa ya descargada; los filtros se aplican sobre ella sin volver a llamar a la API. */
     private var allArtists: List<Artist> = emptyList()
 
@@ -53,8 +57,11 @@ class ArtistListViewModel(private val repository: ArtistRepository) : ViewModel(
 
     /** Pide músicos y bandas al repositorio; también se usa para "Reintentar" tras un error. */
     fun loadArtists() {
+        // Un reintento cancela la carga anterior: así no quedan dos peticiones a la vez ni una respuesta
+        // vieja que reemplace a la nueva.
+        loadJob?.cancel()
         _state.value = ArtistListState.Loading
-        viewModelScope.launch {
+        loadJob = viewModelScope.launch {
             try {
                 allArtists = repository.getArtists()
                 showArtists()

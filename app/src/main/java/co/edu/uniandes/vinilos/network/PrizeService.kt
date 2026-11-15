@@ -12,7 +12,8 @@ interface PrizeService {
 
 class NetworkPrizeService(private val network: NetworkServiceAdapter) : PrizeService {
 
-    override suspend fun getPrizes(): List<Prize> = parsePrizes(network.getArray("prizes"))
+    override suspend fun getPrizes(): List<Prize> =
+        parseOffMainThread(network.getArray("prizes")) { parsePrizes(it) }
 
     companion object {
         fun parsePrizes(json: JSONArray): List<Prize> = json.mapObjects { parsePrize(it) }

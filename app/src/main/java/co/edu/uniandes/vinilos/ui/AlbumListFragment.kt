@@ -38,6 +38,8 @@ class AlbumListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = AlbumAdapter(::openAlbumDetail)
+        // El tamaño de la lista no depende de su contenido: así un cambio de datos no vuelve a medir la pantalla.
+        binding.rvAlbums.setHasFixedSize(true)
         binding.rvAlbums.adapter = adapter
         binding.btnRetry.setOnClickListener { viewModel.loadAlbums() }
 

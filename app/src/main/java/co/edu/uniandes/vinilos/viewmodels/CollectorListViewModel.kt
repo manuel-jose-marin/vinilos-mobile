@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import co.edu.uniandes.vinilos.models.Collector
 import co.edu.uniandes.vinilos.repositories.CollectorRepository
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 /** Estados de la pantalla del listado de coleccionistas; la vista muestra solo uno a la vez. */
@@ -23,14 +24,20 @@ class CollectorListViewModel(private val repository: CollectorRepository) : View
     private val _state = MutableLiveData<CollectorListState>()
     val state: LiveData<CollectorListState> = _state
 
+    /** Carga en curso; se cancela si se pide otra antes de que termine. */
+    private var loadJob: Job? = null
+
     init {
         loadCollectors()
     }
 
     /** Pide el listado al repositorio; también se usa para "Reintentar" tras un error. */
     fun loadCollectors() {
+        // Un reintento cancela la carga anterior: así no quedan dos peticiones a la vez ni una respuesta
+        // vieja que reemplace a la nueva.
+        loadJob?.cancel()
         _state.value = CollectorListState.Loading
-        viewModelScope.launch {
+        loadJob = viewModelScope.launch {
             _state.value = try {
                 val collectors = repository.getCollectors()
                 if (collectors.isEmpty()) CollectorListState.Empty else CollectorListState.Content(collectors)

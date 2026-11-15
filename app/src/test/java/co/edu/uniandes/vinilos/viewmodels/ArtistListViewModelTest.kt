@@ -4,15 +4,18 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import co.edu.uniandes.vinilos.fakes.FakeArtistService
 import co.edu.uniandes.vinilos.fakes.FakeArtistService.Companion.artist
 import co.edu.uniandes.vinilos.fakes.FakePrizeService
+import co.edu.uniandes.vinilos.models.Artist
 import co.edu.uniandes.vinilos.models.ArtistType.BAND
 import co.edu.uniandes.vinilos.models.ArtistType.MUSICIAN
 import co.edu.uniandes.vinilos.repositories.ArtistRepository
 import com.android.volley.VolleyError
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
@@ -151,5 +154,22 @@ class ArtistListViewModelTest {
 
         assertEquals(ArtistFilter.MUSICIANS, vm.content().filter)
         assertEquals(listOf(ruben), vm.content().artists)
+    }
+
+    /** Si el usuario reintenta mientras carga, la respuesta tardía de la primera petición no reemplaza a la nueva. */
+    @Test
+    fun retry_whileLoading_cancelsThePreviousRequest() = runTest(dispatcher) {
+        val slowAnswer = CompletableDeferred<List<Artist>>()
+        val service = FakeArtistService(musicians = { slowAnswer.await() }, bands = { listOf(queen) })
+        val vm = viewModel(service)
+        runCurrent()
+
+        service.musicians = { listOf(ruben) }
+        vm.loadArtists()
+        advanceUntilIdle()
+        slowAnswer.complete(emptyList())
+        advanceUntilIdle()
+
+        assertEquals(listOf(queen, ruben), vm.content().artists)
     }
 }

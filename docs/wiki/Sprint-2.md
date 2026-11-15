@@ -74,6 +74,9 @@ _Pendiente._
 ## Micro-optimizaciones
 - [[Micro-optimizaciones del Sprint 2|Micro-optimizaciones-Sprint-2]]: hallazgos de Android Lint corregidos, antes y después
 
+## Corrutinas y memoria
+- [[Corrutinas y memoria del Sprint 2|Corrutinas-y-memoria-Sprint-2]]: trabajo fuera del hilo principal y buenas prácticas de memoria en HU01 a HU05
+
 ## APK y release
 _Pendiente._
 

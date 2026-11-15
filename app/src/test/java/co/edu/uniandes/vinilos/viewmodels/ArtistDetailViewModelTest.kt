@@ -10,11 +10,13 @@ import co.edu.uniandes.vinilos.models.ArtistType.BAND
 import co.edu.uniandes.vinilos.models.ArtistType.MUSICIAN
 import co.edu.uniandes.vinilos.repositories.ArtistRepository
 import com.android.volley.VolleyError
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
@@ -112,5 +114,22 @@ class ArtistDetailViewModelTest {
 
         assertTrue(vm.state.value is ArtistDetailState.Content)
         assertEquals(listOf(MUSICIAN to 100, MUSICIAN to 100), service.detailRequests)
+    }
+
+    /** Si el usuario reintenta mientras carga, la respuesta tardía de la primera petición no reemplaza a la nueva. */
+    @Test
+    fun retry_whileLoading_cancelsThePreviousRequest() = runTest(dispatcher) {
+        val slowAnswer = CompletableDeferred<List<Artist>>()
+        val service = service(musicians = { slowAnswer.await() })
+        val vm = viewModel(100, MUSICIAN, service)
+        runCurrent()
+
+        service.musicians = { listOf(ruben) }
+        vm.loadArtist()
+        advanceUntilIdle()
+        slowAnswer.complete(listOf(ruben.copy(name = "Respuesta vieja")))
+        advanceUntilIdle()
+
+        assertEquals("Rubén Blades", (vm.state.value as ArtistDetailState.Content).artist.name)
     }
 }

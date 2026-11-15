@@ -16,9 +16,11 @@ interface AlbumService {
 
 class NetworkAlbumService(private val network: NetworkServiceAdapter) : AlbumService {
 
-    override suspend fun getAlbums(): List<Album> = parseAlbums(network.getArray("albums"))
+    override suspend fun getAlbums(): List<Album> =
+        parseOffMainThread(network.getArray("albums")) { parseAlbums(it) }
 
-    override suspend fun getAlbum(id: Int): Album = parseAlbum(network.getObject("albums/$id"))
+    override suspend fun getAlbum(id: Int): Album =
+        parseOffMainThread(network.getObject("albums/$id")) { parseAlbum(it) }
 
     companion object {
         fun parseAlbums(json: JSONArray): List<Album> = json.mapObjects { parseAlbum(it) }
