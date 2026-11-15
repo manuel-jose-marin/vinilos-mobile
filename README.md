@@ -7,7 +7,7 @@ App nativa Android en Kotlin para **Vinilos**, una tienda de discos de vinilo. P
 | Sprint | Historias | Estado |
 |---|---|---|
 | Sprint 1 (19 oct a 1 nov) | HU01 Consultar el catálogo de álbumes · HU02 Consultar el detalle de un álbum | Implementado |
-| Sprint 2 (2 a 15 nov) | HU03, HU04 y HU05: artistas y coleccionistas | Pendiente |
+| Sprint 2 (2 a 15 nov) | HU03 Consultar el listado de artistas · HU04 Consultar el detalle de un artista · HU05 Consultar el listado de coleccionistas | Implementado |
 | Sprint 3 (16 a 29 nov) | HU06, HU07 y HU08: coleccionista, crear álbum y asociar tracks | Pendiente |
 
 ## Requisitos
@@ -132,6 +132,7 @@ La documentación del proyecto está en la [wiki](https://github.com/manuel-jose
 - [Diseño arquitectónico del Sprint 1](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Diseno-arquitectonico-Sprint-1)
 - [Estrategia de pruebas](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Estrategia-pruebas-Sprint-1) e [inventario de pruebas](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Inventario-pruebas-Sprint-1)
 - [Retrospectiva del Sprint 1](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Retrospectiva-Sprint-1)
+- [Página del Sprint 2](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Sprint-2): [diseño arquitectónico](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Diseno-arquitectonico-Sprint-2), [estrategia de pruebas](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Estrategia-pruebas-Sprint-2), [inventario de pruebas](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Inventario-pruebas-Sprint-2), [micro-optimizaciones](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Micro-optimizaciones-Sprint-2), [corrutinas y memoria](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Corrutinas-y-memoria-Sprint-2) y [análisis de desempeño](https://github.com/manuel-jose-marin/vinilos-mobile/wiki/Analisis-desempeno-Sprint-2)
 
 Los archivos de la wiki viven en `docs/wiki` y se publican solos al fusionar en `develop`; no se edita la wiki directamente en GitHub.
 

@@ -78,7 +78,8 @@ Los puntos tampoco miden todo el esfuerzo. De los 27 issues del milestone, 15 no
 - [[Corrutinas y memoria del Sprint 2|Corrutinas-y-memoria-Sprint-2]]: trabajo fuera del hilo principal y buenas prácticas de memoria en HU01 a HU05
 
 ## APK y release
-_Pendiente._
+- Release [v2.0.0](https://github.com/manuel-jose-marin/vinilos-mobile/releases/tag/v2.0.0) sobre `main`, con HU01 a HU05.
+- APK: [`apk/vinilos-mobile-v2.0.0.apk`](https://github.com/manuel-jose-marin/vinilos-mobile/blob/main/apk/vinilos-mobile-v2.0.0.apk), también adjunto al release. Conectado a `https://backvynils-grupo5.onrender.com/`, `minSdk 21` (Android 5.0) y `targetSdk 35`.
 
 ## Retrospectiva
 _Pendiente._
