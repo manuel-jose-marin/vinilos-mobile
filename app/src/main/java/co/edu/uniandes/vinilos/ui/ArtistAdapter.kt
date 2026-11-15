@@ -33,7 +33,7 @@ class ArtistAdapter(
 
     inner class ArtistViewHolder(private val binding: ItemArtistBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun clearImage() = Glide.with(binding.ivArtistImage).clear(binding.ivArtistImage)
+        fun clearImage() = clearGlideImage(binding.ivArtistImage)
 
         fun bind(artist: Artist) {
             val context = binding.root.context

@@ -1,5 +1,6 @@
 package co.edu.uniandes.vinilos
 
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -22,6 +23,7 @@ import co.edu.uniandes.vinilos.utils.itemCount
 import co.edu.uniandes.vinilos.utils.textAtPosition
 import co.edu.uniandes.vinilos.utils.waitUntilDisplayed
 import org.hamcrest.Matchers.allOf
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -84,5 +86,16 @@ class AlbumListTest {
 
         onView(itemAtPosition(R.id.rv_albums, lastPosition))
             .check(isCompletelyAbove(R.id.fab_new_album))
+    }
+
+    /**
+     * Regresión de #138: al salir de la app desde el catálogo, la Activity se destruye, se reciclan las tarjetas
+     * y se liberan sus portadas sin lanzar "You cannot start a load for a destroyed activity".
+     */
+    @Test
+    fun leavingTheAppFromCatalog_doesNotCrash() {
+        activityRule.scenario.moveToState(Lifecycle.State.DESTROYED)
+
+        assertEquals(Lifecycle.State.DESTROYED, activityRule.scenario.state)
     }
 }

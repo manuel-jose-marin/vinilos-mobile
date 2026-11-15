@@ -32,7 +32,7 @@ class AlbumAdapter(
 
     inner class AlbumViewHolder(private val binding: ItemAlbumBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun clearImage() = Glide.with(binding.ivAlbumCover).clear(binding.ivAlbumCover)
+        fun clearImage() = clearGlideImage(binding.ivAlbumCover)
 
         fun bind(album: Album) {
             val context = binding.root.context

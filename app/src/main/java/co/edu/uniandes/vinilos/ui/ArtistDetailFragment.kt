@@ -181,7 +181,7 @@ class ArtistDetailFragment : Fragment() {
 
         inner class ViewHolder(private val binding: ItemArtistAlbumBinding) : RecyclerView.ViewHolder(binding.root) {
 
-            fun clearImage() = Glide.with(binding.ivArtistAlbumCover).clear(binding.ivArtistAlbumCover)
+            fun clearImage() = clearGlideImage(binding.ivArtistAlbumCover)
 
             fun bind(album: Album) {
                 binding.tvArtistAlbumName.text = album.name
