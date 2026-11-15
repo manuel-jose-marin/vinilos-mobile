@@ -25,7 +25,7 @@ import org.junit.runner.RunWith
 
 /**
  * Pruebas E2E de HU05 - Consultar listado de coleccionistas, contra BackVynils.
- * Caso del inventario del Sprint 2: HU05-01.
+ * Casos del inventario del Sprint 2: HU05-01 y HU05-06.
  *
  * Requisitos: BackVynils corriendo con sus datos iniciales (incluye a "Manolo Bellon") y las
  * animaciones del dispositivo desactivadas.
@@ -57,7 +57,7 @@ class CollectorListTest {
         )
     }
 
-    /** HU05-01: los datos de un coleccionista conocido coinciden con los de BackVynils. */
+    /** HU05-01 y HU05-06: los datos de Manolo Bellon, con sus iniciales, coinciden con BackVynils. */
     @Test
     fun collectorRowShowsTheServerData() {
         val manolo = hasDescendant(withText("Manolo Bellon"))

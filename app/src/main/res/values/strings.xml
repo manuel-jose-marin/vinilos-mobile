@@ -50,6 +50,11 @@
     <string name="artists_empty">Aún no hay artistas registrados</string>
     <string name="artists_filter_empty">No hay artistas en esta categoría</string>
     <string name="artists_error">No pudimos cargar los artistas</string>
+    <string name="artist_album_year_label">%1$s · %2$s</string>
+    <plurals name="artists_count">
+        <item quantity="one">%1$d artista</item>
+        <item quantity="other">%1$d artistas</item>
+    </plurals>
     <string name="artist_filter_all">Todos</string>
     <string name="artist_filter_musicians">Músicos</string>
     <string name="artist_filter_bands">Bandas</string>

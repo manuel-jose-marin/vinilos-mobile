@@ -28,8 +28,7 @@ import org.junit.runner.RunWith
 
 /**
  * Pruebas E2E de HU04 - Consultar la información detallada de un artista, contra BackVynils.
- * Casos del inventario del Sprint 2: HU04-01, HU04-02, HU04-03, HU04-04 y HU04-07, más los criterios
- * 3 ("Leer más") y 5 (abrir un álbum del carrusel) de la historia.
+ * Casos del inventario del Sprint 2: HU04-01, HU04-02, HU04-03, HU04-04, HU04-07, HU04-08 y HU04-09.
  *
  * Requisitos: BackVynils con sus datos iniciales (el músico Rubén Blades y la banda Queen, con sus
  * álbumes y premios), `scripts/seed-backvynils.sh` ejecutado (agrega a Freddie Mercury como integrante
@@ -72,7 +71,7 @@ class ArtistDetailTest {
         }
     }
 
-    /** Criterio 5 de HU04: tocar un álbum del carrusel abre su detalle. */
+    /** HU04-09: tocar un álbum del carrusel abre su detalle. */
     @Test
     fun tappingAnAlbumOpensItsDetail() {
         openArtist(RUBEN_BLADES)
@@ -115,7 +114,7 @@ class ArtistDetailTest {
             .check(matches(hasDescendant(allOf(withId(R.id.tv_member_name), withText("Freddie Mercury")))))
     }
 
-    /** Criterio 3 de HU04: "Leer más" despliega la descripción completa y desaparece. */
+    /** HU04-08: "Leer más" despliega la descripción completa y desaparece. */
     @Test
     fun readMoreExpandsTheDescription() {
         openArtist(QUEEN)
