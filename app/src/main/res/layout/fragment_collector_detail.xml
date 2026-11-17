@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    HU06 - Detalle de coleccionista.
+    Estados: cargando (progress_collector_detail), contenido (scroll_collector_detail) y error (layout_collector_error).
+    El fragmento muestra solo uno a la vez; por defecto se ve el estado de carga.
+    Cada sección (artistas favoritos, colección y comentarios) tiene su mensaje de lista vacía.
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_collector_detail"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationContentDescription="@string/action_back"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:title="@string/collector_detail_title"
+            app:titleTextColor="?attr/colorOnSurface" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- Contenido -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_collector_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/screen_margin"
+                android:paddingBottom="@dimen/screen_margin">
+
+                <!-- Encabezado: iniciales, nombre, número de álbumes, teléfono y correo (criterio 1) -->
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Material3.CardView.Filled"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin"
+                    android:layout_marginEnd="@dimen/screen_margin"
+                    app:cardCornerRadius="@dimen/card_corner_radius">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="@dimen/screen_margin">
+
+                        <!-- BackVynils no tiene foto de coleccionistas: el avatar son sus iniciales, como en HU05.
+                             El lector de pantalla ya lee el nombre, así que se omiten. -->
+                        <TextView
+                            android:id="@+id/tv_collector_detail_initials"
+                            android:layout_width="@dimen/collector_detail_avatar_size"
+                            android:layout_height="@dimen/collector_detail_avatar_size"
+                            android:background="@drawable/bg_collector_initials"
+                            android:gravity="center"
+                            android:importantForAccessibility="no"
+                            android:maxLines="1"
+                            android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                            android:textColor="?attr/colorOnPrimaryContainer"
+                            android:textStyle="bold"
+                            tools:text="MB" />
+
+                        <TextView
+                            android:id="@+id/tv_collector_detail_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                            android:textColor="?attr/colorOnSurface"
+                            tools:text="Manolo Bellon" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_collector_albums_count"
+                            style="@style/Widget.Material3.Chip.Assist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:clickable="false"
+                            app:chipBackgroundColor="?attr/colorSecondaryContainer"
+                            app:chipIcon="@drawable/ic_nav_albums"
+                            app:chipIconTint="?attr/colorSecondary"
+                            app:chipStrokeWidth="0dp"
+                            tools:text="1 álbum" />
+
+                        <!-- Teléfono y correo: al tocarlos se abre el marcador o la app de correo (criterios 2 y 3) -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_collector_phone"
+                            style="@style/Widget.Material3.Button.TonalButton.Icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:minHeight="48dp"
+                            app:icon="@drawable/ic_phone"
+                            tools:text="3502457896" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_collector_email"
+                            style="@style/Widget.Material3.Button.TonalButton.Icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:minHeight="48dp"
+                            app:icon="@drawable/ic_email"
+                            tools:text="manollo@caracol.com.co" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Artistas favoritos: carrusel horizontal (criterios 4 y 5) -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="@dimen/screen_margin"
+                    android:text="@string/collector_favorite_performers_header"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_collector_performers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/grid_padding"
+                    android:paddingEnd="@dimen/grid_padding"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/item_collector_performer" />
+
+                <TextView
+                    android:id="@+id/tv_collector_performers_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/screen_margin"
+                    android:text="@string/collector_favorite_performers_empty"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:visibility="gone" />
+
+                <!-- Colección: un item_collector_album por álbum (criterios 6 y 7) -->
+                <TextView
+                    android:id="@+id/tv_collector_albums_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="@dimen/screen_margin"
+                    android:text="@string/collector_albums_header"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:textColor="?attr/colorOnSurface"
+                    tools:text="Colección · 1" />
+
+                <LinearLayout
+                    android:id="@+id/layout_collector_albums"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/screen_margin"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/tv_collector_albums_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/screen_margin"
+                    android:text="@string/collector_albums_empty"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:visibility="gone" />
+
+                <!-- Comentarios de solo lectura, sin opción para escribir (criterio 8); reutiliza item_comment -->
+                <TextView
+                    android:id="@+id/tv_collector_comments_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="@dimen/screen_margin"
+                    android:text="@string/collector_comments_header"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:textColor="?attr/colorOnSurface"
+                    tools:text="Comentarios · 2" />
+
+                <LinearLayout
+                    android:id="@+id/layout_collector_comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/screen_margin"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/tv_collector_comments_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/screen_margin"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/screen_margin"
+                    android:text="@string/collector_comments_empty"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- Cargando -->
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_collector_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/collector_detail_loading"
+            android:indeterminate="true"
+            tools:visibility="gone" />
+
+        <!-- Error de carga con "Reintentar" (criterio 9) -->
+        <LinearLayout
+            android:id="@+id/layout_collector_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_collector_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/collector_detail_error"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="?attr/colorOnSurface" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_collector_retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:minHeight="48dp"
+                android:text="@string/action_retry" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

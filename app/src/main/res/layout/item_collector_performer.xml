@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    HU06 - Artista favorito del carrusel del detalle de coleccionista: foto circular y nombre.
+    Todo el ítem es tocable y abre el detalle del artista (criterio 5).
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_collector_performer"
+    android:layout_width="@dimen/collector_performer_width"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/grid_padding">
+
+    <!-- El lector de pantalla ya lee el nombre debajo, así que la foto no se anuncia. -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_collector_performer_image"
+        android:layout_width="@dimen/collector_performer_image_size"
+        android:layout_height="@dimen/collector_performer_image_size"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Vinilos.Circle"
+        app:srcCompat="@drawable/ic_album_placeholder" />
+
+    <TextView
+        android:id="@+id/tv_collector_performer_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:textColor="?attr/colorOnSurface"
+        tools:text="Rubén Blades Bellido de Luna" />
+
+</LinearLayout>
