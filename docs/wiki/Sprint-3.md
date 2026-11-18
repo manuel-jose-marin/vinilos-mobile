@@ -6,7 +6,7 @@
 _Pendiente._
 
 ## Estrategia de pruebas
-_Pendiente._
+[Estrategia de pruebas del Sprint 3](Estrategia-pruebas-Sprint-3): objetivos, técnicas, pruebas por criterio de HU06, HU07 y HU08, datos de prueba, cronograma y riesgos.
 
 ## Artefactos de prueba
 - Inventario de pruebas: _pendiente_
