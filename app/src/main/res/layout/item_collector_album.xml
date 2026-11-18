@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    HU06 - Álbum de la colección del coleccionista: portada, nombre, artista, precio en COP, estado y año (criterio 6).
+    Toda la tarjeta es tocable y abre el detalle del álbum (criterio 7).
+    El estado se indica con ícono y texto; "No disponible" usa colorSurfaceVariant en lugar del ámbar.
+-->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_collector_album"
+    style="@style/Widget.Material3.CardView.Filled"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="@dimen/card_corner_radius">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_collector_album_cover"
+            android:layout_width="@dimen/collector_album_cover_size"
+            android:layout_height="@dimen/collector_album_cover_size"
+            android:contentDescription="@string/album_cover_description"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Vinilos.Cover"
+            app:srcCompat="@drawable/ic_album_placeholder" />
+
+        <TextView
+            android:id="@+id/tv_collector_album_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="?attr/colorOnSurface"
+            app:layout_constraintEnd_toStartOf="@+id/chip_collector_album_status"
+            app:layout_constraintStart_toEndOf="@+id/iv_collector_album_cover"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Buscando América" />
+
+        <TextView
+            android:id="@+id/tv_collector_album_artist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintEnd_toEndOf="@+id/tv_collector_album_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_collector_album_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_collector_album_name"
+            tools:text="Rubén Blades Bellido de Luna" />
+
+        <TextView
+            android:id="@+id/tv_collector_album_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceTitleSmall"
+            android:textColor="?attr/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/tv_collector_album_year"
+            app:layout_constraintStart_toStartOf="@+id/tv_collector_album_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_collector_album_artist"
+            tools:text="$35 COP" />
+
+        <!-- Estado: Disponible (ámbar) o No disponible (gris); ícono y texto, no solo color -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_collector_album_status"
+            style="@style/Widget.Material3.Chip.Assist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            app:chipBackgroundColor="?attr/colorSecondaryContainer"
+            app:chipIcon="@drawable/ic_status_dot"
+            app:chipIconSize="8dp"
+            app:chipIconTint="?attr/colorSecondary"
+            app:chipStrokeWidth="0dp"
+            app:iconStartPadding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/collector_album_available" />
+
+        <TextView
+            android:id="@+id/tv_collector_album_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_collector_album_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="1984" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

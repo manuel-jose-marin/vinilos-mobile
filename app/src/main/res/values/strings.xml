@@ -78,4 +78,22 @@
         <item quantity="one">%1$d álbum</item>
         <item quantity="other">%1$d álbumes</item>
     </plurals>
+
+    <!-- HU06 Detalle de coleccionista -->
+    <string name="collector_detail_title">Detalle del coleccionista</string>
+    <string name="collector_detail_loading">Cargando el coleccionista</string>
+    <string name="collector_detail_error">No pudimos cargar el coleccionista</string>
+    <string name="collector_favorite_performers_header">Artistas favoritos</string>
+    <string name="collector_favorite_performers_empty">Este coleccionista aún no tiene artistas favoritos</string>
+    <string name="collector_albums_header">Colección</string>
+    <string name="collector_albums_header_count">Colección · %1$d</string>
+    <string name="collector_albums_empty">Este coleccionista aún no tiene álbumes en su colección</string>
+    <string name="collector_comments_header">Comentarios</string>
+    <string name="collector_comments_header_count">Comentarios · %1$d</string>
+    <string name="collector_comments_empty">Este coleccionista aún no ha escrito comentarios</string>
+    <string name="collector_album_price">$%1$s COP</string>
+    <string name="collector_album_available">Disponible</string>
+    <string name="collector_album_unavailable">No disponible</string>
+    <string name="collector_call_description">Llamar a %1$s</string>
+    <string name="collector_email_description">Escribir un correo a %1$s</string>
 </resources>

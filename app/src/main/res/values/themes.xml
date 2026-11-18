@@ -27,4 +27,9 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="ShapeAppearance.Vinilos.Cover" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
 </resources>
