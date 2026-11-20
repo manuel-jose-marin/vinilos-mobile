@@ -1,6 +1,7 @@
 package co.edu.uniandes.vinilos.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import co.edu.uniandes.vinilos.fakes.FakeAlbumService
 import co.edu.uniandes.vinilos.fakes.FakeCollectorService
 import co.edu.uniandes.vinilos.models.Collector
 import co.edu.uniandes.vinilos.repositories.CollectorRepository
@@ -37,7 +38,8 @@ class CollectorListViewModelTest {
 
     private fun collector(id: Int) = Collector(id, "Coleccionista $id", "3001234567", "col$id@test.com", emptyList(), 1)
 
-    private fun viewModel(service: FakeCollectorService) = CollectorListViewModel(CollectorRepository(service))
+    private fun viewModel(service: FakeCollectorService) =
+        CollectorListViewModel(CollectorRepository(service, FakeAlbumService()))
 
     @Test
     fun init_showsLoadingUntilTheRepositoryResponds() = runTest(dispatcher) {
