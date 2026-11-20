@@ -31,6 +31,18 @@
     <string name="album_comment_unknown_author">Coleccionista</string>
     <string name="album_comment_rating">Calificación: %1$d de 5</string>
 
+    <!-- HU08 Agregar track -->
+    <string name="action_add_track">Agregar track</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="add_track_title">Agregar track</string>
+    <string name="add_track_album">Al álbum %1$s</string>
+    <string name="add_track_name_hint">Nombre del track</string>
+    <string name="add_track_name_helper">Obligatorio, como aparece en el álbum</string>
+    <string name="add_track_duration_hint">Duración (mm:ss)</string>
+    <string name="add_track_duration_helper">Obligatoria, minutos y segundos, por ejemplo 04:15</string>
+    <string name="add_track_duration_placeholder">04:15</string>
+    <string name="add_track_submit">Agregar</string>
+
     <!-- HU04 Detalle de artista -->
     <string name="artist_detail_title">Detalle del artista</string>
     <string name="artist_detail_loading">Cargando el artista</string>
