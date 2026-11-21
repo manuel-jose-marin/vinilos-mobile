@@ -96,4 +96,16 @@
     <string name="collector_album_unavailable">No disponible</string>
     <string name="collector_call_description">Llamar a %1$s</string>
     <string name="collector_email_description">Escribir un correo a %1$s</string>
+
+    <!-- HU07 Validación del formulario de álbum -->
+    <string name="album_form_error_name_required">El nombre es obligatorio</string>
+    <string name="album_form_error_cover_required">La URL de la portada es obligatoria</string>
+    <string name="album_form_error_cover_invalid">Ingresa una URL válida (https://…)</string>
+    <string name="album_form_error_release_date_required">La fecha de lanzamiento es obligatoria</string>
+    <string name="album_form_error_release_date_future">La fecha no puede ser futura</string>
+    <string name="album_form_error_description_required">La descripción es obligatoria</string>
+    <!-- Debe coincidir con AlbumFormValidator.DESCRIPTION_MAX_LENGTH -->
+    <string name="album_form_error_description_too_long">La descripción no puede superar los 300 caracteres</string>
+    <string name="album_form_error_genre_required">Selecciona un género</string>
+    <string name="album_form_error_record_label_required">Selecciona un sello discográfico</string>
 </resources>
