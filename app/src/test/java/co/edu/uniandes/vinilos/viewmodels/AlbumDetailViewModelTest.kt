@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import co.edu.uniandes.vinilos.fakes.FakeCollectorService
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.Comment
+import co.edu.uniandes.vinilos.models.NewAlbum
 import co.edu.uniandes.vinilos.models.NewTrack
 import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
@@ -48,6 +49,8 @@ class AlbumDetailViewModelTest {
             requestedIds += id
             return result(id)
         }
+
+        override suspend fun createAlbum(album: NewAlbum): Album = error("No se usa en el detalle")
 
         override suspend fun addTrack(albumId: Int, track: NewTrack): Track = error("No se usa en el detalle")
     }

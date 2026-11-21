@@ -22,6 +22,7 @@
   - [[Análisis de desempeño|Analisis-desempeno-Sprint-2]]
   - [[Retrospectiva del Sprint 2|Retrospectiva-Sprint-2]]
 - [[Sprint 3|Sprint-3]]
+  - [[Actas del Sprint 3|Actas_Sprint-3]]
   - [[Diseño arquitectónico|Diseno-arquitectonico-Sprint-3]]
   - [[Estrategia de pruebas|Estrategia-pruebas-Sprint-3]]
 - [[Backend BackVynils|Backend-BackVynils]]

@@ -36,8 +36,11 @@ class NetworkServiceAdapter private constructor(context: Context) {
         JsonObjectRequest(Request.Method.GET, url(path), null, onSuccess, onError)
     }
 
-    /** POST de un objeto JSON; devuelve el objeto creado que responde el servidor. */
-    suspend fun post(path: String, body: JSONObject): JSONObject = enqueue { onSuccess, onError ->
+    /**
+     * POST de un objeto JSON; devuelve el objeto creado que responde el servidor.
+     * No se reintenta: si la primera petición llegó pero su respuesta tardó, un reintento crearía el recurso dos veces.
+     */
+    suspend fun post(path: String, body: JSONObject): JSONObject = enqueue(maxRetries = 0) { onSuccess, onError ->
         JsonObjectRequest(Request.Method.POST, url(path), body, onSuccess, onError)
     }
 
@@ -45,13 +48,14 @@ class NetworkServiceAdapter private constructor(context: Context) {
 
     /** Encola la petición en Volley y suspende hasta su respuesta; si se cancela la corrutina, cancela la petición. */
     private suspend fun <T> enqueue(
+        maxRetries: Int = MAX_RETRIES,
         createRequest: (Response.Listener<T>, Response.ErrorListener) -> Request<T>
     ): T = suspendCancellableCoroutine { continuation ->
         val request = createRequest(
             { response -> continuation.resume(response) },
             { error -> continuation.resumeWithException(error) }
         )
-        request.retryPolicy = DefaultRetryPolicy(TIMEOUT_MS, MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+        request.retryPolicy = DefaultRetryPolicy(TIMEOUT_MS, maxRetries, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
         requestQueue.add(request)
         continuation.invokeOnCancellation { request.cancel() }
     }

@@ -3,6 +3,7 @@ package co.edu.uniandes.vinilos.repositories
 import android.content.Context
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.Collector
+import co.edu.uniandes.vinilos.models.NewAlbum
 import co.edu.uniandes.vinilos.network.AlbumService
 import co.edu.uniandes.vinilos.network.CollectorService
 import co.edu.uniandes.vinilos.network.NetworkAlbumService
@@ -32,6 +33,12 @@ class AlbumRepository(
         val authors = commentAuthors(collectors.await())
         album.copy(comments = album.comments.map { it.copy(author = authors[it.id]) })
     }
+
+    /**
+     * Crea un álbum en BackVynils y devuelve el álbum creado, con el id que le asignó el servidor (HU07).
+     * Si falla la red o el servidor rechaza los datos, lanza la excepción para que el ViewModel muestre el error.
+     */
+    suspend fun createAlbum(album: NewAlbum): Album = service.createAlbum(album)
 
     private suspend fun getCollectorsOrEmpty(): List<Collector> = try {
         collectorService.getCollectors()

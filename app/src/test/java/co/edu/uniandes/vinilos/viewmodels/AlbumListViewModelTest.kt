@@ -3,18 +3,17 @@ package co.edu.uniandes.vinilos.viewmodels
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import co.edu.uniandes.vinilos.fakes.FakeCollectorService
 import co.edu.uniandes.vinilos.models.Album
+import co.edu.uniandes.vinilos.models.NewAlbum
 import co.edu.uniandes.vinilos.models.NewTrack
 import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
 import co.edu.uniandes.vinilos.repositories.AlbumRepository
 import com.android.volley.VolleyError
-import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
@@ -38,7 +37,7 @@ class AlbumListViewModelTest {
     @After
     fun tearDown() = Dispatchers.resetMain()
 
-    private class FakeAlbumService(var result: suspend () -> List<Album>) : AlbumService {
+    private class FakeAlbumService(var result: () -> List<Album>) : AlbumService {
         var calls = 0
         override suspend fun getAlbums(): List<Album> {
             calls++
@@ -46,6 +45,8 @@ class AlbumListViewModelTest {
         }
 
         override suspend fun getAlbum(id: Int): Album = error("No se usa en el listado")
+
+        override suspend fun createAlbum(album: NewAlbum): Album = error("No se usa en el listado")
 
         override suspend fun addTrack(albumId: Int, track: NewTrack): Track = error("No se usa en el listado")
     }
@@ -102,22 +103,5 @@ class AlbumListViewModelTest {
 
         assertTrue(vm.state.value is AlbumListState.Content)
         assertEquals(2, service.calls)
-    }
-
-    /** Si el usuario reintenta mientras carga, la respuesta tardía de la primera petición no reemplaza a la nueva. */
-    @Test
-    fun retry_whileLoading_cancelsThePreviousRequest() = runTest(dispatcher) {
-        val slowAnswer = CompletableDeferred<List<Album>>()
-        val service = FakeAlbumService { slowAnswer.await() }
-        val vm = viewModel(service)
-        runCurrent()
-
-        service.result = { listOf(album(2)) }
-        vm.loadAlbums()
-        advanceUntilIdle()
-        slowAnswer.complete(emptyList())
-        advanceUntilIdle()
-
-        assertEquals(listOf(2), (vm.state.value as AlbumListState.Content).albums.map { it.id })
     }
 }

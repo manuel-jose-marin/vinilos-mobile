@@ -1,9 +1,11 @@
 package co.edu.uniandes.vinilos.repositories
 
 import co.edu.uniandes.vinilos.fakes.FakeCollectorService
+import co.edu.uniandes.vinilos.fakes.FakeAlbumService as RecordingAlbumService
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.Collector
 import co.edu.uniandes.vinilos.models.Comment
+import co.edu.uniandes.vinilos.models.NewAlbum
 import co.edu.uniandes.vinilos.models.NewTrack
 import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
@@ -11,6 +13,7 @@ import com.android.volley.VolleyError
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class AlbumRepositoryTest {
@@ -18,6 +21,7 @@ class AlbumRepositoryTest {
     private class FakeAlbumService(private val album: Album) : AlbumService {
         override suspend fun getAlbums(): List<Album> = listOf(album)
         override suspend fun getAlbum(id: Int): Album = album
+        override suspend fun createAlbum(album: NewAlbum): Album = this.album
         override suspend fun addTrack(albumId: Int, track: NewTrack): Track = Track(100, track.name, track.duration)
     }
 
@@ -56,5 +60,29 @@ class AlbumRepositoryTest {
         val authors = AlbumRepository.commentAuthors(listOf(manolo, jaime))
 
         assertEquals(mapOf(100 to "Manolo Bellon", 101 to "Jaime Monsalve", 102 to "Jaime Monsalve"), authors)
+    }
+
+    private val newAlbum = NewAlbum("Siembra", "https://portada/siembra.jpg", "1978-09-01", "Salsa", "Salsa", "Fania Records")
+
+    @Test
+    fun createAlbum_sendsTheAlbumAndReturnsTheOneCreatedByTheServer() = runTest {
+        val service = RecordingAlbumService().apply { created = { RecordingAlbumService.album(150, it.name) } }
+        val repository = AlbumRepository(service, FakeCollectorService())
+
+        val created = repository.createAlbum(newAlbum)
+
+        assertEquals(listOf(newAlbum), service.createRequests)
+        assertEquals(150, created.id)
+        assertEquals("Siembra", created.name)
+    }
+
+    @Test
+    fun createAlbum_propagatesTheServerError() = runTest {
+        val service = RecordingAlbumService().apply { created = { throw VolleyError("400 Bad Request") } }
+        val repository = AlbumRepository(service, FakeCollectorService())
+
+        val result = runCatching { repository.createAlbum(newAlbum) }
+
+        assertTrue(result.exceptionOrNull() is VolleyError)
     }
 }
