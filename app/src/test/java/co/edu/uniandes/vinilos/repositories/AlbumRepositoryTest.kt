@@ -4,6 +4,8 @@ import co.edu.uniandes.vinilos.fakes.FakeCollectorService
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.Collector
 import co.edu.uniandes.vinilos.models.Comment
+import co.edu.uniandes.vinilos.models.NewTrack
+import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
 import com.android.volley.VolleyError
 import kotlinx.coroutines.test.runTest
@@ -16,6 +18,7 @@ class AlbumRepositoryTest {
     private class FakeAlbumService(private val album: Album) : AlbumService {
         override suspend fun getAlbums(): List<Album> = listOf(album)
         override suspend fun getAlbum(id: Int): Album = album
+        override suspend fun addTrack(albumId: Int, track: NewTrack): Track = Track(100, track.name, track.duration)
     }
 
     private val album = Album(
