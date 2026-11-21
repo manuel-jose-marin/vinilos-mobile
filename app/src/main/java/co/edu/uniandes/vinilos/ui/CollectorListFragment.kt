@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import co.edu.uniandes.vinilos.R
 import co.edu.uniandes.vinilos.databinding.FragmentCollectorListBinding
 import co.edu.uniandes.vinilos.models.Collector
@@ -56,12 +58,17 @@ class CollectorListFragment : Fragment() {
         }
     }
 
-    /**
-     * Punto de entrada al detalle del coleccionista (HU05, criterio 5). La pantalla de detalle y su
-     * destino en el grafo de navegación llegan con HU06 (#52); hasta entonces el toque no navega.
-     */
-    @Suppress("UNUSED_PARAMETER")
-    private fun openCollectorDetail(collector: Collector) = Unit
+    private fun openCollectorDetail(collector: Collector) {
+        val navController = findNavController()
+        if (navController.currentDestination?.id != R.id.collectorListFragment) return
+        navController.navigate(
+            R.id.action_collectorListFragment_to_collectorDetailFragment,
+            bundleOf(
+                CollectorDetailFragment.ARG_COLLECTOR_ID to collector.id,
+                CollectorDetailFragment.ARG_COLLECTOR_NAME to collector.name
+            )
+        )
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
