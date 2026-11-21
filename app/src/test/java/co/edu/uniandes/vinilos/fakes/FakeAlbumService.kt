@@ -5,16 +5,26 @@ import co.edu.uniandes.vinilos.models.NewAlbum
 import co.edu.uniandes.vinilos.models.Performer
 import co.edu.uniandes.vinilos.network.AlbumService
 
-/** Servicio de álbumes para pruebas: el catálogo es lo que indique [albums] (por defecto, vacío). */
+/**
+ * Servicio de álbumes para pruebas: el catálogo es lo que indique [albums] (por defecto, vacío).
+ * `createAlbum` responde lo que indique [created] (por defecto, el álbum con id 101) y guarda cada petición en
+ * [createRequests].
+ */
 class FakeAlbumService(var albums: suspend () -> List<Album> = { emptyList() }) : AlbumService {
+
+    var created: suspend (NewAlbum) -> Album = { album(101, it.name) }
+
+    val createRequests = mutableListOf<NewAlbum>()
 
     override suspend fun getAlbums(): List<Album> = albums()
 
     override suspend fun getAlbum(id: Int): Album =
         albums().firstOrNull { it.id == id } ?: error("Álbum $id no configurado")
 
-    override suspend fun createAlbum(album: NewAlbum): Album =
-        FakeAlbumService.album(101, album.name)
+    override suspend fun createAlbum(album: NewAlbum): Album {
+        createRequests += album
+        return created(album)
+    }
 
     companion object {
         /** Álbum con los datos mínimos para las pruebas. */
