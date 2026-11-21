@@ -1,7 +1,9 @@
 package co.edu.uniandes.vinilos.fakes
 
 import co.edu.uniandes.vinilos.models.Album
+import co.edu.uniandes.vinilos.models.NewTrack
 import co.edu.uniandes.vinilos.models.Performer
+import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
 
 /** Servicio de álbumes para pruebas: el catálogo es lo que indique [albums] (por defecto, vacío). */
@@ -11,6 +13,9 @@ class FakeAlbumService(var albums: suspend () -> List<Album> = { emptyList() }) 
 
     override suspend fun getAlbum(id: Int): Album =
         albums().firstOrNull { it.id == id } ?: error("Álbum $id no configurado")
+
+    override suspend fun addTrack(albumId: Int, track: NewTrack): Track =
+        Track(100, track.name, track.duration)
 
     companion object {
         /** Álbum con los datos mínimos para las pruebas. */
