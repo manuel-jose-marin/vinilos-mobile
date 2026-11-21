@@ -63,7 +63,7 @@ Los puntos tampoco miden todo el esfuerzo. De los 35 issues del milestone, 17 no
 - **Dejar la documentación y las pruebas no funcionales listas a más tardar el viernes 27,** según el cronograma de la estrategia, y no el día del cierre.
 
 ## Diseño arquitectónico
-_Pendiente._
+- [[Diseño arquitectónico del Sprint 3|Diseno-arquitectonico-Sprint-3]]: diagramas de paquetes, componentes y clases de HU01 a HU08, endpoints, flujo de datos, navegación, accesibilidad y desempeño
 
 ## Estrategia de pruebas
 [Estrategia de pruebas del Sprint 3](Estrategia-pruebas-Sprint-3): objetivos, técnicas, pruebas por criterio de HU06, HU07 y HU08, datos de prueba, cronograma y riesgos.
