@@ -2,6 +2,9 @@
 
 **Historias:** HU06 Consultar la información detallada de coleccionista, HU07 Crear un álbum, HU08 Asociar tracks con un álbum
 
+## Sprint Planning
+- [[Actas de reunión|Actas_Sprint-3]]: evidencia de la reunión de la semana 7 y Sprint Planning de la Iteración 3
+
 ## Velocidad del Sprint 2
 
 <img width="900" alt="Burndown del Sprint 2: puntos restantes por día, planeados y reales" src="./img/Burndown_Sprint-2.png" />
