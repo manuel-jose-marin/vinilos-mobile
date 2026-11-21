@@ -1,6 +1,7 @@
 package co.edu.uniandes.vinilos.fakes
 
 import co.edu.uniandes.vinilos.models.Album
+import co.edu.uniandes.vinilos.models.NewAlbum
 import co.edu.uniandes.vinilos.models.Performer
 import co.edu.uniandes.vinilos.network.AlbumService
 
@@ -11,6 +12,9 @@ class FakeAlbumService(var albums: suspend () -> List<Album> = { emptyList() }) 
 
     override suspend fun getAlbum(id: Int): Album =
         albums().firstOrNull { it.id == id } ?: error("Álbum $id no configurado")
+
+    override suspend fun createAlbum(album: NewAlbum): Album =
+        FakeAlbumService.album(101, album.name)
 
     companion object {
         /** Álbum con los datos mínimos para las pruebas. */

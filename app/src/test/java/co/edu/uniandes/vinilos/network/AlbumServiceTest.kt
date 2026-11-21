@@ -1,5 +1,6 @@
 package co.edu.uniandes.vinilos.network
 
+import co.edu.uniandes.vinilos.models.NewAlbum
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
@@ -73,5 +74,26 @@ class AlbumServiceTest {
     @Test
     fun parseAlbums_emptyArray_returnsEmptyList() {
         assertTrue(NetworkAlbumService.parseAlbums(JSONArray("[]")).isEmpty())
+    }
+
+    @Test
+    fun newAlbum_toJson_serializesAllFieldsCorrectly() {
+        val newAlbum = NewAlbum(
+            name = "Tactics",
+            cover = "https://example.com/tactics.jpg",
+            releaseDate = "1995-11-01",
+            description = "Álbum de rock",
+            genre = "Rock",
+            recordLabel = "Sony Music"
+        )
+
+        val json = newAlbum.toJson()
+
+        assertEquals("Tactics", json.getString("name"))
+        assertEquals("https://example.com/tactics.jpg", json.getString("cover"))
+        assertEquals("1995-11-01", json.getString("releaseDate"))
+        assertEquals("Álbum de rock", json.getString("description"))
+        assertEquals("Rock", json.getString("genre"))
+        assertEquals("Sony Music", json.getString("recordLabel"))
     }
 }
