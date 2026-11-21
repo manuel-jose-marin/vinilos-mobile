@@ -1,6 +1,7 @@
 package co.edu.uniandes.vinilos.network
 
 import co.edu.uniandes.vinilos.models.Album
+import co.edu.uniandes.vinilos.models.NewAlbum
 import co.edu.uniandes.vinilos.models.Track
 import org.json.JSONArray
 import org.json.JSONObject
@@ -12,6 +13,9 @@ interface AlbumService {
 
     /** `GET /albums/{id}`: un álbum con sus artistas, tracks y comentarios. */
     suspend fun getAlbum(id: Int): Album
+
+    /** `POST /albums`: crea un nuevo álbum en BackVynils (HU07). */
+    suspend fun createAlbum(album: NewAlbum): Album
 }
 
 class NetworkAlbumService(private val network: NetworkServiceAdapter) : AlbumService {
@@ -21,6 +25,9 @@ class NetworkAlbumService(private val network: NetworkServiceAdapter) : AlbumSer
 
     override suspend fun getAlbum(id: Int): Album =
         parseOffMainThread(network.getObject("albums/$id")) { parseAlbum(it) }
+
+    override suspend fun createAlbum(album: NewAlbum): Album =
+        parseOffMainThread(network.post("albums", album.toJson())) { parseAlbum(it) }
 
     companion object {
         fun parseAlbums(json: JSONArray): List<Album> = json.mapObjects { parseAlbum(it) }
