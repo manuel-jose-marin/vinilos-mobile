@@ -82,4 +82,5 @@ Los puntos tampoco miden todo el esfuerzo. De los 27 issues del milestone, 15 no
 - APK: [`apk/vinilos-mobile-v2.0.0.apk`](https://github.com/manuel-jose-marin/vinilos-mobile/blob/main/apk/vinilos-mobile-v2.0.0.apk), también adjunto al release. Conectado a `https://backvynils-grupo5.onrender.com/`, `minSdk 21` (Android 5.0) y `targetSdk 35`.
 
 ## Retrospectiva
-_Pendiente._
+- [[Retrospectiva del Sprint 2|Retrospectiva-Sprint-2]]: comportamiento del equipo, seguimiento de las acciones del Sprint 1 y acciones de mejora para el Sprint 3
+- [[Velocidad del Sprint 2|Sprint-3]]: burndown y reflexión de la estimación, en la página del Sprint 3
