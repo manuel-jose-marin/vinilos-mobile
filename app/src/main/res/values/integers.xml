@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- HU08: máximo de caracteres del nombre de un track (criterio de aceptación 4) -->
+    <!-- HU08: máximo de caracteres del nombre de un track (criterio de aceptación 4); debe coincidir con TrackFormValidator.NAME_MAX_LENGTH -->
     <integer name="track_name_max_length">100</integer>
 </resources>

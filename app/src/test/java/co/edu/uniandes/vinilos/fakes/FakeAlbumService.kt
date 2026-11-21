@@ -10,13 +10,18 @@ import co.edu.uniandes.vinilos.network.AlbumService
 /**
  * Servicio de álbumes para pruebas: el catálogo es lo que indique [albums] (por defecto, vacío).
  * `createAlbum` responde lo que indique [created] (por defecto, el álbum con id 101) y guarda cada petición en
- * [createRequests].
+ * [createRequests]. `addTrack` responde lo que indique [addedTrack] (por defecto, el track con id 100) y guarda cada
+ * petición, con el id del álbum, en [trackRequests].
  */
 class FakeAlbumService(var albums: suspend () -> List<Album> = { emptyList() }) : AlbumService {
 
     var created: suspend (NewAlbum) -> Album = { album(101, it.name) }
 
     val createRequests = mutableListOf<NewAlbum>()
+
+    var addedTrack: suspend (Int, NewTrack) -> Track = { _, track -> Track(100, track.name, track.duration) }
+
+    val trackRequests = mutableListOf<Pair<Int, NewTrack>>()
 
     override suspend fun getAlbums(): List<Album> = albums()
 
@@ -28,8 +33,10 @@ class FakeAlbumService(var albums: suspend () -> List<Album> = { emptyList() }) 
         return created(album)
     }
 
-    override suspend fun addTrack(albumId: Int, track: NewTrack): Track =
-        Track(100, track.name, track.duration)
+    override suspend fun addTrack(albumId: Int, track: NewTrack): Track {
+        trackRequests += albumId to track
+        return addedTrack(albumId, track)
+    }
 
     companion object {
         /** Álbum con los datos mínimos para las pruebas. */

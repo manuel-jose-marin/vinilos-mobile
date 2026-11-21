@@ -264,7 +264,7 @@ Desde este sprint las pruebas escriben en el backend compartido, así que siguen
 
 - **Datos base:** `scripts/seed-backvynils.sh` deja los álbumes, artistas y coleccionistas que esperan las pruebas de lectura (Manolo Bellon, Rubén Blades, Queen con Freddie Mercury). Las pruebas no modifican estos datos.
 - **Datos creados por las pruebas:** los álbumes y tracks que crean las pruebas usan nombres con el prefijo `E2E ` y una marca de tiempo (por ejemplo `E2E 1732300000`), así no chocan entre ejecuciones ni con los datos base.
-- **Limpieza:** cada prueba que crea un álbum lo borra al terminar con `DELETE /albums/{id}`. `AddTrackTest` agrega sus tracks a un álbum creado para la prueba y lo borra al final, de modo que los tracks del seed no cambian.
+- **Limpieza:** cada prueba que crea un álbum lo borra al terminar con `DELETE /albums/{id}`. `AddTrackTest` agrega sus tracks a un álbum creado para la prueba y lo borra al final, de modo que los tracks del seed no cambian. BackVynils no borra un álbum que tiene tracks: responde 500. Por eso primero se borra cada track con `DELETE /albums/{id}/tracks/{trackId}` y después el álbum.
 - **Errores y lentitud:** los errores de conexión se prueban con `adb shell cmd connectivity airplane-mode enable`. La red lenta y las respuestas vacías se prueban con un servidor de prueba local en el puerto 8000, compilando con `-Pvinilos.baseUrl=http://10.0.2.2:8000/`.
 
 ### 2.8. Gestión de defectos

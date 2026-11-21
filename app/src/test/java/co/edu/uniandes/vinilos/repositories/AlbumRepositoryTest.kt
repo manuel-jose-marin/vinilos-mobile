@@ -85,4 +85,26 @@ class AlbumRepositoryTest {
 
         assertTrue(result.exceptionOrNull() is VolleyError)
     }
+
+    @Test
+    fun addTrack_sendsTheTrackToTheAlbumAndReturnsTheOneCreatedByTheServer() = runTest {
+        val service = RecordingAlbumService().apply { addedTrack = { _, track -> Track(250, track.name, track.duration) } }
+        val repository = AlbumRepository(service, FakeCollectorService())
+        val newTrack = NewTrack("Plástico", "6:52")
+
+        val created = repository.addTrack(100, newTrack)
+
+        assertEquals(listOf(100 to newTrack), service.trackRequests)
+        assertEquals(Track(250, "Plástico", "6:52"), created)
+    }
+
+    @Test
+    fun addTrack_propagatesTheServerError() = runTest {
+        val service = RecordingAlbumService().apply { addedTrack = { _, _ -> throw VolleyError("404 Not Found") } }
+        val repository = AlbumRepository(service, FakeCollectorService())
+
+        val result = runCatching { repository.addTrack(999, NewTrack("Plástico", "6:52")) }
+
+        assertTrue(result.exceptionOrNull() is VolleyError)
+    }
 }
