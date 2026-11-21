@@ -6,6 +6,8 @@ import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.Collector
 import co.edu.uniandes.vinilos.models.Comment
 import co.edu.uniandes.vinilos.models.NewAlbum
+import co.edu.uniandes.vinilos.models.NewTrack
+import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
 import com.android.volley.VolleyError
 import kotlinx.coroutines.test.runTest
@@ -20,6 +22,7 @@ class AlbumRepositoryTest {
         override suspend fun getAlbums(): List<Album> = listOf(album)
         override suspend fun getAlbum(id: Int): Album = album
         override suspend fun createAlbum(album: NewAlbum): Album = this.album
+        override suspend fun addTrack(albumId: Int, track: NewTrack): Track = Track(100, track.name, track.duration)
     }
 
     private val album = Album(

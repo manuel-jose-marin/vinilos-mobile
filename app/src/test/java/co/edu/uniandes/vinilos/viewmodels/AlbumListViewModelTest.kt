@@ -4,6 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import co.edu.uniandes.vinilos.fakes.FakeCollectorService
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.NewAlbum
+import co.edu.uniandes.vinilos.models.NewTrack
+import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
 import co.edu.uniandes.vinilos.repositories.AlbumRepository
 import com.android.volley.VolleyError
@@ -45,6 +47,8 @@ class AlbumListViewModelTest {
         override suspend fun getAlbum(id: Int): Album = error("No se usa en el listado")
 
         override suspend fun createAlbum(album: NewAlbum): Album = error("No se usa en el listado")
+
+        override suspend fun addTrack(albumId: Int, track: NewTrack): Track = error("No se usa en el listado")
     }
 
     private fun album(id: Int) = Album(id, "Álbum $id", "", "1984-08-01T00:00:00.000Z", "", "Salsa", "Elektra", emptyList(), emptyList(), emptyList())

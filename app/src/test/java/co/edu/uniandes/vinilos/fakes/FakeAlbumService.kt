@@ -2,7 +2,9 @@ package co.edu.uniandes.vinilos.fakes
 
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.NewAlbum
+import co.edu.uniandes.vinilos.models.NewTrack
 import co.edu.uniandes.vinilos.models.Performer
+import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
 
 /**
@@ -25,6 +27,9 @@ class FakeAlbumService(var albums: suspend () -> List<Album> = { emptyList() }) 
         createRequests += album
         return created(album)
     }
+
+    override suspend fun addTrack(albumId: Int, track: NewTrack): Track =
+        Track(100, track.name, track.duration)
 
     companion object {
         /** Álbum con los datos mínimos para las pruebas. */

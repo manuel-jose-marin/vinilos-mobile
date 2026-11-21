@@ -1,6 +1,7 @@
 package co.edu.uniandes.vinilos.network
 
 import co.edu.uniandes.vinilos.models.NewAlbum
+import co.edu.uniandes.vinilos.models.NewTrack
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
@@ -95,5 +96,15 @@ class AlbumServiceTest {
         assertEquals("Álbum de rock", json.getString("description"))
         assertEquals("Rock", json.getString("genre"))
         assertEquals("Sony Music", json.getString("recordLabel"))
+    }
+
+    @Test
+    fun newTrack_toJson_serializesNameAndDurationCorrectly() {
+        val newTrack = NewTrack(name = "Pedro Navaja", duration = "7:21")
+
+        val json = newTrack.toJson()
+
+        assertEquals("Pedro Navaja", json.getString("name"))
+        assertEquals("7:21", json.getString("duration"))
     }
 }
