@@ -87,7 +87,7 @@ class CollectorDetailFragment : Fragment() {
             startActivity(intent)
         }
 
-        showFavoritePerformers(collector.comments.mapNotNull { it.author }.distinct().map { Performer(0, it, "", "") })
+        showFavoritePerformers(collector.favoritePerformers)
         showCollection(detail.albums)
         showComments(collector.comments)
     }
@@ -107,6 +107,7 @@ class CollectorDetailFragment : Fragment() {
             R.id.action_collectorDetailFragment_to_artistDetailFragment,
             bundleOf(
                 ArtistDetailFragment.ARG_ARTIST_ID to performer.id,
+                ArtistDetailFragment.ARG_ARTIST_TYPE to performer.type?.name,
                 ArtistDetailFragment.ARG_ARTIST_NAME to performer.name
             )
         )

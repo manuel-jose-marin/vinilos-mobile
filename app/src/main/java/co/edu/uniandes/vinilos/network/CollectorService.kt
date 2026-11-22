@@ -22,12 +22,11 @@ class NetworkCollectorService(private val network: NetworkServiceAdapter) : Coll
     override suspend fun getCollectors(): List<Collector> =
         parseOffMainThread(network.getArray("collectors")) { parseCollectors(it) }
 
-    // La petición y el parseo del detalle se implementan en #50 (servicio REST del detalle de coleccionista).
     override suspend fun getCollector(id: Int): Collector =
-        TODO("#50: GET /collectors/{id}")
+        parseOffMainThread(network.getObject("collectors/$id")) { parseCollector(it) }
 
     override suspend fun getCollectorAlbums(id: Int): List<CollectorAlbum> =
-        TODO("#50: GET /collectors/{id}/albums")
+        parseOffMainThread(network.getArray("collectors/$id/albums")) { parseCollectorAlbums(it) }
 
     companion object {
         fun parseCollectors(json: JSONArray): List<Collector> = json.mapObjects { parseCollector(it) }
@@ -38,7 +37,19 @@ class NetworkCollectorService(private val network: NetworkServiceAdapter) : Coll
             telephone = json.optString("telephone"),
             email = json.optString("email"),
             comments = json.optJSONArray("comments").mapObjects { JsonParsing.parseComment(it) },
-            albumCount = json.optJSONArray("collectorAlbums")?.length() ?: 0
+            albumCount = json.optJSONArray("collectorAlbums")?.length() ?: 0,
+            favoritePerformers = json.optJSONArray("favoritePerformers")
+                .mapObjects { JsonParsing.parseFavoritePerformer(it) }
+        )
+
+        fun parseCollectorAlbums(json: JSONArray): List<CollectorAlbum> = json.mapObjects { parseCollectorAlbum(it) }
+
+        /** Álbum de la colección: precio, estado y el álbum, que BackVynils envía sin sus artistas. */
+        fun parseCollectorAlbum(json: JSONObject) = CollectorAlbum(
+            id = json.getInt("id"),
+            price = json.optInt("price"),
+            status = json.optString("status"),
+            album = NetworkAlbumService.parseAlbum(json.getJSONObject("album"))
         )
     }
 }

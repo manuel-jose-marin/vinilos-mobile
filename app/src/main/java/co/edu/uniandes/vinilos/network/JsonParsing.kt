@@ -1,5 +1,6 @@
 package co.edu.uniandes.vinilos.network
 
+import co.edu.uniandes.vinilos.models.ArtistType
 import co.edu.uniandes.vinilos.models.Comment
 import co.edu.uniandes.vinilos.models.Performer
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +24,18 @@ internal object JsonParsing {
         name = json.getString("name"),
         image = json.optString("image"),
         description = json.optString("description")
+    )
+
+    /**
+     * Artista favorito de un coleccionista. BackVynils guarda músicos y bandas en una sola tabla y no envía el tipo,
+     * así que se deduce de la fecha que trae: los músicos traen `birthDate` y las bandas `creationDate`.
+     */
+    fun parseFavoritePerformer(json: JSONObject) = parsePerformer(json).copy(
+        type = when {
+            !json.isNull("birthDate") -> ArtistType.MUSICIAN
+            !json.isNull("creationDate") -> ArtistType.BAND
+            else -> null
+        }
     )
 }
 
