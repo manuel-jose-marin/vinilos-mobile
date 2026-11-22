@@ -15,7 +15,18 @@
         <action
             android:id="@+id/action_albumListFragment_to_albumDetailFragment"
             app:destination="@id/albumDetailFragment" />
+
+        <action
+            android:id="@+id/action_albumListFragment_to_createAlbumFragment"
+            app:destination="@id/createAlbumFragment" />
     </fragment>
+
+    <!-- Crear un álbum (HU07): destino de segundo nivel, sin barra inferior. -->
+    <fragment
+        android:id="@+id/createAlbumFragment"
+        android:name="co.edu.uniandes.vinilos.ui.CreateAlbumFragment"
+        android:label="@string/album_form_title"
+        tools:layout="@layout/fragment_create_album" />
 
     <!-- Detalle de un álbum (HU02): destino de segundo nivel, sin barra inferior. -->
     <fragment

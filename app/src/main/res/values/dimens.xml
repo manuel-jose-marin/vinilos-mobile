@@ -16,4 +16,5 @@
     <dimen name="collector_performer_width">104dp</dimen>
     <dimen name="collector_performer_image_size">72dp</dimen>
     <dimen name="collector_album_cover_size">72dp</dimen>
+    <dimen name="album_form_cover_preview_size">120dp</dimen>
 </resources>

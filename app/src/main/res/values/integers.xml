@@ -2,4 +2,6 @@
 <resources>
     <!-- HU08: máximo de caracteres del nombre de un track (criterio de aceptación 4); debe coincidir con TrackFormValidator.NAME_MAX_LENGTH -->
     <integer name="track_name_max_length">100</integer>
+    <!-- HU07: máximo de caracteres de la descripción (criterio de aceptación 8); debe coincidir con AlbumFormValidator.DESCRIPTION_MAX_LENGTH -->
+    <integer name="album_description_max_length">300</integer>
 </resources>
