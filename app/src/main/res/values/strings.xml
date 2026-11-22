@@ -120,4 +120,12 @@
     <string name="album_form_error_description_too_long">La descripción no puede superar los 300 caracteres</string>
     <string name="album_form_error_genre_required">Selecciona un género</string>
     <string name="album_form_error_record_label_required">Selecciona un sello discográfico</string>
+
+    <!-- HU08 Validación del formulario de track -->
+    <string name="add_track_error_name_required">El nombre del track es obligatorio</string>
+    <!-- Debe coincidir con TrackFormValidator.NAME_MAX_LENGTH y @integer/track_name_max_length -->
+    <string name="add_track_error_name_too_long">El nombre no puede superar los 100 caracteres</string>
+    <string name="add_track_error_duration_required">La duración es obligatoria</string>
+    <string name="add_track_error_duration_format">Usa el formato mm:ss, por ejemplo 04:15</string>
+    <string name="add_track_error_duration_seconds">Los segundos deben estar entre 00 y 59</string>
 </resources>

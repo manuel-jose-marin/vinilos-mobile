@@ -4,6 +4,8 @@ import android.content.Context
 import co.edu.uniandes.vinilos.models.Album
 import co.edu.uniandes.vinilos.models.Collector
 import co.edu.uniandes.vinilos.models.NewAlbum
+import co.edu.uniandes.vinilos.models.NewTrack
+import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.network.AlbumService
 import co.edu.uniandes.vinilos.network.CollectorService
 import co.edu.uniandes.vinilos.network.NetworkAlbumService
@@ -39,6 +41,13 @@ class AlbumRepository(
      * Si falla la red o el servidor rechaza los datos, lanza la excepción para que el ViewModel muestre el error.
      */
     suspend fun createAlbum(album: NewAlbum): Album = service.createAlbum(album)
+
+    /**
+     * Agrega un track al álbum [albumId] y devuelve el track creado, con el id que le asignó el servidor (HU08).
+     * Si falla la red, el álbum no existe o el servidor rechaza los datos, lanza la excepción para que el ViewModel
+     * muestre el error.
+     */
+    suspend fun addTrack(albumId: Int, track: NewTrack): Track = service.addTrack(albumId, track)
 
     private suspend fun getCollectorsOrEmpty(): List<Collector> = try {
         collectorService.getCollectors()
