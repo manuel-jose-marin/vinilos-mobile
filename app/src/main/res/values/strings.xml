@@ -42,6 +42,8 @@
     <string name="add_track_duration_helper">Obligatoria, minutos y segundos, por ejemplo 04:15</string>
     <string name="add_track_duration_placeholder">04:15</string>
     <string name="add_track_submit">Agregar</string>
+    <string name="add_track_added">Track «%1$s» agregado</string>
+    <string name="add_track_save_error">No se pudo agregar el track. Inténtalo de nuevo</string>
 
     <!-- HU04 Detalle de artista -->
     <string name="artist_detail_title">Detalle del artista</string>

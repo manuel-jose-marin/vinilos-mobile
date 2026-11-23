@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import co.edu.uniandes.vinilos.R
@@ -20,6 +22,7 @@ import co.edu.uniandes.vinilos.repositories.AlbumRepository
 import co.edu.uniandes.vinilos.viewmodels.AlbumDetailState
 import co.edu.uniandes.vinilos.viewmodels.AlbumDetailViewModel
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 
 /** Pantalla "Detalle del álbum" (HU02): ficha técnica, tracks y comentarios, con estados de carga y error. */
 class AlbumDetailFragment : Fragment() {
@@ -32,6 +35,20 @@ class AlbumDetailFragment : Fragment() {
             requireArguments().getInt(ARG_ALBUM_ID),
             AlbumRepository.create(requireContext())
         )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // HU08: la hoja devuelve el track creado; la lista y su contador se actualizan sin salir del detalle.
+        setFragmentResultListener(AddTrackBottomSheet.RESULT_KEY) { _, result ->
+            val track = Track(
+                id = result.getInt(AddTrackBottomSheet.RESULT_TRACK_ID),
+                name = result.getString(AddTrackBottomSheet.RESULT_TRACK_NAME).orEmpty(),
+                duration = result.getString(AddTrackBottomSheet.RESULT_TRACK_DURATION).orEmpty()
+            )
+            viewModel.onTrackAdded(track)
+            Snackbar.make(binding.root, getString(R.string.add_track_added, track.name), Snackbar.LENGTH_LONG).show()
+        }
     }
 
     override fun onCreateView(
@@ -48,6 +65,7 @@ class AlbumDetailFragment : Fragment() {
         requireArguments().getString(ARG_ALBUM_NAME)?.let { binding.toolbarAlbumDetail.title = it }
         binding.toolbarAlbumDetail.setNavigationOnClickListener { findNavController().navigateUp() }
         binding.btnDetailRetry.setOnClickListener { viewModel.loadAlbum() }
+        binding.btnAddTrack.setOnClickListener { openAddTrack() }
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
             binding.progressAlbumDetail.isVisible = state is AlbumDetailState.Loading
@@ -55,6 +73,20 @@ class AlbumDetailFragment : Fragment() {
             binding.layoutDetailError.isVisible = state is AlbumDetailState.Error
             if (state is AlbumDetailState.Content) showAlbum(state.album)
         }
+    }
+
+    private fun openAddTrack() {
+        val album = (viewModel.state.value as? AlbumDetailState.Content)?.album ?: return
+        val navController = findNavController()
+        // Evita abrir la hoja dos veces si se toca el botón muy rápido.
+        if (navController.currentDestination?.id != R.id.albumDetailFragment) return
+        navController.navigate(
+            R.id.action_albumDetailFragment_to_addTrackBottomSheet,
+            bundleOf(
+                AddTrackBottomSheet.ARG_ALBUM_ID to album.id,
+                AddTrackBottomSheet.ARG_ALBUM_NAME to album.name
+            )
+        )
     }
 
     private fun showAlbum(album: Album) {

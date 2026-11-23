@@ -135,4 +135,35 @@ class AlbumDetailViewModelTest {
 
         assertEquals(100, (vm.state.value as AlbumDetailState.Content).album.id)
     }
+
+    @Test
+    fun onTrackAdded_appendsTheTrackWithoutRequestingTheAlbumAgain() = runTest(dispatcher) {
+        val existing = Track(1, "Decisiones", "5:05")
+        val added = Track(2, "Plástico", "6:52")
+        val service = FakeAlbumService { album(it, listOf(existing)) }
+        val vm = viewModel(100, service)
+        advanceUntilIdle()
+
+        vm.onTrackAdded(added)
+        advanceUntilIdle()
+
+        assertEquals(listOf(existing, added), (vm.state.value as AlbumDetailState.Content).album.tracks)
+        assertEquals(listOf(100), service.requestedIds)
+    }
+
+    @Test
+    fun onTrackAdded_whenTheAlbumIsNotOnScreen_loadsItAgain() = runTest(dispatcher) {
+        val added = Track(2, "Plástico", "6:52")
+        val service = FakeAlbumService { throw VolleyError("sin conexión") }
+        val vm = viewModel(100, service)
+        advanceUntilIdle()
+        assertEquals(AlbumDetailState.Error, vm.state.value)
+
+        service.result = { album(it, listOf(added)) }
+        vm.onTrackAdded(added)
+        advanceUntilIdle()
+
+        assertEquals(listOf(added), (vm.state.value as AlbumDetailState.Content).album.tracks)
+        assertEquals(listOf(100, 100), service.requestedIds)
+    }
 }
