@@ -70,7 +70,7 @@
                             android:contentDescription="@string/artist_image_description"
                             android:scaleType="centerCrop"
                             app:shapeAppearanceOverlay="@style/ShapeAppearance.Vinilos.Circle"
-                            app:srcCompat="@drawable/ic_album_placeholder" />
+                            app:srcCompat="@drawable/ic_artist_placeholder" />
 
                         <TextView
                             android:id="@+id/tv_artist_name"
@@ -116,7 +116,9 @@
                     android:layout_marginEnd="@dimen/screen_margin"
                     android:text="@string/artist_description_header"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
-                    android:textColor="?attr/colorOnSurface" />
+                    android:textColor="?attr/colorOnSurface"
+                    android:accessibilityHeading="true"
+                    tools:targetApi="p" />
 
                 <TextView
                     android:id="@+id/tv_artist_description"
@@ -151,7 +153,9 @@
                     android:layout_marginEnd="@dimen/screen_margin"
                     android:text="@string/artist_albums_header"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
-                    android:textColor="?attr/colorOnSurface" />
+                    android:textColor="?attr/colorOnSurface"
+                    android:accessibilityHeading="true"
+                    tools:targetApi="p" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_artist_albums"
@@ -188,7 +192,9 @@
                     android:layout_marginEnd="@dimen/screen_margin"
                     android:text="@string/artist_prizes_header"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
-                    android:textColor="?attr/colorOnSurface" />
+                    android:textColor="?attr/colorOnSurface"
+                    android:accessibilityHeading="true"
+                    tools:targetApi="p" />
 
                 <LinearLayout
                     android:id="@+id/layout_artist_prizes"
@@ -228,7 +234,9 @@
                         android:layout_marginTop="24dp"
                         android:text="@string/artist_members_header"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="?attr/colorOnSurface" />
+                        android:textColor="?attr/colorOnSurface"
+                        android:accessibilityHeading="true"
+                        tools:targetApi="p" />
 
                     <LinearLayout
                         android:id="@+id/layout_artist_members"

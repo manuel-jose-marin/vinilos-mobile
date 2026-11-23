@@ -135,7 +135,9 @@
                     android:layout_marginEnd="@dimen/screen_margin"
                     android:text="@string/collector_favorite_performers_header"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
-                    android:textColor="?attr/colorOnSurface" />
+                    android:textColor="?attr/colorOnSurface"
+                    android:accessibilityHeading="true"
+                    tools:targetApi="p" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_collector_performers"
@@ -174,7 +176,9 @@
                     android:text="@string/collector_albums_header"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textColor="?attr/colorOnSurface"
-                    tools:text="Colección · 1" />
+                    tools:text="Colección · 1"
+                    android:accessibilityHeading="true"
+                    tools:targetApi="p" />
 
                 <LinearLayout
                     android:id="@+id/layout_collector_albums"
@@ -208,7 +212,9 @@
                     android:text="@string/collector_comments_header"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textColor="?attr/colorOnSurface"
-                    tools:text="Comentarios · 2" />
+                    tools:text="Comentarios · 2"
+                    android:accessibilityHeading="true"
+                    tools:targetApi="p" />
 
                 <LinearLayout
                     android:id="@+id/layout_collector_comments"

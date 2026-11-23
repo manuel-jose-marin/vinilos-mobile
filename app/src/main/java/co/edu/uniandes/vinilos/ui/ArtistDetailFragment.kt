@@ -78,9 +78,9 @@ class ArtistDetailFragment : Fragment() {
 
         Glide.with(binding.ivArtistImage)
             .load(artist.image.ifBlank { null })
-            .placeholder(R.drawable.ic_nav_artists)
-            .error(R.drawable.ic_nav_artists)
-            .fallback(R.drawable.ic_nav_artists)
+            .placeholder(R.drawable.ic_artist_placeholder)
+            .error(R.drawable.ic_artist_placeholder)
+            .fallback(R.drawable.ic_artist_placeholder)
             .into(binding.ivArtistImage)
 
         binding.tvArtistDescription.text = artist.description
@@ -147,9 +147,9 @@ class ArtistDetailFragment : Fragment() {
             item.tvMemberName.text = member.name
             Glide.with(item.ivMemberImage)
                 .load(member.image.ifBlank { null })
-                .placeholder(R.drawable.ic_album_placeholder)
-                .error(R.drawable.ic_album_placeholder)
-                .fallback(R.drawable.ic_album_placeholder)
+                .placeholder(R.drawable.ic_artist_placeholder)
+                .error(R.drawable.ic_artist_placeholder)
+                .fallback(R.drawable.ic_artist_placeholder)
                 .into(item.ivMemberImage)
         }
     }

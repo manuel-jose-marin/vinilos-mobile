@@ -135,7 +135,9 @@
                         android:layout_weight="1"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
                         android:textColor="?attr/colorOnSurface"
-                        tools:text="Tracks · 3" />
+                        tools:text="Tracks · 3"
+                        android:accessibilityHeading="true"
+                        tools:targetApi="p" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_add_track"
@@ -172,7 +174,9 @@
                     android:layout_marginTop="24dp"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textColor="?attr/colorOnSurface"
-                    tools:text="Comentarios · 1" />
+                    tools:text="Comentarios · 1"
+                    android:accessibilityHeading="true"
+                    tools:targetApi="p" />
 
                 <LinearLayout
                     android:id="@+id/layout_comments"

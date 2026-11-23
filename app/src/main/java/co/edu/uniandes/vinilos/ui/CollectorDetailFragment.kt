@@ -76,12 +76,16 @@ class CollectorDetailFragment : Fragment() {
             resources.getQuantityString(R.plurals.collector_albums_count, albumCount, albumCount)
 
         binding.btnCollectorPhone.showIfNotBlank(collector.telephone)
+        binding.btnCollectorPhone.contentDescription =
+            getString(R.string.collector_call_description, collector.name, collector.telephone)
         binding.btnCollectorPhone.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${collector.telephone}"))
             startActivity(intent)
         }
 
         binding.btnCollectorEmail.showIfNotBlank(collector.email)
+        binding.btnCollectorEmail.contentDescription =
+            getString(R.string.collector_email_description, collector.name, collector.email)
         binding.btnCollectorEmail.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:${collector.email}"))
             startActivity(intent)
@@ -196,9 +200,9 @@ class CollectorDetailFragment : Fragment() {
                 binding.tvCollectorPerformerName.text = performer.name
                 Glide.with(binding.ivCollectorPerformerImage)
                     .load(performer.image.ifBlank { null })
-                    .placeholder(R.drawable.ic_nav_artists)
-                    .error(R.drawable.ic_nav_artists)
-                    .fallback(R.drawable.ic_nav_artists)
+                    .placeholder(R.drawable.ic_artist_placeholder)
+                    .error(R.drawable.ic_artist_placeholder)
+                    .fallback(R.drawable.ic_artist_placeholder)
                     .into(binding.ivCollectorPerformerImage)
 
                 binding.root.setOnClickListener { onPerformerClick(performer) }

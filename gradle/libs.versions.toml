@@ -22,6 +22,8 @@ androidxJunit = "1.2.1"
 espresso = "3.7.0"
 testRunner = "1.6.2"
 testRules = "1.6.1"
+# La que trae espresso-accessibility; su API (Accessibility Test Framework) expone tipos de Guava
+guavaAndroid = "28.2-android"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +47,8 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 androidx-espresso-contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espresso" }
+guava-android = { group = "com.google.guava", name = "guava", version.ref = "guavaAndroid" }
+androidx-espresso-accessibility = { group = "androidx.test.espresso", name = "espresso-accessibility", version.ref = "espresso" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "testRunner" }
 androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "testRules" }
 
