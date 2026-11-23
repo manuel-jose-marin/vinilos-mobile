@@ -109,6 +109,23 @@
     <string name="collector_call_description">Llamar a %1$s</string>
     <string name="collector_email_description">Escribir un correo a %1$s</string>
 
+    <!-- HU07 Formulario de álbum -->
+    <string name="album_form_title">Crear álbum</string>
+    <string name="album_form_name_hint">Nombre *</string>
+    <string name="album_form_cover_hint">URL de la portada *</string>
+    <string name="album_form_cover_placeholder">https://</string>
+    <string name="album_form_cover_preview_description">Vista previa de la portada</string>
+    <string name="album_form_cover_preview_error">No se pudo cargar la imagen</string>
+    <string name="album_form_release_date_hint">Fecha de lanzamiento *</string>
+    <string name="album_form_release_date_pick">Elegir la fecha de lanzamiento</string>
+    <string name="album_form_description_hint">Descripción *</string>
+    <string name="album_form_genre_hint">Género *</string>
+    <string name="album_form_record_label_hint">Sello discográfico *</string>
+    <string name="album_form_submit">Crear álbum</string>
+    <string name="album_form_saving">Guardando…</string>
+    <string name="album_form_save_error">No se pudo crear el álbum. Inténtalo de nuevo</string>
+    <string name="album_form_created">Álbum «%1$s» creado</string>
+
     <!-- HU07 Validación del formulario de álbum -->
     <string name="album_form_error_name_required">El nombre es obligatorio</string>
     <string name="album_form_error_cover_required">La URL de la portada es obligatoria</string>
