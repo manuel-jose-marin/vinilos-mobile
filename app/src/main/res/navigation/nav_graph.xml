@@ -33,7 +33,27 @@
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
+
+        <action
+            android:id="@+id/action_albumDetailFragment_to_addTrackBottomSheet"
+            app:destination="@id/addTrackBottomSheet" />
     </fragment>
+
+    <!-- Agregar un track (HU08): hoja inferior sobre el detalle del álbum. -->
+    <dialog
+        android:id="@+id/addTrackBottomSheet"
+        android:name="co.edu.uniandes.vinilos.ui.AddTrackBottomSheet"
+        android:label="@string/add_track_title"
+        tools:layout="@layout/bottom_sheet_add_track">
+
+        <argument
+            android:name="albumId"
+            app:argType="integer" />
+
+        <argument
+            android:name="albumName"
+            app:argType="string" />
+    </dialog>
 
     <fragment
         android:id="@+id/artistListFragment"

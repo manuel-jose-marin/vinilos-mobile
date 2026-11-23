@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import co.edu.uniandes.vinilos.models.Album
+import co.edu.uniandes.vinilos.models.Track
 import co.edu.uniandes.vinilos.repositories.AlbumRepository
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
@@ -52,6 +53,15 @@ class AlbumDetailViewModel(
                 AlbumDetailState.Error
             }
         }
+    }
+
+    /**
+     * Agrega al detalle el track que el servidor acaba de crear (HU08), sin volver a pedir el álbum.
+     * Si el álbum no está en pantalla (cargando o con error), lo vuelve a cargar para que incluya el track.
+     */
+    fun onTrackAdded(track: Track) {
+        val current = _state.value as? AlbumDetailState.Content ?: return loadAlbum()
+        _state.value = AlbumDetailState.Content(current.album.copy(tracks = current.album.tracks + track))
     }
 
     class Factory(
