@@ -76,6 +76,10 @@ Los puntos tampoco miden todo el esfuerzo. De los 35 issues del milestone, 17 no
 - Scripts / casos de prueba en Espresso: _pendiente_
 - Reportes de defectos: _pendiente_
 
+## Micro-optimizaciones y buenas prácticas
+- [[Micro-optimizaciones del Sprint 3|Micro-optimizaciones-Sprint-3]]: optimizaciones de HU06, HU07 y HU08 y pasada de Android Lint
+- [[Buenas prácticas de memoria, ANRs y accesibilidad|Buenas-practicas-Sprint-3]]: prácticas de las ocho historias y dónde se aplican en el código
+
 ## Análisis de desempeño
 _Pendiente._
 

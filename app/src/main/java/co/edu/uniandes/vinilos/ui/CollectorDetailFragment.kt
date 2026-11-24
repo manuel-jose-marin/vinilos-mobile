@@ -35,6 +35,9 @@ class CollectorDetailFragment : Fragment() {
     private var _binding: FragmentCollectorDetailBinding? = null
     private val binding get() = _binding!!
 
+    /** Un solo adaptador por vista: cada vez que llega el contenido solo se le pasa la lista nueva. */
+    private var performerAdapter: CollectorPerformerAdapter? = null
+
     private val viewModel: CollectorDetailViewModel by viewModels {
         CollectorDetailViewModel.Factory(
             requireArguments().getInt(ARG_COLLECTOR_ID),
@@ -56,6 +59,10 @@ class CollectorDetailFragment : Fragment() {
         requireArguments().getString(ARG_COLLECTOR_NAME)?.let { binding.toolbarCollectorDetail.title = it }
         binding.toolbarCollectorDetail.setNavigationOnClickListener { findNavController().navigateUp() }
         binding.btnCollectorRetry.setOnClickListener { viewModel.loadCollector() }
+
+        performerAdapter = CollectorPerformerAdapter(::openArtistDetail)
+        binding.rvCollectorPerformers.setHasFixedSize(true)
+        binding.rvCollectorPerformers.adapter = performerAdapter
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
             binding.progressCollectorDetail.isVisible = state is CollectorDetailState.Loading
@@ -99,9 +106,7 @@ class CollectorDetailFragment : Fragment() {
     private fun showFavoritePerformers(performers: List<Performer>) {
         binding.tvCollectorPerformersEmpty.isVisible = performers.isEmpty()
         binding.rvCollectorPerformers.isVisible = performers.isNotEmpty()
-        val adapter = CollectorPerformerAdapter(::openArtistDetail)
-        binding.rvCollectorPerformers.adapter = adapter
-        adapter.submitList(performers)
+        performerAdapter?.submitList(performers)
     }
 
     private fun openArtistDetail(performer: Performer) {
@@ -179,6 +184,7 @@ class CollectorDetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding.rvCollectorPerformers.adapter = null
+        performerAdapter = null
         _binding = null
     }
 
