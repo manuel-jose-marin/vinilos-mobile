@@ -187,7 +187,7 @@ Software común: JDK 17, Android SDK 35, Gradle 8, Docker y el script `scripts/s
 | Sistema | Regresión | Suite Espresso y unitaria completa | HU01 a HU05 en cada PR que se fusiona a `develop` | OBJ-04 |
 | Sistema | Accesibilidad | Accessibility Scanner, TalkBack y revisión de contraste | Etiquetas de contenido, áreas táctiles de 48 dp, contraste mínimo 4.5:1 y orden de lectura en las 8 pantallas | OBJ-05 |
 | Sistema | Reconocimiento | Android Monkey con semilla fija y exploración sistemática | Eventos aleatorios para buscar crashes; recorrido de todas las pantallas y transiciones | OBJ-05 |
-| Sistema | Desempeño | Android Profiler y Lint | Memoria, CPU y red al abrir el detalle del coleccionista y al guardar el formulario | OBJ-05 |
+| Sistema | Desempeño | `scripts/perf/measure.py` (las mismas fuentes que Android Profiler), Android Profiler y Lint | Arranque, fluidez, CPU y memoria de las pantallas de HU01 a HU08 (ver [Análisis de desempeño por historia](#análisis-de-desempeño-por-historia)) | OBJ-05 |
 | Sistema | Compatibilidad | Suite en varias versiones de Android | API 21 (`minSdk`), API 35 (`targetSdk`) y API 37 | OBJ-02 |
 
 ### 2.5. Distribución de esfuerzo
@@ -257,6 +257,23 @@ Los criterios 2 y 3 se pueden automatizar con Espresso-Intents (`intended(hasAct
 | 9 | Error del servidor: la hoja sigue abierta con los datos | `AddTrackViewModelTest` (error conserva los datos) | | Modo avión al tocar "Agregar" |
 | 10 | Con el teclado abierto se ven "Cancelar" y "Agregar" | | | Teclado abierto en API 21 y API 35 |
 | 11 | "Cancelar" o tocar fuera cierra sin agregar | | `AddTrackTest`: cancelar no agrega | |
+
+#### Análisis de desempeño por historia
+
+El análisis de desempeño (`#67`) mide las ocho historias con `scripts/perf/measure.py`, que recorre la app con `adb` y lee las mismas fuentes que Android Profiler: `am start -W` (arranque), `dumpsys gfxinfo` (frames y tiempo del hilo principal por frame), `/proc/<pid>/stat` (CPU) y `dumpsys meminfo` (memoria y vistas vivas). Cada corrida parte de la app sin datos, y el resultado es la mediana de 5 corridas contra BackVynils con los datos de `scripts/seed-backvynils.sh` y `scripts/perf/seed-perf-data.sh`.
+
+| Historia | Recorrido que se mide | Qué se busca |
+|---|---|---|
+| HU01 Catálogo de álbumes | Arranque en frío y 4 deslizamientos hacia abajo y 4 hacia arriba | Tiempo de arranque, frames lentos al hacer scroll con las portadas cargando |
+| HU02 Detalle de álbum | 5 idas y vueltas entre el catálogo y el detalle | Tiempo del hilo principal al abrir el detalle y vistas que no se liberan al volver |
+| HU03 Listado de artistas | 4 deslizamientos hacia abajo y 4 hacia arriba | Frames lentos y CPU al hacer scroll |
+| HU04 Detalle de artista | 5 idas y vueltas entre el listado y el detalle | Tiempo del hilo principal al abrir el detalle (en el Sprint 2 era el punto más lento) |
+| HU05 Listado de coleccionistas | 4 deslizamientos hacia abajo y 4 hacia arriba | Frames lentos y CPU al hacer scroll |
+| HU06 Detalle de coleccionista | 5 idas y vueltas entre el listado y el detalle | Tiempo del hilo principal con las tres peticiones en paralelo y vistas que no se liberan |
+| HU07 Crear un álbum | 5 veces: abrir el formulario, escribir la URL de la portada (carga la vista previa) y cancelar | CPU y memoria de la vista previa, y que el formulario cerrado no quede retenido |
+| HU08 Asociar tracks | 5 veces: abrir y cancelar la hoja "Agregar track" desde el detalle de un álbum | Tiempo del hilo principal al abrir la hoja y que las hojas cerradas no queden retenidas |
+
+Los recorridos de HU07 y HU08 no guardan datos, para que las corridas no cambien el catálogo. Los umbrales de referencia son los del Sprint 2: un frame a 60 Hz dura 16,7 ms, y la memoria y las vistas vivas no deben crecer después de las idas y vueltas.
 
 ### 2.7. Datos de prueba
 

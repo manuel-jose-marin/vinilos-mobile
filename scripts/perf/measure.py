@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Análisis de desempeño del Sprint 2 (HU01 a HU05) sin Android Studio: recorre la app con adb y mide
-arranque, fluidez (frames), CPU y memoria de cada pantalla. Solo usa la librería estándar de Python.
+Análisis de desempeño de HU01 a HU08 sin Android Studio: recorre la app con adb y mide arranque, fluidez
+(frames), CPU y memoria de cada pantalla. Solo usa la librería estándar de Python.
 
 Uso:
     # Compara dos versiones, alternándolas en cada ronda para que ambas sufran igual las variaciones del emulador
@@ -11,8 +11,9 @@ Uso:
     python3 scripts/perf/measure.py --runs 5 --label develop
 
 Requisitos:
-- Un emulador o dispositivo con la app (debug) instalada y `adb root` disponible (imágenes de emulador
-  "Google APIs"); root se usa para forzar el recolector de basura antes de medir memoria.
+- Un emulador o dispositivo con la app (debug) instalada. Con `adb root` (imágenes de emulador "Google APIs")
+  se fuerza el recolector de basura antes de medir memoria; sin root (un teléfono) se mide sin forzarlo y el
+  resultado lo indica en "gc_forced".
 - BackVynils corriendo con los datos de ./scripts/seed-backvynils.sh y ./scripts/perf/seed-perf-data.sh.
 - Animaciones del dispositivo desactivadas (el script las desactiva).
 
@@ -36,6 +37,8 @@ PACKAGE = "co.edu.uniandes.vinilos"
 ACTIVITY = f"{PACKAGE}/.ui.MainActivity"
 TIMEOUT_S = 20
 DETAIL_ROUND_TRIPS = 5
+COVER_URL = "https://i.pinimg.com/564x/aa/5f/ed/aa5fed7fac61cc8f41d1e79db917a7cd.jpg"
+HAS_ROOT = False
 
 
 def adb(*args: str) -> str:
@@ -88,6 +91,24 @@ def tap(node) -> None:
 
 def back() -> None:
     shell("input keyevent KEYCODE_BACK")
+
+
+def hide_keyboard() -> None:
+    """Cierra el teclado en pantalla solo si está abierto: con el teclado cerrado, "atrás" saldría de la pantalla."""
+    if "mInputShown=true" in shell("dumpsys input_method"):
+        back()
+        time.sleep(0.3)
+
+
+def scroll_until(view_id: str, width: int, height: int, swipes: int = 6) -> list:
+    """Desliza hacia abajo hasta que aparezca [view_id]; uiautomator solo ve lo que está en pantalla."""
+    for _ in range(swipes):
+        nodes = find(view_id)
+        if nodes:
+            return nodes
+        shell(f"input swipe {width // 2} {int(height * 0.7)} {width // 2} {int(height * 0.35)} 250")
+        time.sleep(0.4)
+    return wait_for(view_id, timeout_s=5)
 
 
 def scroll_list(width: int, height: int, times: int = 4) -> None:
@@ -168,8 +189,9 @@ def main_thread_frames() -> dict:
 
 
 def memory() -> dict:
-    """Memoria después de forzar el GC (SIGUSR1 en ART), en MB, y objetos vivos de la interfaz."""
-    shell(f"kill -10 {pid()}")
+    """Memoria en MB y objetos vivos de la interfaz. Con root, primero fuerza el GC (SIGUSR1 en ART)."""
+    if HAS_ROOT:
+        shell(f"kill -10 {pid()}")
     time.sleep(1.5)
     out = shell(f"dumpsys meminfo {PACKAGE}")
 
@@ -187,6 +209,7 @@ def memory() -> dict:
         "native_mb": kb("Native Heap"),
         "views": count("Views"),
         "activities": count("Activities"),
+        "gc_forced": 1.0 if HAS_ROOT else 0.0,
     }
 
 
@@ -215,6 +238,26 @@ def detail_round_trips(list_item_id: str, detail_id: str, list_id: str) -> None:
             # A veces el "atrás" llega antes de que el detalle termine de abrir; se repite una vez.
             back()
             wait_for(list_id)
+
+
+def form_round_trips() -> None:
+    """HU07: abre el formulario, escribe la URL de la portada (dispara la vista previa) y cancela, sin crear nada."""
+    for _ in range(DETAIL_ROUND_TRIPS):
+        tap(wait_for("fab_new_album")[0])
+        tap(wait_for("et_album_cover")[0])
+        shell(f"input text '{COVER_URL}'")
+        time.sleep(1.5)  # espera la vista previa (400 ms de pausa y la descarga)
+        hide_keyboard()
+        tap(wait_for("btn_create_album_cancel")[0])
+        wait_for("fab_new_album")
+
+
+def sheet_round_trips(width: int, height: int) -> None:
+    """HU08: abre y cierra con "Cancelar" la hoja "Agregar track", sin agregar nada."""
+    for _ in range(DETAIL_ROUND_TRIPS):
+        tap(scroll_until("btn_add_track", width, height)[0])
+        tap(wait_for("btn_add_track_cancel")[0])
+        time.sleep(0.5)
 
 
 def run_once(width: int, height: int) -> dict:
@@ -251,6 +294,23 @@ def run_once(width: int, height: int) -> dict:
     wait_for("card_collector")
     result["collectors_scroll"] = measure(width, height, lambda: scroll_list(width, height))
     result["collectors_memory"] = memory()
+
+    # HU06 Detalle de coleccionista
+    result["collector_detail"] = measure(
+        width, height, lambda: detail_round_trips("card_collector", "scroll_collector_detail", "card_collector"))
+    result["collector_detail_memory"] = memory()
+
+    # HU07 Formulario de creación de álbum
+    tap(wait_for("albumListFragment")[0])
+    wait_for("card_album")
+    result["album_form"] = measure(width, height, form_round_trips)
+    result["album_form_memory"] = memory()
+
+    # HU08 Hoja "Agregar track" en el detalle de un álbum
+    tap(wait_for("card_album")[0])
+    wait_for("tv_detail_name")
+    result["add_track_sheet"] = measure(width, height, lambda: sheet_round_trips(width, height))
+    result["add_track_sheet_memory"] = memory()
     return result
 
 
@@ -271,9 +331,13 @@ def main() -> None:
     args = parser.parse_args()
     versions = [tuple(item.split("=", 1)) for item in args.apk] or [(args.label, None)]
 
-    adb("root")
+    global HAS_ROOT
+    subprocess.run(["adb", "root"], capture_output=True, text=True)
     time.sleep(2)
     adb("wait-for-device")
+    HAS_ROOT = adb("shell", "id", "-u").strip() == "0"
+    if not HAS_ROOT:
+        print("aviso: sin adb root; la memoria se mide sin forzar el recolector de basura", flush=True)
     for setting in ("window_animation_scale", "transition_animation_scale", "animator_duration_scale"):
         shell(f"settings put global {setting} 0")
     width, height = map(int, re.findall(r"\d+", shell("wm size"))[-2:])
