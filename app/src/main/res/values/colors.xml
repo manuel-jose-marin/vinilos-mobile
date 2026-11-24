@@ -5,6 +5,8 @@
     <color name="wine_container">#FFD9DE</color>
     <color name="on_wine_container">#3E0013</color>
     <color name="amber">#C8892B</color>
+    <!-- Ámbar para elementos que dan información, como las estrellas: 4.7:1 sobre crema (WCAG 1.4.11 pide 3:1) -->
+    <color name="amber_dark">#9C6510</color>
     <color name="amber_container">#FFDDB3</color>
     <color name="on_amber_container">#2A1800</color>
     <color name="cream">#FFF8F3</color>

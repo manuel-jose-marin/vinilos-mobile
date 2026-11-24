@@ -108,8 +108,9 @@
     <string name="collector_album_price">$%1$s COP</string>
     <string name="collector_album_available">Disponible</string>
     <string name="collector_album_unavailable">No disponible</string>
-    <string name="collector_call_description">Llamar a %1$s</string>
-    <string name="collector_email_description">Escribir un correo a %1$s</string>
+    <!-- Lectores de pantalla: la acción y el dato visible (WCAG 2.5.3), por ejemplo "Llamar a Manolo Bellon al 3502457896" -->
+    <string name="collector_call_description">Llamar a %1$s al %2$s</string>
+    <string name="collector_email_description">Escribir un correo a %1$s a %2$s</string>
 
     <!-- HU07 Formulario de álbum -->
     <string name="album_form_title">Crear álbum</string>
@@ -120,6 +121,8 @@
     <string name="album_form_cover_preview_error">No se pudo cargar la imagen</string>
     <string name="album_form_release_date_hint">Fecha de lanzamiento *</string>
     <string name="album_form_release_date_pick">Elegir la fecha de lanzamiento</string>
+    <string name="album_form_genre_pick">Ver los géneros</string>
+    <string name="album_form_record_label_pick">Ver los sellos discográficos</string>
     <string name="album_form_description_hint">Descripción *</string>
     <string name="album_form_genre_hint">Género *</string>
     <string name="album_form_record_label_hint">Sello discográfico *</string>

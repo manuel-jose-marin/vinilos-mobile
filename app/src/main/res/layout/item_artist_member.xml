@@ -18,7 +18,7 @@
         android:importantForAccessibility="no"
         android:scaleType="centerCrop"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Vinilos.Circle"
-        app:srcCompat="@drawable/ic_album_placeholder" />
+        app:srcCompat="@drawable/ic_artist_placeholder" />
 
     <TextView
         android:id="@+id/tv_member_name"

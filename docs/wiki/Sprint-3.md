@@ -83,7 +83,7 @@ _Pendiente._
 _Pendiente._
 
 ## Revisión de accesibilidad
-_Pendiente._
+[Revisión de accesibilidad del Sprint 3](Accesibilidad-Sprint-3): método, resultado por regla del diseño, los 6 defectos corregidos (#169 a #174) y lo que falta revisar a mano con TalkBack.
 
 ## APK y release
 _Pendiente._

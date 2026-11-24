@@ -43,9 +43,9 @@ class ArtistAdapter(
             // Mientras carga la foto, si falla o si no tiene URL, se ve la imagen genérica.
             Glide.with(binding.ivArtistImage)
                 .load(artist.image.ifBlank { null })
-                .placeholder(R.drawable.ic_nav_artists)
-                .error(R.drawable.ic_nav_artists)
-                .fallback(R.drawable.ic_nav_artists)
+                .placeholder(R.drawable.ic_artist_placeholder)
+                .error(R.drawable.ic_artist_placeholder)
+                .fallback(R.drawable.ic_artist_placeholder)
                 .into(binding.ivArtistImage)
 
             binding.root.setOnClickListener { onArtistClick(artist) }
