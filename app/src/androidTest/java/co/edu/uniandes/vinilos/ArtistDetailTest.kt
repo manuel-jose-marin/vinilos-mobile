@@ -88,6 +88,8 @@ class ArtistDetailTest {
     fun detailShowsPrizes() {
         openArtist(RUBEN_BLADES)
 
+        // En pantallas bajas, como la de API 21, los premios quedan fuera de la vista hasta hacer scroll.
+        onView(withId(R.id.layout_artist_prizes)).perform(scrollTo())
         waitUntilDisplayed(withText("Grammy Award"))
         onView(withId(R.id.layout_artist_prizes)).perform(scrollTo()).check(
             matches(
