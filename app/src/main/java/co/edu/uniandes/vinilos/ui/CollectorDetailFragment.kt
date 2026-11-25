@@ -56,6 +56,11 @@ class CollectorDetailFragment : Fragment() {
         requireArguments().getString(ARG_COLLECTOR_NAME)?.let { binding.toolbarCollectorDetail.title = it }
         binding.toolbarCollectorDetail.setNavigationOnClickListener { findNavController().navigateUp() }
         binding.btnCollectorRetry.setOnClickListener { viewModel.loadCollector() }
+        markAsHeadings(
+            binding.tvCollectorPerformersHeader,
+            binding.tvCollectorAlbumsHeader,
+            binding.tvCollectorCommentsHeader
+        )
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
             binding.progressCollectorDetail.isVisible = state is CollectorDetailState.Loading

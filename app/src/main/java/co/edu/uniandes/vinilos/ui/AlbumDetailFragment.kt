@@ -66,6 +66,7 @@ class AlbumDetailFragment : Fragment() {
         binding.toolbarAlbumDetail.setNavigationOnClickListener { findNavController().navigateUp() }
         binding.btnDetailRetry.setOnClickListener { viewModel.loadAlbum() }
         binding.btnAddTrack.setOnClickListener { openAddTrack() }
+        markAsHeadings(binding.tvTracksHeader, binding.tvCommentsHeader)
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
             binding.progressAlbumDetail.isVisible = state is AlbumDetailState.Loading
