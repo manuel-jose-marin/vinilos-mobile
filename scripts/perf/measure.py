@@ -95,17 +95,18 @@ def back() -> None:
 
 def hide_keyboard() -> None:
     """Cierra el teclado en pantalla solo si está abierto: con el teclado cerrado, "atrás" saldría de la pantalla."""
-    # En el emulador la consulta puede fallar transitoriamente con código 255.
+    # WindowManager permite consultar la visibilidad sin volcar el diagnóstico completo del teclado.
     # Se reintenta solo la lectura del estado, antes de decidir si se pulsa "atrás".
     for attempt in range(3):
         try:
-            state = shell("dumpsys input_method")
+            state = shell("dumpsys window windows")
             break
-        except subprocess.CalledProcessError as error:
-            if error.returncode != 255 or attempt == 2:
+        except subprocess.CalledProcessError:
+            if attempt == 2:
                 raise
             time.sleep(0.3)
-    if "mInputShown=true" in state:
+    windows = re.split(r"\n\s*Window #\d+ ", state)
+    if any("mIsImWindow=true" in window and "isVisible=true" in window for window in windows):
         back()
         time.sleep(0.3)
 
