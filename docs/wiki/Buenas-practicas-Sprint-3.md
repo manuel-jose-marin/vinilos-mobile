@@ -42,7 +42,7 @@ El resultado completo de la revisión, con Accessibility Test Framework (el moto
 | Áreas táctiles de al menos 48 dp en botones, chips, filas y en los botones de la hoja "Agregar track" | Todos los layouts | HU01 a HU08 |
 | Cada campo usa el hint de `TextInputLayout` como etiqueta, y los errores se muestran con `setError`, que TalkBack anuncia | Formulario de álbum y hoja "Agregar track" | HU07, HU08 |
 | Al fallar la validación, el foco pasa al primer campo con error, y el formulario de álbum se desplaza hasta él | `CreateAlbumFragment`, `AddTrackBottomSheet` (`focusFirstError`) | HU07, HU08 |
-| Los títulos de sección están marcados como encabezados (`accessibilityHeading`), para saltar entre secciones con TalkBack | 9 títulos de los detalles de álbum, artista y coleccionista | HU02, HU04, HU06 |
+| Los títulos de sección están marcados como encabezados con `ViewCompat.setAccessibilityHeading`, que funciona desde Android 5.0, para saltar entre secciones con TalkBack | `markAsHeadings` en los 9 títulos de los detalles de álbum, artista y coleccionista | HU02, HU04, HU06 |
 | Textos en `sp` y contraste de al menos 4.5:1 en el texto y 3:1 en los gráficos (estrellas y foto genérica de artista) | Tema `Theme.Vinilos`, `amber_dark`, `ic_artist_placeholder` | HU01 a HU08 |
 | Los nombres pueden ocupar dos líneas y las filas crecen con el texto, para que con letra grande no se corten ni se encimen | Tarjetas de álbum, artista, coleccionista y colección | HU01, HU03, HU05, HU06 |
 | Ningún dato depende solo del color: el estado de un álbum de la colección lleva punto y texto ("Disponible") | Detalle de coleccionista | HU06 |
