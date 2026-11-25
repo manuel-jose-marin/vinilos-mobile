@@ -77,7 +77,7 @@ Los puntos tampoco miden todo el esfuerzo. De los 35 issues del milestone, 17 no
 - Reportes de defectos: _pendiente_
 
 ## Análisis de desempeño
-_Pendiente._
+- [[Análisis de desempeño del Sprint 3|Analisis-desempeno-Sprint-3]]: arranque, fluidez, CPU y memoria de HU01 a HU08 en emulador, con los datos de las 5 corridas
 
 ## Pruebas de reconocimiento y exploración sistemática
 _Pendiente._
