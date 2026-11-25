@@ -95,7 +95,17 @@ def back() -> None:
 
 def hide_keyboard() -> None:
     """Cierra el teclado en pantalla solo si está abierto: con el teclado cerrado, "atrás" saldría de la pantalla."""
-    if "mInputShown=true" in shell("dumpsys input_method"):
+    # En el emulador la consulta puede fallar transitoriamente con código 255.
+    # Se reintenta solo la lectura del estado, antes de decidir si se pulsa "atrás".
+    for attempt in range(3):
+        try:
+            state = shell("dumpsys input_method")
+            break
+        except subprocess.CalledProcessError as error:
+            if error.returncode != 255 or attempt == 2:
+                raise
+            time.sleep(0.3)
+    if "mInputShown=true" in state:
         back()
         time.sleep(0.3)
 
