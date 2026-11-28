@@ -93,4 +93,4 @@ Los puntos tampoco miden todo el esfuerzo. De los 35 issues del milestone, 17 no
 _Pendiente._
 
 ## Retrospectiva
-_Pendiente._
+- [[Retrospectiva del Sprint 3|Retrospectiva-Sprint-3]]: velocidad del Sprint 3 (burndown), estimación frente a ejecución, comportamiento del equipo, seguimiento de las acciones del Sprint 2 y lecciones del proyecto
