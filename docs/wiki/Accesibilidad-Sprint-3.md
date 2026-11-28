@@ -42,7 +42,7 @@ Además de las reglas del diseño se revisaron dos puntos de WCAG que el diseño
 | [#171](https://github.com/manuel-jose-marin/vinilos-mobile/issues/171) | HU07 | Media | Las flechas de Género y Sello tienen la misma descripción genérica | "Ver los géneros" y "Ver los sellos discográficos" | `createAlbumForm_dropdownIconsSayWhichListTheyOpen` |
 | [#172](https://github.com/manuel-jose-marin/vinilos-mobile/issues/172) | HU06 | Media | Teléfono y correo solo leen el dato, no la acción | "Llamar a Manolo Bellon al 3502457896" y "Escribir un correo a Manolo Bellon a manollo@caracol.com.co" | `collectorDetail_contactButtonsSayTheAction` |
 | [#173](https://github.com/manuel-jose-marin/vinilos-mobile/issues/173) | HU01, HU03, HU05, HU06 | Media | A 200 % se cortan los nombres, y la fila de artista se encima si el nombre ocupa dos líneas | Nombres en hasta dos líneas y la fila de artista en una cadena vertical que crece con el texto | `artistRow_growsInsteadOfOverlappingWithLargeText` |
-| [#174](https://github.com/manuel-jose-marin/vinilos-mobile/issues/174) | HU02, HU04, HU06 | Baja | Los títulos de sección no son encabezados | `accessibilityHeading` en los 9 títulos de los tres detalles | `albumDetail_sectionTitlesAreHeadings` y `collectorDetail_contactButtonsSayTheAction` |
+| [#174](https://github.com/manuel-jose-marin/vinilos-mobile/issues/174) | HU02, HU04, HU06 | Baja | Los títulos de sección no son encabezados | `ViewCompat.setAccessibilityHeading` en los 9 títulos de los tres detalles (`markAsHeadings`), que funciona desde API 21 | `albumDetail_sectionTitlesAreHeadings` y `collectorDetail_contactButtonsSayTheAction` |
 
 Las cinco pruebas de `AccessibilityFixesTest` fallan con el código de `develop` (`e0fc14a`) y pasan con las correcciones.
 
@@ -67,7 +67,7 @@ Las advertencias de contraste dependen de la captura: si la pantalla se reacomod
 ## 5. Pendiente y limitaciones
 
 - **Pasada manual con TalkBack.** TalkBack está instalado en el emulador, pero los gestos que se envían con `adb` no mueven su foco, así que la lectura se verificó con el árbol de accesibilidad y no de oído. Falta recorrer las 8 pantallas con TalkBack en un teléfono, revisando sobre todo el orden de lectura del detalle de coleccionista y de la hoja "Agregar track".
-- **API 21.** No se probó. `accessibilityHeading` solo tiene efecto desde Android 9 (API 28); en versiones anteriores los títulos se leen como texto normal.
+- **API 21.** Los encabezados se marcaban al principio con el atributo `android:accessibilityHeading`, que solo existe desde Android 9 (API 28): en Android 5 a 8 los títulos se leían como texto normal, y las dos pruebas de encabezados fallaban en API 21 con `NoSuchMethodError`. Ahora se marcan con `ViewCompat.setAccessibilityHeading`, que en versiones anteriores a API 28 los expone a TalkBack con un delegado de accesibilidad, y las pruebas los comprueban con `ViewCompat.isAccessibilityHeading`.
 - **Nombres de más de dos líneas.** A 200 %, "Rubén Blades Bellido de Luna" necesita tres líneas y sigue cortándose en la segunda. TalkBack lee el nombre completo y el detalle lo muestra entero.
 - **Tema oscuro.** La app no tiene tema oscuro, así que no aplica.
 

@@ -128,6 +128,7 @@
 
                 <!-- Artistas favoritos: carrusel horizontal (criterios 4 y 5) -->
                 <TextView
+                    android:id="@+id/tv_collector_performers_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/screen_margin"
@@ -135,9 +136,7 @@
                     android:layout_marginEnd="@dimen/screen_margin"
                     android:text="@string/collector_favorite_performers_header"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
-                    android:textColor="?attr/colorOnSurface"
-                    android:accessibilityHeading="true"
-                    tools:targetApi="p" />
+                    android:textColor="?attr/colorOnSurface" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_collector_performers"
@@ -176,9 +175,7 @@
                     android:text="@string/collector_albums_header"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textColor="?attr/colorOnSurface"
-                    tools:text="Colección · 1"
-                    android:accessibilityHeading="true"
-                    tools:targetApi="p" />
+                    tools:text="Colección · 1" />
 
                 <LinearLayout
                     android:id="@+id/layout_collector_albums"
@@ -212,9 +209,7 @@
                     android:text="@string/collector_comments_header"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textColor="?attr/colorOnSurface"
-                    tools:text="Comentarios · 2"
-                    android:accessibilityHeading="true"
-                    tools:targetApi="p" />
+                    tools:text="Comentarios · 2" />
 
                 <LinearLayout
                     android:id="@+id/layout_collector_comments"

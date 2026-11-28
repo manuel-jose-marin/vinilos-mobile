@@ -59,6 +59,11 @@ class CollectorDetailFragment : Fragment() {
         requireArguments().getString(ARG_COLLECTOR_NAME)?.let { binding.toolbarCollectorDetail.title = it }
         binding.toolbarCollectorDetail.setNavigationOnClickListener { findNavController().navigateUp() }
         binding.btnCollectorRetry.setOnClickListener { viewModel.loadCollector() }
+        markAsHeadings(
+            binding.tvCollectorPerformersHeader,
+            binding.tvCollectorAlbumsHeader,
+            binding.tvCollectorCommentsHeader
+        )
 
         performerAdapter = CollectorPerformerAdapter(::openArtistDetail)
         binding.rvCollectorPerformers.setHasFixedSize(true)

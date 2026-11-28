@@ -7,6 +7,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -56,7 +57,8 @@ class AccessibilityFixesTest {
             description.appendText("marcado como encabezado para TalkBack")
         }
 
-        override fun matchesSafely(view: View) = view.isAccessibilityHeading
+        // ViewCompat lee la marca en todas las versiones; View.isAccessibilityHeading solo existe desde API 28.
+        override fun matchesSafely(view: View) = ViewCompat.isAccessibilityHeading(view)
     }
 
     /** Las flechas de Género y Sello dicen qué lista abren, en vez de "Mostrar menú desplegable" en ambas. */

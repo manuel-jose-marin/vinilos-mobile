@@ -54,6 +54,12 @@ class ArtistDetailFragment : Fragment() {
         requireArguments().getString(ARG_ARTIST_NAME)?.let { binding.toolbarArtistDetail.title = it }
         binding.toolbarArtistDetail.setNavigationOnClickListener { findNavController().navigateUp() }
         binding.btnArtistRetry.setOnClickListener { viewModel.loadArtist() }
+        markAsHeadings(
+            binding.tvArtistDescriptionHeader,
+            binding.tvArtistAlbumsHeader,
+            binding.tvArtistPrizesHeader,
+            binding.tvArtistMembersHeader
+        )
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
             binding.progressArtistDetail.isVisible = state is ArtistDetailState.Loading

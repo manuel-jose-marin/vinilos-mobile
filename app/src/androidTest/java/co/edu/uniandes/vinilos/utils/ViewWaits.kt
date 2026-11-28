@@ -11,8 +11,11 @@ import junit.framework.AssertionFailedError
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 
-/** Tiempo máximo de espera para respuestas de BackVynils en las pruebas E2E. */
-const val NETWORK_TIMEOUT_MS = 10_000L
+/**
+ * Tiempo máximo de espera para respuestas de BackVynils en las pruebas E2E. Es un máximo, no una pausa: una prueba
+ * sigue apenas aparece la vista. Con 10 s algunas pruebas fallaban de forma intermitente en emuladores lentos.
+ */
+const val NETWORK_TIMEOUT_MS = 20_000L
 private const val POLL_INTERVAL_MS = 200L
 
 /**
