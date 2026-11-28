@@ -21,14 +21,12 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import co.edu.uniandes.vinilos.ui.MainActivity
+import co.edu.uniandes.vinilos.utils.hasError
+import co.edu.uniandes.vinilos.utils.hasHint
 import co.edu.uniandes.vinilos.utils.hasItems
 import co.edu.uniandes.vinilos.utils.waitUntilDisplayed
 import co.edu.uniandes.vinilos.validation.AlbumFormValidator
-import com.google.android.material.textfield.TextInputLayout
-import org.hamcrest.Description
-import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
-import org.hamcrest.TypeSafeMatcher
 import org.json.JSONArray
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -220,19 +218,6 @@ class AlbumCreateTest {
         val all = albums()
         return (0 until all.length()).map(all::getJSONObject).filter { it.getString("name") == name }.map { it.getInt("id") }
     }
-
-    private fun hasHint(expected: String) = textInputLayout("con la ayuda \"$expected\"") { it.hint?.toString() == expected }
-
-    private fun hasError(expected: String) = textInputLayout("con el error \"$expected\"") { it.error?.toString() == expected }
-
-    private fun textInputLayout(label: String, check: (TextInputLayout) -> Boolean): Matcher<View> =
-        object : TypeSafeMatcher<View>() {
-            override fun describeTo(description: Description) {
-                description.appendText("TextInputLayout $label")
-            }
-
-            override fun matchesSafely(item: View) = item is TextInputLayout && check(item)
-        }
 
     private companion object {
         const val VALID_COVER = "https://i.pinimg.com/564x/aa/5f/ed/aa5fed7fac61cc8f41d1e79db917a7cd.jpg"
