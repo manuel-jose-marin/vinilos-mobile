@@ -84,7 +84,7 @@ Los puntos tampoco miden todo el esfuerzo. De los 35 issues del milestone, 17 no
 - [[Análisis de desempeño del Sprint 3|Analisis-desempeno-Sprint-3]]: arranque, fluidez, CPU y memoria de HU01 a HU08 en emulador, con los datos de las 5 corridas
 
 ## Pruebas de reconocimiento y exploración sistemática
-_Pendiente._
+- [[Pruebas de reconocimiento aleatorias y exploración sistemática|Pruebas-reconocimiento-y-exploracion-Sprint-3]]: resultados de Android Monkey (5,000 eventos) y matriz de exploración sistemática de la interfaz de usuario (HU01 a HU08)
 
 ## Revisión de accesibilidad
 [Revisión de accesibilidad del Sprint 3](Accesibilidad-Sprint-3): método, resultado por regla del diseño, los 6 defectos corregidos (#169 a #174) y lo que falta revisar a mano con TalkBack.

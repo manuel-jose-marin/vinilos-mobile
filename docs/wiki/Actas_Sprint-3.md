@@ -163,3 +163,47 @@ Una historia de usuario se considerará terminada cuando cumpla con todos los si
 ### Resultado del Sprint Planning
 
 El equipo aprobó el plan de trabajo del Sprint 3 para completar las historias HU06, HU07 y HU08 con un compromiso de 13 Story Points. Se asignaron los issues correspondientes a cada integrante con sus dependencias explícitas y se estableció el compromiso de realizar la coevaluación antes del sábado.
+
+---
+
+## Semana 8: Reunión de seguimiento y cierre del Sprint 3
+
+**Fecha:** 2026-11-27 · **Hora:** 8:00 p. m. a 9:00 p. m. (hora Colombia) · **Medio:** Google Meet  
+**Facilitador:** Miguel Rincón
+
+**Asistentes:** Manuel José Marín, Miguel Rincón, Felipe Rojas, Alejandro Pulido
+
+### Evidencia
+
+<img width="738" height="414" alt="reunion_equipo_semana8" src="./img/Reunion_equipo_W8.png" />
+
+- Registro de la reunión de seguimiento, consolidación y cierre del Sprint 3 (MVP final).
+
+### Temas tratados
+
+1. **Revisión del avance general y entrega de Historias de Usuario:**
+   - Se verificó la integración en `develop` del 100% de las historias del Sprint 3: **HU06** (*Detalle de coleccionista*), **HU07** (*Crear álbum*) y **HU08** (*Asociar tracks*), acumulando **13 Story Points** entregados sobre 13 comprometidos.
+   - Con esta entrega se completan formalmente las **8 Historias de Usuario del MVP** de Vinilos Mobile (HU01 a HU08).
+
+2. **Revisión de Pruebas No Funcionales y Artefactos:**
+   - **Miguel Rincón (`#68`):** Presentó el reporte de pruebas de reconocimiento aleatorias con Android Monkey (5,000 eventos sin cierres ni congelamientos) y la matriz de exploración sistemática de la interfaz de usuario en `Pruebas-reconocimiento-y-exploracion-Sprint-3.md`.
+   - **Felipe Rojas (`#69`):** Presentó el informe de accesibilidad comprobando el soporte de TalkBack, contraste de colores M3 y etiquetado de elementos en `Accesibilidad-Sprint-3.md`.
+   - **Manuel José Marín (`#67`):** Presentó el análisis de desempeño y perfilamiento de CPU, memoria y renderizado GPU en `Analisis-desempeno-Sprint-3.md`.
+   - **Alejandro Pulido (`#66`):** Presentó el inventario consolidado de pruebas, reporte de defectos cerrados y la compilación del paquete oficial de la versión final **`vinilos-mobile-v3.0.0.apk`**.
+
+3. **Consolidación de la Wiki y Release Final:**
+   - Se revisó que todos los documentos de arquitectura, estrategia de pruebas, actas, análisis de desempeño y la retrospectiva del Sprint 3 estén enlazados correctamente en el menú lateral de la Wiki (`_Sidebar.md`).
+   - Se aprobó la fusión de la rama `develop` hacia `main` y la publicación del Release oficial `v3.0.0` en GitHub.
+
+---
+
+## Tabla de Acuerdos y Cierre del Proyecto
+
+| Tarea / Issue | Responsable | Estado |
+|---|---|:---:|
+| `#68` Pruebas de reconocimiento aleatorias y exploración sistemática | Miguel Rincón | ✅ Completado |
+| `#69` Revisión de accesibilidad de la aplicación | Felipe Rojas | ✅ Completado |
+| `#67` Análisis de desempeño y perfilamiento del Sprint 3 | Manuel José Marín | ✅ Completado |
+| `#66` Inventario de pruebas, reporte de defectos y APK v3.0.0 | Alejandro Pulido | ✅ Completado |
+| `#71` Retrospectiva final del Sprint 3 y consolidación del proyecto | Manuel José Marín | ✅ Completado |
+| Fusión de `develop` a `main` y publicación del Release `v3.0.0` | Alejandro Pulido / Manuel José Marín | ✅ Completado |
