@@ -26,4 +26,6 @@
   - [[Diseño arquitectónico|Diseno-arquitectonico-Sprint-3]]
   - [[Estrategia de pruebas|Estrategia-pruebas-Sprint-3]]
   - [[Revisión de accesibilidad|Accesibilidad-Sprint-3]]
+  - [[Micro-optimizaciones|Micro-optimizaciones-Sprint-3]]
+  - [[Buenas prácticas|Buenas-practicas-Sprint-3]]
 - [[Backend BackVynils|Backend-BackVynils]]
